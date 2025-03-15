@@ -12,15 +12,16 @@ type PasswordFieldProps = {
     hasResetLink: boolean;
     description?: string;
     error?: string;
+    label: string;
 };
 
-export default function PasswordField({ setter, fieldName, hasResetLink, description, error }: PasswordFieldProps) {
+export default function PasswordField({ setter, fieldName, hasResetLink, description, error, label }: PasswordFieldProps) {
     const [showInput, setShowInput] = useState(false);
 
     return (
         <Field>
             <Label className="mb-1 flex items-center justify-between">
-                Password
+                {label}
                 {hasResetLink && (
                     <Link href="/password-reset" className="body-text text-xs underline">
                         Forgot password

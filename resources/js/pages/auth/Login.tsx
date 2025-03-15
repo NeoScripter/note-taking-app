@@ -1,6 +1,6 @@
 import CheckboxField from '@/components/forms/CheckboxField';
-import EmailField from '@/components/forms/EmailField';
 import PasswordField from '@/components/forms/PasswordField';
+import TextField from '@/components/forms/TextField';
 import PrimaryBtn from '@/components/PrimaryBtn';
 import AuthLayout from '@/layouts/AuthLayout';
 import { Link, useForm } from '@inertiajs/react';
@@ -19,11 +19,21 @@ const Login = () => {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4 text-sm">
-            <EmailField setter={setData} fieldName="email" error={errors.email} />
+            <TextField
+                setter={setData}
+                fieldName="email"
+                type="email"
+                error={errors.email}
+                placeholder="email@example.com"
+                label="Email Address"
+                shouldFocus={true}
+            />
 
-            <PasswordField setter={setData} fieldName="password" hasResetLink={true} error={errors.password} />
+            <PasswordField setter={setData} fieldName="password" hasResetLink={true} error={errors.password} label="Password" />
 
-            <CheckboxField isChecked={data.remember} setter={setData} fieldName='remember'>remember me</CheckboxField>
+            <CheckboxField isChecked={data.remember} setter={setData} fieldName="remember">
+                remember me
+            </CheckboxField>
 
             <PrimaryBtn type="submit" className="w-full">
                 Login
