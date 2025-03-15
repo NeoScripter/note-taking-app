@@ -1,27 +1,43 @@
-import { Link, useForm } from "@inertiajs/react";
-import PasswordField from '@/components/PasswordField';
+import CheckboxField from '@/components/forms/CheckboxField';
+import EmailField from '@/components/forms/EmailField';
+import PasswordField from '@/components/forms/PasswordField';
+import PrimaryBtn from '@/components/PrimaryBtn';
 import AuthLayout from '@/layouts/AuthLayout';
-import EmailField from "@/components/EmailField";
-import PrimaryBtn from "@/components/PrimaryBtn";
+import { Link, useForm } from '@inertiajs/react';
 
 const Login = () => {
-    const { data, setData } = useForm({
-        email: "",
-        password: "",
+    const { data, setData, post, errors } = useForm({
+        email: '',
+        password: '',
+        remember: false as boolean,
     });
 
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        post('/login');
+    }
+
     return (
-        <div className='space-y-4 text-sm'>
-            <EmailField setter={setData} fieldName="email" />
+        <form onSubmit={handleSubmit} className="space-y-4 text-sm">
+            <EmailField setter={setData} fieldName="email" error={errors.email} />
 
-            <PasswordField setter={setData} fieldName="password" hasResetLink={true} />
+            <PasswordField setter={setData} fieldName="password" hasResetLink={true} error={errors.password} />
 
-            <PrimaryBtn type="submit" className="w-full">Login</PrimaryBtn>
+            <CheckboxField isChecked={data.remember} setter={setData} fieldName='remember'>remember me</CheckboxField>
+
+            <PrimaryBtn type="submit" className="w-full">
+                Login
+            </PrimaryBtn>
 
             <hr className="text-gray-300" />
 
-            <p className="body-text text-center">No account yet? <Link href="/signup" className="title-text">Sign up</Link></p>
-        </div>
+            <p className="body-text text-center">
+                No account yet?{' '}
+                <Link href="/signup" className="title-text">
+                    Sign up
+                </Link>
+            </p>
+        </form>
     );
 };
 

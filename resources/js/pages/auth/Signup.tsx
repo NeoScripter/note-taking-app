@@ -1,7 +1,7 @@
 import { Link, useForm } from "@inertiajs/react";
-import PasswordField from '@/components/PasswordField';
+import PasswordField from '@/components/forms/PasswordField';
 import AuthLayout from '@/layouts/AuthLayout';
-import EmailField from "@/components/EmailField";
+import EmailField from "@/components/forms/EmailField";
 import PrimaryBtn from "@/components/PrimaryBtn";
 
 const Signup = () => {
