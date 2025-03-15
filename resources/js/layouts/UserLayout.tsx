@@ -1,12 +1,12 @@
 import { Link } from '@inertiajs/react';
 import { Head } from '@inertiajs/react'
 
-type LayoutProps = {
+type UserLayoutProps = {
     children: React.ReactElement;
     title: string;
 }
 
-export default function Layout({ children, title }: LayoutProps) {
+export default function UserLayout({ children, title }: UserLayoutProps) {
     return (
         <>
         <Head title={title} />
