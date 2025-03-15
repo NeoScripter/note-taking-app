@@ -18,6 +18,7 @@
     --color-dark-black: oklch(18.26% 0.0196 265.9);
     --color-primary-blue: oklch(55.5% 0.2449 266.68);
     --color-hover-blue: oklch(47.07% 0.2134 266.52);
+    --color-pale-blue: oklch(95.77% 0.0199 267.29);
 
 
     --breakpoint-sm: 768px;
@@ -25,6 +26,7 @@
 
     --shadow-input: 0 0 0 3px rgba(255,255,255,1), 0 0 0 4px rgba(0,0,0,1);
     --shadow-btn: 0 0 0 4px rgba(255,255,255,1), 0 0 0 6px #99A0AE;
+    --shadow-footer: 0px -4px 6px 0px rgba(240, 240, 240, 0.60);
 
 }
 

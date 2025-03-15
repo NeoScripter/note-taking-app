@@ -15,6 +15,7 @@ const Dashboard = ({ user }: DashboardProps) => {
             <Link href="/logout" method="post" as="button" className="rounded bg-red-500 px-4 py-2 text-white cursor-pointer">
                 Logout
             </Link>
+
         </>
     );
 };
