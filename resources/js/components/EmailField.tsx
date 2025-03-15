@@ -13,7 +13,7 @@ export default function EmailField({ setter, fieldName }: EmailFieldProps) {
                 onChange={(e) => setter(fieldName, e.target.value)}
                 name={fieldName}
                 type="email"
-                className="border-colors w-full rounded-lg border px-4 py-3 data-[hover]:bg-gray-neutral data-[focus]:ring-1 data-[focus]:shadow-input"
+                className="border-colors outline-none w-full rounded-lg border px-4 py-3 data-[hover]:bg-gray-neutral data-[focus]:ring-1 data-[focus]:shadow-input"
                 autoFocus
                 placeholder='email@example.com'
             />

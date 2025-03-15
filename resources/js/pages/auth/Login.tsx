@@ -20,7 +20,7 @@ const Login = () => {
 
             <hr className="text-gray-300" />
 
-            <p className="body-text text-center">No account yet? <Link href="" className="title-text">Sign up</Link></p>
+            <p className="body-text text-center">No account yet? <Link href="/signup" className="title-text">Sign up</Link></p>
         </div>
     );
 };

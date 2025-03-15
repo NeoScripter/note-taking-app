@@ -1,4 +1,4 @@
-import { Button, Field, Input, Label } from '@headlessui/react';
+import { Button, Description, Field, Input, Label } from '@headlessui/react';
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 
@@ -6,13 +6,14 @@ type PasswordFieldProps = {
     setter: (key: string, value: string) => void;
     fieldName: string;
     hasResetLink: boolean;
+    description?: string;
 };
 
-export default function PasswordField({ setter, fieldName, hasResetLink }: PasswordFieldProps) {
+export default function PasswordField({ setter, fieldName, hasResetLink, description }: PasswordFieldProps) {
     const [showInput, setShowInput] = useState(false);
 
     return (
-        <Field className="relative">
+        <Field>
             <Label className="mb-1 flex items-center justify-between">
                 Password
                 {hasResetLink && (
@@ -21,13 +22,14 @@ export default function PasswordField({ setter, fieldName, hasResetLink }: Passw
                     </Link>
                 )}
             </Label>
-            <Input
-                onChange={(e) => setter(fieldName, e.target.value)}
-                name={fieldName}
-                type={showInput ? 'text' : 'password'}
-                className="border-colors outline-none focus:outline-none w-full rounded-lg border theme-colors px-4 py-3 data-[hover]:bg-gray-neutral data-[focus]:ring-1 data-[focus]:shadow-input"
-            />
-            <Button onClick={() => setShowInput(o => !o)} className="absolute right-5 bottom-3 cursor-pointer">
+            <div className="relative">
+                <Input
+                    onChange={(e) => setter(fieldName, e.target.value)}
+                    name={fieldName}
+                    type={showInput ? 'text' : 'password'}
+                    className="border-colors theme-colors data-[hover]:bg-gray-neutral data-[focus]:shadow-input w-full rounded-lg border px-4 py-3 outline-none focus:outline-none data-[focus]:ring-1"
+                />
+                <Button onClick={() => setShowInput((o) => !o)} className="absolute right-5 bottom-1/2 translate-y-1/2 cursor-pointer">
                 {showInput ? (
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -61,6 +63,22 @@ export default function PasswordField({ setter, fieldName, hasResetLink }: Passw
                     </svg>
                 )}
             </Button>
+            </div>
+            {description && (
+                <Description className="body-text text-xs mt-1 inline-flex items-center gap-2">
+                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M2 8.5C2 11.8133 4.68605 14.5 8 14.5C11.3139 14.5 14 11.8133 14 8.5C14 5.18605 11.3139 2.5 8 2.5C4.68605 2.5 2 5.18605 2 8.5Z"
+                            stroke="#525866"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                        <path d="M8.0038 10.9621V8.09573V10.9621ZM8 6.0695V6.02734V6.0695Z" fill="#525866" />
+                        <path d="M8.0038 10.9621V8.09573M8 6.0695V6.02734" stroke="#525866" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    {description}
+                </Description>
+            )}
         </Field>
     );
 }
