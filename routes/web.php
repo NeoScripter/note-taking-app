@@ -10,3 +10,7 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return Inertia::render('auth/Login');
 })->name('login');
+
+Route::get('/password-reset', function () {
+    return Inertia::render('auth/ResetPassword');
+})->name('password-reset');
