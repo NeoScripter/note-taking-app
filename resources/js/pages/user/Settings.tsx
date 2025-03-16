@@ -20,35 +20,33 @@ const Settings = () => {
     const [showChangePassword, setShowChangePassword] = useState(false);
 
     return (
-        <div className="relative">
-            <p className="mb-4 text-2xl font-bold md:mt-2 md:mb-0 md:border-t md:border-gray-200 md:px-3 md:py-2 md:text-sm md:font-normal md:text-gray-500">
-                Settings
-            </p>
-            <nav>
-                <ul className="space-y-2">
-                    <SettingsBtnItem onClick={() => {}} isCurrent={false} label="Color Theme" className="border-none">
-                        <ColorThemeIcon />
-                    </SettingsBtnItem>
-
-                    <SettingsBtnItem
-                        onClick={() => setShowFontTheme(true)}
-                        isCurrent={showFontTheme === true}
-                        label="Font Theme"
-                        className="border-none"
-                    >
-                        <FontThemeIcon />
-                    </SettingsBtnItem>
-
-                    <SettingsBtnItem onClick={() => setShowChangePassword(true)} isCurrent={showChangePassword === true} label="Change Password" className="border-none">
-                        <ChangePasswordIcon />
-                    </SettingsBtnItem>
-
-                    <hr className="text-gray-300" />
-
-                    <LogoutButton />
-                </ul>
-            </nav>
-            {showFontTheme && <FontTheme onClick={() => setShowFontTheme(false)} />}
+        <div className="relative md:flex">
+            <div className='md:py-4 md:px-4 md:max-w-64.5 md:border-r md:border-gray-200 flex-1 md:min-h-screen'>
+                <p className="mb-4 text-2xl font-bold md:hidden">
+                    Settings
+                </p>
+                <nav>
+                    <ul className="space-y-2">
+                        <SettingsBtnItem onClick={() => {}} isCurrent={false} label="Color Theme" className="border-none">
+                            <ColorThemeIcon />
+                        </SettingsBtnItem>
+                        <SettingsBtnItem
+                            onClick={() => setShowFontTheme(true)}
+                            isCurrent={showFontTheme === true}
+                            label="Font Theme"
+                            className="border-none"
+                        >
+                            <FontThemeIcon />
+                        </SettingsBtnItem>
+                        <SettingsBtnItem onClick={() => setShowChangePassword(true)} isCurrent={showChangePassword === true} label="Change Password" className="border-none">
+                            <ChangePasswordIcon />
+                        </SettingsBtnItem>
+                        <hr className="text-gray-300" />
+                        <LogoutButton />
+                    </ul>
+                </nav>
+            </div>
+            <div className='max-w-146 flex-1'>{showFontTheme && <FontTheme onClick={() => setShowFontTheme(false)} />}</div>
         </div>
     );
 };
@@ -81,8 +79,8 @@ function FontTheme({ onClick }: FontThemeProps) {
     const { selectedFont, setSelectedFont } = useFontContext();
 
     return (
-        <div className="bg-colors absolute inset-0 z-10">
-            <button onClick={onClick} className="body-text mb-4 flex cursor-pointer items-center gap-2 text-sm">
+        <div className="bg-colors absolute inset-0 z-10 md:static md:p-8">
+            <button onClick={onClick} className="body-text mb-4 flex cursor-pointer items-center gap-2 text-sm md:hidden">
                 <ChevronLeft />
                 Settings
             </button>
