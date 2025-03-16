@@ -22,7 +22,7 @@
 
 
     --breakpoint-sm: 768px;
-    --breakpoint-md: 1440px;
+    --breakpoint-md: 1250px;
 
     --shadow-input: 0 0 0 3px rgba(255,255,255,1), 0 0 0 4px rgba(0,0,0,1);
     --shadow-btn: 0 0 0 4px rgba(255,255,255,1), 0 0 0 6px #99A0AE;
