@@ -38,6 +38,10 @@
     @apply text-dark-black transition-colors duration-300 ease-in-out dark:text-white;
 }
 
+.bg-colors {
+    @apply bg-white transition-colors duration-300 ease-in-out dark:bg-[#232530];
+}
+
 .body-text {
     @apply transition-colors duration-300 ease-in-out text-[#525866] dark:text-[#CACFD8];
 }
