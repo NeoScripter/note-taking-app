@@ -31,6 +31,12 @@ Route::middleware(['auth'])->group(function () {
         ]);
     })->name('settings');
 
+    Route::get('/tag', function () {
+        return Inertia::render('user/Dashboard', [
+            'user' => Auth::user(),
+        ]);
+    })->name('tag');
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 

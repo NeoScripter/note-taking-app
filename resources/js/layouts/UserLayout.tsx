@@ -18,14 +18,13 @@ type UserLayoutProps = {
 };
 
 export default function UserLayout({ children, title }: UserLayoutProps) {
-
     return (
         <>
             <Head title={title} />
-            <main className="isolate">
+            <main className="isolate md:flex md:items-start">
                 <UserLayoutSidebar />
 
-                <div>
+                <div className="flex-1">
                     <header className="bg-gray-neutral px-4 py-3 sm:px-8 sm:py-6">
                         <div className="w-24">
                             <img src={lightLogo} alt="Notes logo" />
@@ -46,14 +45,40 @@ function UserLayoutSidebar() {
 
     return (
         <Transition show={showSidebar || isLarge}>
-            <aside className="fixed inset-0 top-12 bottom-14 z-10 overflow-y-auto bg-white px-4 py-5 transition duration-300 ease-in data-[closed]:opacity-0 sm:top-19 sm:bottom-19 sm:px-8 sm:py-6">
-                <p className="mb-4 text-2xl font-bold">Tags</p>
+            <aside className="fixed inset-0 top-12 bottom-14 z-10 overflow-y-auto bg-white px-4 py-5 transition duration-300 ease-in data-[closed]:opacity-0 sm:top-19 sm:bottom-19 sm:px-8 sm:py-6 md:py-3 md:px-4 md:static md:min-h-screen md:w-68 md:border-r md:border-gray-200">
+                <div className="hidden md:block">
+                    <div className="mb-4 w-24 py-3">
+                        <img src={lightLogo} alt="Notes logo" />
+                    </div>
+
+                    <nav>
+                        <ul>
+                            <TagNavItem routeName="home" label="All Notes">
+                                <HouseIcon width="20" height="20" />
+                            </TagNavItem>
+                            <TagNavItem routeName="archive" label="Archived Notes">
+                                <ArchiveIcon width="20" height="20" />
+                            </TagNavItem>
+                        </ul>
+                    </nav>
+                </div>
+                <p className="mb-4 text-2xl font-bold md:mt-2 md:mb-0 md:border-t md:border-gray-200 md:py-2 md:text-sm md:font-normal md:text-gray-500">
+                    Tags
+                </p>
                 <nav>
                     <ul>
-                        <TagNavItem path="" label="React" />
-                        <TagNavItem path="" label="Dev" />
-                        <TagNavItem path="" label="Cooking" />
-                        <TagNavItem path="" label="Recipes" />
+                        <TagNavItem routeName="tag" label="React">
+                            <TagIcon width="20" height="20" />
+                        </TagNavItem>
+                        <TagNavItem routeName="tag" label="React">
+                            <TagIcon width="20" height="20" />
+                        </TagNavItem>
+                        <TagNavItem routeName="tag" label="React">
+                            <TagIcon width="20" height="20" />
+                        </TagNavItem>
+                        <TagNavItem routeName="tag" label="React">
+                            <TagIcon width="20" height="20" />
+                        </TagNavItem>
                     </ul>
                 </nav>
             </aside>
