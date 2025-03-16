@@ -1,25 +1,24 @@
 import { useModalContext } from '@/hooks/useModalContext';
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import clsx from 'clsx';
 
 type FooterLinkProps = {
-    href: string;
+    routeName: string;
     children: React.ReactNode;
     title: string;
 };
 
-export default function FooterLink({ href, children, title }: FooterLinkProps) {
-    const { url } = usePage();
+export default function FooterLink({ routeName, children, title }: FooterLinkProps) {
     const { showSidebar, closeSidebar } = useModalContext();
 
     return (
         <div className="basis-1/5">
             <Link
                 onClick={closeSidebar}
-                href={href}
+                href={route(routeName)}
                 className={clsx(
                     'flex flex-col items-center justify-center rounded-sm py-1 sm:mx-8',
-                    url.startsWith(href) && !showSidebar && 'bg-pale-blue text-primary-blue',
+                    route().current() === routeName && !showSidebar && 'bg-pale-blue text-primary-blue',
                 )}
             >
                 {children}
