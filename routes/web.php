@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings', function () {
         return Inertia::render('user/Settings', [
             'user' => Auth::user(),
+            'userFont' => Auth::user()->font ?? 'Inter',
         ]);
     })->name('settings');
 
@@ -36,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
             'user' => Auth::user(),
         ]);
     })->name('tag');
+
+    Route::post('/update-font', [UserController::class, 'updateFont'])->name('update-font');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

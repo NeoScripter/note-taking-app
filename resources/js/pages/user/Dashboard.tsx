@@ -23,8 +23,8 @@ const Dashboard = ({ user }: DashboardProps) => {
 Dashboard.layout = (page: React.ReactElement) => (
     <UserLayout
         children={page}
-        title="Dashboard
-"
+        title="Dashboard"
+        header="All Notes"
     />
 );
 

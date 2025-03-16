@@ -12,6 +12,7 @@ Search.layout = (page: React.ReactElement) => (
     <UserLayout
         children={page}
         title="Search"
+        header="Show results for: "
     />
 );
 

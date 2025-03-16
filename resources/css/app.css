@@ -7,11 +7,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import "../fonts/Inter/fonts.css";
+@import './fonts/inter.css';
+@import './fonts/monospace.css';
+@import './fonts/philosopher.css';
+@import './fonts/notoserif.css';
 
 @theme {
-    --font-sans:
-        'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-monospace: 'Monospace', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-philosopher: 'Philosopher', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-notoserif: 'Noto Serif', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --color-gray-neutral: oklch(96.95% 0.0045 258.32);
     --color-slate-neutral: oklch(30.9% 0.021 265.9);
@@ -20,14 +25,12 @@
     --color-hover-blue: oklch(47.07% 0.2134 266.52);
     --color-pale-blue: oklch(95.77% 0.0199 267.29);
 
-
     --breakpoint-sm: 768px;
     --breakpoint-md: 1250px;
 
-    --shadow-input: 0 0 0 3px rgba(255,255,255,1), 0 0 0 4px rgba(0,0,0,1);
-    --shadow-btn: 0 0 0 4px rgba(255,255,255,1), 0 0 0 6px #99A0AE;
-    --shadow-footer: 0px -4px 6px 0px rgba(240, 240, 240, 0.60);
-
+    --shadow-input: 0 0 0 3px rgba(255, 255, 255, 1), 0 0 0 4px rgba(0, 0, 0, 1);
+    --shadow-btn: 0 0 0 4px rgba(255, 255, 255, 1), 0 0 0 6px #99a0ae;
+    --shadow-footer: 0px -4px 6px 0px rgba(240, 240, 240, 0.6);
 }
 
 .theme-colors {
@@ -43,9 +46,9 @@
 }
 
 .body-text {
-    @apply transition-colors duration-300 ease-in-out text-[#525866] dark:text-[#CACFD8];
+    @apply text-[#525866] transition-colors duration-300 ease-in-out dark:text-[#CACFD8];
 }
 
 .border-colors {
-    @apply dark:border-[#525866] border-[#CACFD8] transition-colors duration-500 ease-in-out;
+    @apply border-[#CACFD8] transition-colors duration-500 ease-in-out dark:border-[#525866];
 }

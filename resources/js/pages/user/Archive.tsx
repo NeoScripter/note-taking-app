@@ -13,6 +13,7 @@ Archive.layout = (page: React.ReactElement) => (
     <UserLayout
         children={page}
         title="Archive"
+        header="Archived Notes"
     />
 );
 
