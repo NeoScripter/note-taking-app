@@ -49,7 +49,7 @@ class AuthController extends Controller
             'password' => Hash::make($credentials['new_password']),
         ]);
 
-        return back()->with('success', 'Password changed successfully.');
+        return back()->with('message', 'Password changed successfully!');
     }
 
     public function authenticate(Request $request): RedirectResponse

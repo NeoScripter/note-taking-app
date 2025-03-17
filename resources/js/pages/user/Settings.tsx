@@ -23,6 +23,7 @@ import MonoSpace from '../../../images/Monospace.webp';
 import NotoSerif from '../../../images/NotoSerif.webp';
 import Philosopher from '../../../images/Philosopher.webp';
 import SystemTheme from '../../../images/SystemTheme.svg';
+import Toast from '@/components/Toast';
 
 const Settings = () => {
     const [currentSettingPage, setCurrentSettingPage] = useState('');
@@ -178,7 +179,7 @@ type SettingPasswordProps = {
 };
 
 function SettingPassword({ onClick }: SettingPasswordProps) {
-    const { setData, post, errors } = useForm({
+    const { setData, post, errors, reset } = useForm({
         old_password: '',
         new_password: '',
         new_password_confirmation: '',
@@ -186,6 +187,7 @@ function SettingPassword({ onClick }: SettingPasswordProps) {
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
+        reset();
         post('/update-password');
     }
 

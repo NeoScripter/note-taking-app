@@ -16,6 +16,7 @@ import { Head, Link } from '@inertiajs/react';
 import clsx from 'clsx';
 import darkLogo from '../../images/logo-dark.webp';
 import lightLogo from '../../images/logo-light.webp';
+import Toast from '@/components/Toast';
 
 type UserLayoutProps = {
     children: React.ReactElement;
@@ -37,6 +38,8 @@ export default function UserLayout({ children, title, header }: UserLayoutProps)
 
                 <UserLayoutFooter />
             </main>
+
+            <Toast/>
         </FontProvider>
     );
 }
