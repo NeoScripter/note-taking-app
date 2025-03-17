@@ -18,7 +18,7 @@ export default function FooterLink({ routeName, children, title }: FooterLinkPro
                 href={route(routeName)}
                 className={clsx(
                     'flex flex-col items-center justify-center rounded-sm py-1 sm:mx-8',
-                    route().current() === routeName && !showSidebar && 'bg-pale-blue text-primary-blue',
+                    route().current() === routeName && !showSidebar && 'bg-pale-blue text-primary-blue dark:bg-[#232530]',
                 )}
             >
                 {children}

@@ -8,9 +8,9 @@ type RadioFieldProps = {
 };
 export default function RadioField({ imagePath, fontName, fontDescription, value }: RadioFieldProps) {
     return (
-        <Field className="flex w-full cursor-pointer items-center gap-5 rounded-xl border border-gray-300 p-4 relative isolate has-data-[checked]:bg-gray-neutral">
+        <Field className="flex w-full cursor-pointer items-center gap-5 rounded-xl border border-gray-300 p-4 relative isolate has-data-[checked]:bg-gray-neutral dark:has-data-[checked]:bg-[#232530]">
             <div className="grid aspect-square w-10 place-content-center rounded-xl border bg-colors border-gray-300 p-1.5">
-                <img src={imagePath} alt="Font sample" />
+                <img src={imagePath} alt="Font sample" className='dark:invert' />
             </div>
             <Label>
                 <p className="mb-1 font-bold">{fontName}</p>

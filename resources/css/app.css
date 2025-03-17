@@ -31,6 +31,7 @@
     --shadow-input: 0 0 0 3px rgba(255, 255, 255, 1), 0 0 0 4px rgba(0, 0, 0, 1);
     --shadow-btn: 0 0 0 4px rgba(255, 255, 255, 1), 0 0 0 6px #99a0ae;
     --shadow-footer: 0px -4px 6px 0px rgba(240, 240, 240, 0.6);
+    --shadow-footer-dark: 0px -5px 6px 0px rgba(0, 0, 0, 0.50);
 }
 
 .theme-colors {
@@ -42,7 +43,15 @@
 }
 
 .bg-colors {
-    @apply bg-white transition-colors duration-300 ease-in-out dark:bg-[#232530];
+    @apply bg-white transition-colors duration-300 ease-in-out dark:bg-[#0E121B];
+}
+
+.light-bg-colors {
+    @apply bg-[#F3F5F8] transition-colors duration-300 ease-in-out dark:bg-[#232530];
+}
+
+.hr-colors {
+    @apply text-[#E0E4EA] dark:text-[#232530] transition-colors duration-300 ease-in-out;
 }
 
 .body-text {
@@ -50,5 +59,13 @@
 }
 
 .border-colors {
+    @apply border-[#E0E4EA] dark:border-[#232530] transition-colors duration-300 ease-in-out;
+}
+
+.divide-colors {
+    @apply divide-[#E0E4EA] dark:divide-[#232530] transition-colors duration-300 ease-in-out;
+}
+
+.light-border-colors {
     @apply border-[#CACFD8] transition-colors duration-500 ease-in-out dark:border-[#525866];
 }

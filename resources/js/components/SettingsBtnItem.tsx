@@ -13,7 +13,7 @@ export default function SettingsBtnItem({ onClick, isCurrent = false, children, 
 
     return (
         <li>
-            <button onClick={onClick} className={clsx("flex w-full cursor-pointer items-center gap-2 py-3 text-sm md:border-none md:px-3 md:rounded-lg", isCurrent && 'text-primary-blue bg-gray-neutral', className)}>
+            <button onClick={onClick} className={clsx("flex w-full cursor-pointer items-center gap-2 py-3 text-sm md:border-none px-3 md:rounded-lg", isCurrent && 'text-primary-blue bg-gray-neutral dark:bg-[#232530]', className)}>
                 {children}
                 <span className='body-text'>{label}</span>
                 {isCurrent && <ChevronRight className="ml-auto" />}

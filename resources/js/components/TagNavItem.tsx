@@ -14,10 +14,10 @@ export default function TagNavItem({ routeName, children, label, className }: Ta
 
     return (
         <li>
-            <Link href={route(routeName)} className={clsx("flex items-center gap-2 border-b border-gray-200 py-3 text-sm md:border-none md:px-3 md:rounded-lg", isCurrent && 'text-primary-blue bg-gray-neutral', className)}>
+            <Link href={route(routeName)} className={clsx("flex items-center gap-2 border-b border-colors py-3 text-sm md:border-none px-3 md:rounded-lg", isCurrent && 'text-primary-blue bg-gray-neutral dark:bg-[#232530]', className)}>
                 {children}
                 <span className='body-text'>{label}</span>
-                {isCurrent && <ChevronRight className="ml-auto" />}
+                {isCurrent && <ChevronRight className="ml-auto body-text" />}
             </Link>
         </li>
     );
