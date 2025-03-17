@@ -34,7 +34,7 @@ export default function PasswordField({ setter, fieldName, hasResetLink, descrip
                     name={fieldName}
                     type={showInput ? 'text' : 'password'}
                     className={clsx(
-                        'border-colors theme-colors data-[hover]:bg-gray-neutral data-[focus]:shadow-input w-full rounded-lg border px-4 py-3 outline-none focus:outline-none data-[focus]:ring-1',
+                        'border-colors theme-colors data-[hover]:bg-gray-neutral data-[hover]:dark:bg-[#232530] data-[focus]:shadow-input data-[focus]:dark:shadow-input-dark w-full rounded-lg border px-4 py-3 outline-none focus:outline-none data-[focus]:ring-1',
                         error && 'border-red-600!',
                     )}
                 />

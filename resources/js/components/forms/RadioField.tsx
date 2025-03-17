@@ -8,8 +8,8 @@ type RadioFieldProps = {
 };
 export default function RadioField({ imagePath, fontName, fontDescription, value }: RadioFieldProps) {
     return (
-        <Field className="flex w-full cursor-pointer items-center gap-5 rounded-xl border border-gray-300 p-4 relative isolate has-data-[checked]:bg-gray-neutral dark:has-data-[checked]:bg-[#232530]">
-            <div className="grid aspect-square w-10 place-content-center rounded-xl border bg-colors border-gray-300 p-1.5">
+        <Field className="flex w-full cursor-pointer items-center gap-5 rounded-xl border border-colors p-4 relative isolate has-data-[checked]:bg-gray-neutral dark:has-data-[checked]:bg-[#232530]">
+            <div className="grid aspect-square w-10 place-content-center rounded-xl border bg-colors border-colors p-1.5">
                 <img src={imagePath} alt="Font sample" className='dark:invert' />
             </div>
             <Label>
@@ -18,9 +18,9 @@ export default function RadioField({ imagePath, fontName, fontDescription, value
             </Label>
             <Radio
                 value={value}
-                className="group data-[checked]:bg-primary-blue ml-auto not-data-[checked]:border-2 border-gray-200 flex size-6 items-center justify-center rounded-full bg-white"
+                className="group data-[checked]:bg-primary-blue ml-auto not-data-[checked]:border-2 border-colors flex size-6 items-center justify-center rounded-full"
             >
-                <span className="invisible size-3 rounded-full bg-white group-data-[checked]:visible" />
+                <span className="invisible size-3 rounded-full bg-colors group-data-[checked]:visible" />
                 <span className='absolute inset-0 z-10'></span>
             </Radio>
         </Field>

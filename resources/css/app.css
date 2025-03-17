@@ -29,6 +29,7 @@
     --breakpoint-md: 1250px;
 
     --shadow-input: 0 0 0 3px rgba(255, 255, 255, 1), 0 0 0 4px rgba(0, 0, 0, 1);
+    --shadow-input-dark: 0 0 0 3px #0E121B, 0 0 0 4px #E0E4EA;
     --shadow-btn: 0 0 0 4px rgba(255, 255, 255, 1), 0 0 0 6px #99a0ae;
     --shadow-footer: 0px -4px 6px 0px rgba(240, 240, 240, 0.6);
     --shadow-footer-dark: 0px -5px 6px 0px rgba(0, 0, 0, 0.50);

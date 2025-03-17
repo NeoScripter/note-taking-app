@@ -39,7 +39,7 @@ const Login = () => {
                 Login
             </PrimaryBtn>
 
-            <hr className="text-gray-300" />
+            <hr className="hr-colors" />
 
             <p className="body-text text-center">
                 No account yet?{' '}
