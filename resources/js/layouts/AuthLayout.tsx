@@ -2,7 +2,7 @@ import { Head } from '@inertiajs/react';
 import lightLogo from '../../images/logo-light.webp';
 import darkLogo from '../../images/logo-dark.webp';
 import useThemeContext from '@/hooks/useThemeContext';
-import { THEMES } from '@/types/theme';
+import { THEMES } from '@/utils/theme';
 
 type AuthLayoutProps = {
     children: React.ReactElement;

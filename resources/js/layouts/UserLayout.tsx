@@ -10,7 +10,7 @@ import { useModalContext } from '@/hooks/useModalContext';
 import { useScreenResize } from '@/hooks/useScreenResize';
 import useThemeContext from '@/hooks/useThemeContext';
 import { FontProvider } from '@/providers/FontProvider';
-import { THEMES } from '@/types/theme';
+import { THEMES } from '@/utils/theme';
 import { Input } from '@headlessui/react';
 import { Head, Link } from '@inertiajs/react';
 import clsx from 'clsx';

@@ -1,5 +1,5 @@
 import useLocalStorage from '@/hooks/useLocalStorage';
-import { THEMES, ThemeValue } from '@/types/theme';
+import { THEMES, ThemeValue } from '@/utils/theme';
 import { createContext, useEffect } from 'react';
 
 type Theme = ThemeValue;

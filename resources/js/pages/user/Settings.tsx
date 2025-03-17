@@ -8,8 +8,9 @@ import LogoutIcon from '@/components/svgs/LogoutIcon';
 import useFontContext from '@/hooks/useFontContext';
 import useThemeContext from '@/hooks/useThemeContext';
 import UserLayout from '@/layouts/UserLayout';
-import { SETTINGS } from '@/types/settings';
-import { THEMES } from '@/types/theme';
+import { FONTS } from '@/utils/fonts';
+import { SETTINGS } from '@/utils/settings';
+import { THEMES } from '@/utils/theme';
 import { RadioGroup } from '@headlessui/react';
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
@@ -36,7 +37,7 @@ const Settings = () => {
 
     return (
         <div className="relative md:flex">
-            <div className="flex-1 md:min-h-screen md:max-w-64.5 md:border-r border-colors md:px-4 md:py-4">
+            <div className="border-colors flex-1 md:min-h-screen md:max-w-64.5 md:border-r md:px-4 md:py-4">
                 <p className="mb-4 text-2xl font-bold md:hidden">Settings</p>
                 <nav>
                     <ul className="space-y-2">
@@ -85,7 +86,7 @@ function LogoutButton() {
                 href={route('logout')}
                 method="post"
                 as="button"
-                className="flex cursor-pointer items-center gap-2 py-3 text-sm body-text md:rounded-lg md:border-none px-3"
+                className="body-text flex cursor-pointer items-center gap-2 px-3 py-3 text-sm md:rounded-lg md:border-none"
             >
                 <LogoutIcon />
                 <span className="body-text">Logout</span>
@@ -101,43 +102,14 @@ type FontThemeProps = {
 function FontTheme({ onClick }: FontThemeProps) {
     const { selectedFont, setSelectedFont } = useFontContext();
 
-    return (
-        <div className="bg-colors absolute inset-0 z-10 md:static md:p-8">
-            <button onClick={onClick} className="body-text mb-4 flex cursor-pointer items-center gap-2 text-sm md:hidden">
-                <ChevronLeft />
-                Settings
-            </button>
-            <p className="mb-2 text-2xl font-bold">Font Theme</p>
-            <p className="mb-4">Choose your font theme:</p>
-            <RadioGroup value={selectedFont} onChange={setSelectedFont} aria-label="Font Picker" className="space-y-4">
-                <RadioField
-                    key="NotoSerif"
-                    imagePath={NotoSerif}
-                    fontName="NotoSerif"
-                    fontDescription="Classic and elegant for a timeless feel"
-                    value="notoserif"
-                />
+    const radioBtns: RadioBtn[] = [
+        { key: 'NotoSerif', imagePath: NotoSerif, name: 'NotoSerif', description: 'Classic and elegant for a timeless feel', value: FONTS.NOTOSERIF },
+        { key: 'MonoSpace', imagePath: MonoSpace, name: 'MonoSpace', description: 'Code-like, great for a technical vibe', value: FONTS.MONOSPACE },
+        { key: 'Inter', imagePath: Inter, name: 'Inter', description: 'Clean and modern, easy to read', value: FONTS.INTER },
+        { key: 'Philosopher', imagePath: Philosopher, name: 'Philosopher', description: 'Elegant and eye-appealing style', value: FONTS.PHILOSOPHER },
+    ];
 
-                <RadioField
-                    key="MonoSpace"
-                    imagePath={MonoSpace}
-                    fontName="MonoSpace"
-                    fontDescription="Code-like, great for a technical vibe"
-                    value="monospace"
-                />
-
-                <RadioField key="Inter" imagePath={Inter} fontName="Inter" fontDescription="Clean and modern, easy to read" value="inter" />
-
-                <RadioField
-                    key="Philosopher"
-                    imagePath={Philosopher}
-                    fontName="Philosopher"
-                    fontDescription="Elegant and eye-appealing style"
-                    value="philosopher"
-                />
-            </RadioGroup>
-        </div>
-    );
+    return <ThemeBody onClick={onClick} title="Font" onChange={setSelectedFont} ariaLabel="Font Picker" value={selectedFont} radioBtns={radioBtns} />;
 }
 
 type ColorThemeProps = {
@@ -147,38 +119,51 @@ type ColorThemeProps = {
 function ColorTheme({ onClick }: ColorThemeProps) {
     const { theme, setTheme } = useThemeContext();
 
+    const radioBtns: RadioBtn[] = [
+        { key: 'LightTheme', imagePath: LightTheme, name: 'Light Mode', description: 'Pick a clean and classic light theme', value: THEMES.LIGHT },
+        { key: 'DarkTheme', imagePath: DarkTheme, name: 'Dark Mode', description: 'Select a sleek and modern dark theme', value: THEMES.DARK },
+        { key: 'SystemTheme', imagePath: SystemTheme, name: 'System', description: "Adapts to your device's theme", value: THEMES.SYSTEM },
+    ];
+
+    return <ThemeBody onClick={onClick} title="Color" onChange={setTheme} ariaLabel="Theme Picker" value={theme} radioBtns={radioBtns} />;
+}
+
+type RadioBtn = {
+    key: string;
+    imagePath: string;
+    name: string;
+    description: string;
+    value: string;
+};
+
+type ThemeBodyProps = {
+    onClick: () => void;
+    title: string;
+    onChange: React.Dispatch<React.SetStateAction<string>>;
+    value: string;
+    ariaLabel: string;
+    radioBtns: RadioBtn[];
+};
+
+function ThemeBody({ onClick, title, onChange, value, ariaLabel, radioBtns }: ThemeBodyProps) {
     return (
         <div className="bg-colors absolute inset-0 z-10 md:static md:p-8">
             <button onClick={onClick} className="body-text mb-4 flex cursor-pointer items-center gap-2 text-sm md:hidden">
                 <ChevronLeft />
                 Settings
             </button>
-            <p className="mb-2 text-2xl font-bold">Color Theme</p>
-            <p className="mb-4">Choose your color theme:</p>
-            <RadioGroup value={theme} onChange={setTheme} aria-label="Theme Picker" className="space-y-4">
-                <RadioField
-                    key="LightTheme"
-                    imagePath={LightTheme}
-                    fontName="Light Mode"
-                    fontDescription="Pick a clean and classic light theme"
-                    value={THEMES.LIGHT}
-                />
-
-                <RadioField
-                    key="DarkTheme"
-                    imagePath={DarkTheme}
-                    fontName="Dark Mode"
-                    fontDescription="Select a sleek and modern dark theme"
-                    value={THEMES.DARK}
-                />
-
-                <RadioField
-                    key="SystemTheme"
-                    imagePath={SystemTheme}
-                    fontName="System"
-                    fontDescription="Adapts to your device's theme"
-                    value={THEMES.SYSTEM}
-                />
+            <p className="mb-2 text-2xl font-bold">{title} Theme</p>
+            <p className="mb-4">{`Choose your ${title.toLowerCase()} theme:`}</p>
+            <RadioGroup value={value} onChange={onChange} aria-label={ariaLabel} className="space-y-4">
+                {radioBtns.map((radioBtn) => (
+                    <RadioField
+                        key={radioBtn.key}
+                        imagePath={radioBtn.imagePath}
+                        fontName={radioBtn.name}
+                        fontDescription={radioBtn.description}
+                        value={radioBtn.value}
+                    />
+                ))}
             </RadioGroup>
         </div>
     );
