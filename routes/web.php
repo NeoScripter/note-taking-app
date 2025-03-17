@@ -42,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/update-font', [UserController::class, 'updateFont'])->name('update-font');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('update-password');
 });
 
 

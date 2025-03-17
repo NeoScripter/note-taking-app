@@ -40,8 +40,7 @@ export default function PasswordField({ setter, fieldName, hasResetLink, descrip
                 />
                 <ShowInputBtn showInput={showInput} onClick={() => setShowInput((o) => !o)} />
             </div>
-            {description && <HintField>{description}</HintField>}
-            {error && <ErrorField>{error}</ErrorField>}
+            {error ? <ErrorField>{error}</ErrorField> : (description && <HintField>{description}</HintField>)}
         </Field>
     );
 }

@@ -30,6 +30,28 @@ class AuthController extends Controller
         return redirect()->intended(route('home'));
     }
 
+    public function updatePassword(Request $request)
+    {
+       /*  dd($request->all()); */
+
+        $credentials = $request->validate([
+            'old_password' => ['required', 'string', 'max:300'],
+            'new_password' => ['required', 'min:8', 'max:300', 'confirmed'],
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($credentials['old_password'], $user->password)) {
+            return back()->withErrors(['old_password' => 'The old password is incorrect.'])->onlyInput('old_password');;
+        }
+
+        $user->update([
+            'password' => Hash::make($credentials['new_password']),
+        ]);
+
+        return back()->with('success', 'Password changed successfully.');
+    }
+
     public function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([

@@ -1,5 +1,7 @@
-import SettingsBtnItem from '@/components/SettingsBtnItem';
+import PasswordField from '@/components/forms/PasswordField';
 import RadioField from '@/components/forms/RadioField';
+import PrimaryBtn from '@/components/PrimaryBtn';
+import SettingsBtnItem from '@/components/SettingsBtnItem';
 import ChangePasswordIcon from '@/components/svgs/ChangePasswordIcon';
 import ChevronLeft from '@/components/svgs/ChevronLeft';
 import ColorThemeIcon from '@/components/svgs/ColorThemeIcon';
@@ -12,7 +14,7 @@ import { FONTS } from '@/utils/fonts';
 import { SETTINGS } from '@/utils/settings';
 import { THEMES } from '@/utils/theme';
 import { RadioGroup } from '@headlessui/react';
-import { Link } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 import { useState } from 'react';
 import DarkTheme from '../../../images/DarkTheme.svg';
 import Inter from '../../../images/Inter.webp';
@@ -25,11 +27,17 @@ import SystemTheme from '../../../images/SystemTheme.svg';
 const Settings = () => {
     const [currentSettingPage, setCurrentSettingPage] = useState('');
 
+    function closePage() {
+        setCurrentSettingPage('');
+    }
+
     const renderSettingPage = () => {
         if (currentSettingPage === SETTINGS.COLOR) {
-            return <ColorTheme onClick={() => setCurrentSettingPage('')} />;
+            return <ColorTheme onClick={closePage} />;
         } else if (currentSettingPage === SETTINGS.FONT) {
-            return <FontTheme onClick={() => setCurrentSettingPage('')} />;
+            return <FontTheme onClick={closePage} />;
+        } else if (currentSettingPage === SETTINGS.PASSWORD) {
+            return <SettingPassword onClick={closePage} />;
         } else {
             return null;
         }
@@ -147,11 +155,7 @@ type ThemeBodyProps = {
 
 function ThemeBody({ onClick, title, onChange, value, ariaLabel, radioBtns }: ThemeBodyProps) {
     return (
-        <div className="bg-colors absolute inset-0 z-10 md:static md:p-8">
-            <button onClick={onClick} className="body-text mb-4 flex cursor-pointer items-center gap-2 text-sm md:hidden">
-                <ChevronLeft />
-                Settings
-            </button>
+        <ThemeBodyLayout onClick={onClick}>
             <p className="mb-2 text-2xl font-bold">{title} Theme</p>
             <p className="mb-4">{`Choose your ${title.toLowerCase()} theme:`}</p>
             <RadioGroup value={value} onChange={onChange} aria-label={ariaLabel} className="space-y-4">
@@ -165,6 +169,71 @@ function ThemeBody({ onClick, title, onChange, value, ariaLabel, radioBtns }: Th
                     />
                 ))}
             </RadioGroup>
+        </ThemeBodyLayout>
+    );
+}
+
+type SettingPasswordProps = {
+    onClick: () => void;
+};
+
+function SettingPassword({ onClick }: SettingPasswordProps) {
+    const { setData, post, errors } = useForm({
+        old_password: '',
+        new_password: '',
+        new_password_confirmation: '',
+    });
+
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        post('/update-password');
+    }
+
+    return (
+        <ThemeBodyLayout onClick={onClick}>
+            <p className="mb-6 text-2xl font-bold">Change Password</p>
+
+            <form onSubmit={handleSubmit} className="space-y-6 text-sm">
+                <PasswordField setter={setData} fieldName="old_password" hasResetLink={false} error={errors.old_password} label="Old Password" />
+
+                <PasswordField
+                    setter={setData}
+                    fieldName="new_password"
+                    hasResetLink={false}
+                    error={errors.new_password}
+                    description="At least 8 characters"
+                    label="New Password"
+                />
+
+                <PasswordField
+                    setter={setData}
+                    fieldName="new_password_confirmation"
+                    hasResetLink={false}
+                    error={errors.new_password_confirmation}
+                    label="Confirm New Password"
+                />
+
+                <PrimaryBtn type="submit" className="ml-auto block">
+                    Save Password
+                </PrimaryBtn>
+            </form>
+        </ThemeBodyLayout>
+    );
+}
+
+type ThemeBodyLayoutProps = {
+    children: React.ReactNode;
+    onClick: () => void;
+};
+
+function ThemeBodyLayout({ children, onClick }: ThemeBodyLayoutProps) {
+    return (
+        <div className="bg-colors absolute inset-0 z-10 md:static md:p-8">
+            <button onClick={onClick} className="body-text mb-4 flex cursor-pointer items-center gap-2 text-sm md:hidden">
+                <ChevronLeft />
+                Settings
+            </button>
+            {children}
         </div>
     );
 }
