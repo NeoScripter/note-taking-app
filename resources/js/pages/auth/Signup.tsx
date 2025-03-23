@@ -5,7 +5,7 @@ import AuthLayout from '@/layouts/AuthLayout';
 import { Link, useForm } from '@inertiajs/react';
 
 const Signup = () => {
-    const { setData, post, errors } = useForm({
+    const { data, setData, post, errors } = useForm({
         name: '',
         email: '',
         password: '',
@@ -19,13 +19,13 @@ const Signup = () => {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4 text-sm">
-            <TextField setter={setData} fieldName="name" error={errors.name} shouldFocus={true} placeholder="John Doe" label="Username" />
+            <TextField setter={setData} fieldName="name" value={data.name} error={errors.name} shouldFocus={true} placeholder="John Doe" label="Username" />
 
-            <TextField setter={setData} fieldName="email" type="email" error={errors.email} placeholder="email@example.com" label="Email Address" />
+            <TextField setter={setData} fieldName="email" value={data.email} type="email" error={errors.email} placeholder="email@example.com" label="Email Address" />
 
-            <PasswordField setter={setData} fieldName="password" hasResetLink={false} error={errors.password} description="At least 8 characters" label="Password" />
+            <PasswordField setter={setData} fieldName="password" value={data.password} hasResetLink={false} error={errors.password} description="At least 8 characters" label="Password" />
 
-            <PasswordField setter={setData} fieldName="password_confirmation" hasResetLink={false} error={errors.password_confirmation} label="Confirm Password" />
+            <PasswordField setter={setData} fieldName="password_confirmation" value={data.password_confirmation} hasResetLink={false} error={errors.password_confirmation} label="Confirm Password" />
 
             <PrimaryBtn type="submit" className="w-full">
                 Sign up

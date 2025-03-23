@@ -23,7 +23,6 @@ import MonoSpace from '../../../images/Monospace.webp';
 import NotoSerif from '../../../images/NotoSerif.webp';
 import Philosopher from '../../../images/Philosopher.webp';
 import SystemTheme from '../../../images/SystemTheme.svg';
-import Toast from '@/components/Toast';
 
 const Settings = () => {
     const [currentSettingPage, setCurrentSettingPage] = useState('');
@@ -179,7 +178,7 @@ type SettingPasswordProps = {
 };
 
 function SettingPassword({ onClick }: SettingPasswordProps) {
-    const { setData, post, errors, reset } = useForm({
+    const { data, setData, post, errors, reset } = useForm({
         old_password: '',
         new_password: '',
         new_password_confirmation: '',
@@ -187,8 +186,9 @@ function SettingPassword({ onClick }: SettingPasswordProps) {
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        reset();
-        post('/update-password');
+        post('/update-password', {
+            onSuccess: () => reset(),
+        });
     }
 
     return (
@@ -196,11 +196,12 @@ function SettingPassword({ onClick }: SettingPasswordProps) {
             <p className="mb-6 text-2xl font-bold">Change Password</p>
 
             <form onSubmit={handleSubmit} className="space-y-6 text-sm">
-                <PasswordField setter={setData} fieldName="old_password" hasResetLink={false} error={errors.old_password} label="Old Password" />
+                <PasswordField setter={setData} value={data.old_password} fieldName="old_password" hasResetLink={false} error={errors.old_password} label="Old Password" />
 
                 <PasswordField
                     setter={setData}
                     fieldName="new_password"
+                    value={data.new_password}
                     hasResetLink={false}
                     error={errors.new_password}
                     description="At least 8 characters"
@@ -210,6 +211,7 @@ function SettingPassword({ onClick }: SettingPasswordProps) {
                 <PasswordField
                     setter={setData}
                     fieldName="new_password_confirmation"
+                    value={data.new_password_confirmation}
                     hasResetLink={false}
                     error={errors.new_password_confirmation}
                     label="Confirm New Password"

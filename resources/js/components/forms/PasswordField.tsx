@@ -12,10 +12,11 @@ type PasswordFieldProps = {
     hasResetLink: boolean;
     description?: string;
     error?: string;
+    value: string;
     label: string;
 };
 
-export default function PasswordField({ setter, fieldName, hasResetLink, description, error, label }: PasswordFieldProps) {
+export default function PasswordField({ setter, fieldName, hasResetLink, description, error, label, value }: PasswordFieldProps) {
     const [showInput, setShowInput] = useState(false);
 
     return (
@@ -32,6 +33,7 @@ export default function PasswordField({ setter, fieldName, hasResetLink, descrip
                 <Input
                     onChange={(e) => setter(fieldName, e.target.value)}
                     name={fieldName}
+                    value={value}
                     type={showInput ? 'text' : 'password'}
                     className={clsx(
                         'border-colors theme-colors data-[hover]:bg-gray-neutral data-[hover]:dark:bg-[#232530] data-[focus]:shadow-input data-[focus]:dark:shadow-input-dark w-full rounded-lg border px-4 py-3 outline-none focus:outline-none data-[focus]:ring-1',

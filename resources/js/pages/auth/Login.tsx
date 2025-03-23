@@ -22,6 +22,7 @@ const Login = () => {
             <TextField
                 setter={setData}
                 fieldName="email"
+                value={data.email}
                 type="email"
                 error={errors.email}
                 placeholder="email@example.com"
@@ -29,7 +30,7 @@ const Login = () => {
                 shouldFocus={true}
             />
 
-            <PasswordField setter={setData} fieldName="password" hasResetLink={true} error={errors.password} label="Password" />
+            <PasswordField setter={setData} fieldName="password" value={data.password} hasResetLink={true} error={errors.password} label="Password" />
 
             <CheckboxField isChecked={data.remember} setter={setData} fieldName="remember">
                 remember me

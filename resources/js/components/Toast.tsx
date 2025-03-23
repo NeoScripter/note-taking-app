@@ -1,4 +1,7 @@
 import { usePage } from '@inertiajs/react';
+import { Cross1Icon } from '@radix-ui/react-icons';
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
 
 type PageProps = {
     flash?: {
@@ -8,11 +11,23 @@ type PageProps = {
 
 export default function Toast() {
     const { flash } = usePage<PageProps>().props;
-    /* const [showMessage, setShowMessage] = useState(true); */
+    const [showMessage, setShowMessage] = useState(true);
+    const [shouldSlideOut, setShouldSlideOut] = useState(false);
+
+    useEffect(() => {
+        if (flash?.message) {
+            setShowMessage(true);
+            setTimeout(() => setShouldSlideOut(true), 2700);
+            setTimeout(() => setShowMessage(false), 3000);
+            return () => setShouldSlideOut(false);
+        }
+    }, [flash]);
+
+    if (!flash?.message || !showMessage) return null;
 
     return (
-        <div className="bg-colors border-colors text-xs sm:text-sm fixed right-4 sm:right-8 sm:bottom-27 md:right-16 md:bottom-16 bottom-19 z-30 flex w-68 items-center justify-between rounded-lg border p-2.5 sm:w-98">
-            <div className="flex items-center gap-2">
+        <div className={clsx("bg-colors border-colors fixed right-4 bottom-19 z-30 flex items-center justify-between rounded-lg border p-2.5 text-xs sm:right-8 sm:bottom-27 sm:text-sm md:right-16 md:bottom-16", shouldSlideOut ? 'toast-disappear' : 'toast-appear')}>
+            <div className="flex flex-wrap items-center gap-2">
                 <div>
                     <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -23,9 +38,12 @@ export default function Toast() {
                         />
                     </svg>
                 </div>
-                <div>long and interesting message</div>
+                <div className="mr-20 sm:mr-30">{flash.message}</div>
             </div>
-            <button>&times;</button>
+            <button onClick={() => setShowMessage(false)} aria-label="Dismiss Toast" className="relative cursor-pointer">
+                <span className="absolute -inset-3 [@media(pointer:fine)]:hidden"></span>
+                <Cross1Icon />
+            </button>
         </div>
     );
 }

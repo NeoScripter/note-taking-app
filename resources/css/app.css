@@ -15,8 +15,10 @@
 @theme {
     --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-monospace: 'Monospace', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-philosopher: 'Philosopher', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-notoserif: 'Noto Serif', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-philosopher:
+        'Philosopher', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-notoserif:
+        'Noto Serif', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --color-gray-neutral: oklch(96.95% 0.0045 258.32);
     --color-slate-neutral: oklch(30.9% 0.021 265.9);
@@ -29,10 +31,10 @@
     --breakpoint-md: 1250px;
 
     --shadow-input: 0 0 0 3px rgba(255, 255, 255, 1), 0 0 0 4px rgba(0, 0, 0, 1);
-    --shadow-input-dark: 0 0 0 3px #0E121B, 0 0 0 4px #E0E4EA;
+    --shadow-input-dark: 0 0 0 3px #0e121b, 0 0 0 4px #e0e4ea;
     --shadow-btn: 0 0 0 4px rgba(255, 255, 255, 1), 0 0 0 6px #99a0ae;
     --shadow-footer: 0px -4px 6px 0px rgba(240, 240, 240, 0.6);
-    --shadow-footer-dark: 0px -5px 6px 0px rgba(0, 0, 0, 0.50);
+    --shadow-footer-dark: 0px -5px 6px 0px rgba(0, 0, 0, 0.5);
 }
 
 .theme-colors {
@@ -52,7 +54,7 @@
 }
 
 .hr-colors {
-    @apply text-[#E0E4EA] dark:text-[#232530] transition-colors duration-300 ease-in-out;
+    @apply text-[#E0E4EA] transition-colors duration-300 ease-in-out dark:text-[#232530];
 }
 
 .body-text {
@@ -60,13 +62,43 @@
 }
 
 .border-colors {
-    @apply border-[#E0E4EA] dark:border-[#232530] transition-colors duration-300 ease-in-out;
+    @apply border-[#E0E4EA] transition-colors duration-300 ease-in-out dark:border-[#232530];
 }
 
 .divide-colors {
-    @apply divide-[#E0E4EA] dark:divide-[#232530] transition-colors duration-300 ease-in-out;
+    @apply divide-[#E0E4EA] transition-colors duration-300 ease-in-out dark:divide-[#232530];
 }
 
 .light-border-colors {
     @apply border-[#CACFD8] transition-colors duration-500 ease-in-out dark:border-[#525866];
+}
+
+.toast-appear {
+    animation: slideInFromRight 0.3s ease-in forwards;
+}
+
+.toast-disappear {
+    animation: slideOutToRight 0.3s ease-in forwards;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(200%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(200%);
+        opacity: 0;
+    }
 }
