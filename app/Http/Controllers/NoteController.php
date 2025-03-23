@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
@@ -53,12 +54,6 @@ class NoteController extends Controller
         ]);
     }
 
-    public function show(Note $note)
-    {
-        $note->load('tags');
-        return inertia()->render('partials/Note', ['note' => $note]);
-    }
-
     public function search(Request $request)
     {
         $notes = Note::with('tags')
@@ -76,6 +71,35 @@ class NoteController extends Controller
             ->get();
 
         return inertia('Notes/Index', compact('notes'));
+    }
+
+    public function tag(Request $request, ?Note $note = null, Tag $tag)
+    {
+        $page = $request->query('page', 1);
+        $perPage = 10;
+
+        $notes = Note::with('tags')
+            ->where('user_id', $request->user()->id)
+            ->whereHas('tags', fn($query) => $query->where('tags.name', $tag->name))
+            ->latest()
+            ->paginate($perPage);
+
+        $notePaginateProp = $notes->toArray();
+        $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
+
+
+        $note = Note::where('user_id', $request->user()->id)->find($note?->id);
+        if ($note === null && $request->route('note')) {
+            abort(403);
+        }
+
+        return Inertia::render('user/Dashboard', [
+            'tag' => $tag,
+            'note' => $note ? $note->load('tags') : null,
+            'notes' => Inertia::merge($notes->items()),
+            'page' => $page,
+            'isNextPageExists' => $isNextPageExists
+        ]);
     }
 
     public function store(Request $request)

@@ -23,11 +23,7 @@ Route::middleware(['auth'])->group(function () {
         return Inertia::render('user/Settings');
     })->name('settings');
 
-    Route::get('/tag', function () {
-        return Inertia::render('user/Dashboard', [
-            'user' => Auth::user(),
-        ]);
-    })->name('tag');
+    Route::get('/tag/{tag}/note/{note?}', [NoteController::class, 'tag'])->name('tag');
 
     Route::post('/update-font', [UserController::class, 'updateFont'])->name('update-font');
 

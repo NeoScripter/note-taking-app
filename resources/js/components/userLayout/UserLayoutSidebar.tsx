@@ -42,7 +42,7 @@ export default function UserLayoutSidebar() {
                 <nav>
                     <ul>
                         {props.tags.map((tag) => (
-                            <TagNavItem key={tag.id} routeName="tag" label={tag.name}>
+                            <TagNavItem key={tag.id} routeName="tag" tagId={tag.id} label={tag.name}>
                                 <TagIcon width="20" height="20" />
                             </TagNavItem>
                         ))}

@@ -25,7 +25,7 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
                 <nav>
                     <ul className="space-y-2 px-4 sm:px-8 md:pr-0 md:pl-4">
                         {props.notes.map((note) => (
-                            <NoteItem key={note.id} note={note} />
+                            <NoteItem key={note.id} note={note} onClick={() => setShowPage(true)} />
                         ))}
                     </ul>
 
@@ -65,9 +65,10 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
 
 type NoteItemProps = {
     note: ExtendedNote;
+    onClick: () => void;
 };
 
-function NoteItem({ note }: NoteItemProps) {
+function NoteItem({ note, onClick }: NoteItemProps) {
     const { url } = usePage();
 
     const currentNoteId = Number((url.split('/').pop() || '').split('?')[0]);
@@ -76,6 +77,7 @@ function NoteItem({ note }: NoteItemProps) {
 
     return (
         <Link
+            onClick={onClick}
             replace
             href={route(route().current() || 'home', note.id)}
             className={clsx('border-colors block space-y-3 rounded-lg border-b p-2 pb-3', isCurrent && 'bg-gray-pale dark:bg-black-pale border-none')}
@@ -83,7 +85,7 @@ function NoteItem({ note }: NoteItemProps) {
             <p className="font-bold">{note.title}</p>
             <ul className="flex flex-wrap items-center gap-1">
                 {note.tags.map((tag) => (
-                    <li key={tag.id} className="bg-gray-neutral title-text rounded-sm px-1.5 py-1 text-xs dark:bg-[#232530]">
+                    <li key={tag.id} className="bg-[#E0E4EA] title-text rounded-sm px-1.5 py-1 text-xs dark:bg-[#232530]">
                         {tag.name}
                     </li>
                 ))}
