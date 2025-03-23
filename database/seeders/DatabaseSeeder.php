@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $users->each(function ($user) {
-            $notes = Note::factory(rand(5, 15))->create(['user_id' => $user->id]);
+            $notes = Note::factory(100)->create(['user_id' => $user->id]);
             $tags = Tag::factory(rand(5, 10))->create(['user_id' => $user->id]);
 
             $notes->each(function ($note) use ($tags) {

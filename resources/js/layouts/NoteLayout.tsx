@@ -1,7 +1,7 @@
 import ChevronLeft from '@/components/svgs/ChevronLeft';
 import { formatDate } from '@/lib/formatDate';
 import { ExtendedNote } from '@/types/note';
-import { Link, usePage } from '@inertiajs/react';
+import { Link, usePage, WhenVisible } from '@inertiajs/react';
 import clsx from 'clsx';
 import { useState } from 'react';
 
@@ -10,19 +10,13 @@ type NoteLayoutProps = {
     header: string;
 };
 
-export type Paginated<T> = {
-    data: T[];
-    current_page: number;
-    last_page: number;
-    per_page: number;
-    total: number;
-    next_page_url: string | null;
-    prev_page_url: string | null;
-};
-
 export default function NoteLayout({ children, header }: NoteLayoutProps) {
-    const { props } = usePage<{ notes: ExtendedNote[] }>();
     const [showPage, setShowPage] = useState(true);
+    const { props } = usePage<{
+        notes: ExtendedNote[];
+        isNextPageExists: boolean;
+        page: number;
+    }>();
 
     return (
         <div className="relative md:flex">
@@ -34,6 +28,21 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
                             <NoteItem key={note.id} note={note} />
                         ))}
                     </ul>
+
+                    {props.isNextPageExists && (
+                        <WhenVisible
+                            always
+                            params={{
+                                data: {
+                                    page: +props.page + 1,
+                                },
+                                only: ['notes', 'page', 'isNextPageExists'],
+                            }}
+                            fallback={<p>You reach the end.</p>}
+                        >
+                            <p>Loading...</p>
+                        </WhenVisible>
+                    )}
                 </nav>
             </div>
             <article className="max-w-146 flex-1">
@@ -66,7 +75,11 @@ function NoteItem({ note }: NoteItemProps) {
     const isCurrent = currentNoteId === note.id;
 
     return (
-        <Link preserveScroll href={route(route().current() || 'home', note.id)} className={clsx("border-colors block space-y-3 border-b p-2 pb-3", isCurrent && 'bg-red-400')}>
+        <Link
+            preserveScroll
+            href={route(route().current() || 'home', note.id)}
+            className={clsx('border-colors block space-y-3 border-b p-2 pb-3', isCurrent && 'bg-red-400')}
+        >
             <p className="font-bold">{note.title}</p>
             <ul className="flex flex-wrap items-center gap-1">
                 {note.tags.map((tag) => (
@@ -75,9 +88,7 @@ function NoteItem({ note }: NoteItemProps) {
                     </li>
                 ))}
             </ul>
-            <p className="body-text text-xs">
-                {note.updated_at ? formatDate(new Date(note.updated_at), { dateStyle: 'medium' }) : 'No update date'}
-            </p>
+            <p className="body-text text-xs">{note.updated_at ? formatDate(new Date(note.updated_at), { dateStyle: 'medium' }) : 'No update date'}</p>
         </Link>
     );
 }

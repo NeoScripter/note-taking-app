@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/{note?}', [NoteController::class, 'index'])->name('home');
+    Route::get('/dashboard/{note?}', [NoteController::class, 'index'])->name('home');
 
     Route::get('/archive/{note?}', [NoteController::class, 'archive'])->name('archive');
 

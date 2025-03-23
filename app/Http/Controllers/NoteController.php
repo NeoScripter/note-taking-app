@@ -5,24 +5,33 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Inertia\Inertia;
 
 class NoteController extends Controller
 {
     public function index(Request $request, ?Note $note = null)
     {
+        $page = $request->query('page', 1);
+        $perPage = 10;
+
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
-            ->where('archived', false)
             ->latest()
-            ->get();
+            ->paginate($perPage);
+
+        $notePaginateProp = $notes->toArray();
+        $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
+
 
         if ($note && $note->user_id !== $request->user()->id) {
             abort(403);
         }
 
-        return inertia('user/Dashboard', [
-            'notes' => $notes,
+        return Inertia::render('user/Dashboard', [
             'note' => $note ? $note->load('tags') : null,
+            'notes' => Inertia::merge($notes->items()),
+            'page' => $page,
+            'isNextPageExists' => $isNextPageExists
         ]);
     }
 
