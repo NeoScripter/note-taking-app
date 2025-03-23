@@ -7,4 +7,17 @@ export type Note = {
     archived: boolean;
     created_at: string | null;
     updated_at: string | null;
+    tags?: Tag[];
 }
+
+export type Tag = {
+    id: number;
+    user_id: number;
+    name: string;
+    created_at: string | null;
+    updated_at: string | null;
+};
+
+export type ExtendedNote = Note & {
+    tags: Tag[];
+};

@@ -15,7 +15,7 @@ export default function UserLayout({ children, title, header }: UserLayoutProps)
     return (
         <FontProvider>
             <Head title={title} />
-            <main className="bg-colors isolate md:flex md:items-start">
+            <main className="bg-colors isolate md:flex md:items-stretch h-full">
                 <UserLayoutSidebar />
 
                 <div className="flex-1">

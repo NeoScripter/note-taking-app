@@ -8,17 +8,25 @@ use Illuminate\Support\Facades\Gate;
 
 class NoteController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, ?Note $note = null)
     {
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
+            ->where('archived', false)
             ->latest()
             ->get();
 
-        return inertia('user/Dashboard', compact('notes'));
+        if ($note && $note->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
+        return inertia('user/Dashboard', [
+            'notes' => $notes,
+            'note' => $note ? $note->load('tags') : null,
+        ]);
     }
 
-    public function archive(Request $request)
+    public function archive(Request $request, ?Note $note = null)
     {
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
@@ -26,7 +34,20 @@ class NoteController extends Controller
             ->latest()
             ->get();
 
-        return inertia('user/Archive', compact('notes'));
+        if ($note && $note->user_id !== $request->user()->id) {
+            abort(403);
+        }
+
+        return inertia('user/Archive', [
+            'notes' => $notes,
+            'note' => $note ? $note->load('tags') : null,
+        ]);
+    }
+
+    public function show(Note $note)
+    {
+        $note->load('tags');
+        return inertia()->render('partials/Note', ['note' => $note]);
     }
 
     public function search(Request $request)

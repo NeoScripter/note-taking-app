@@ -1,3 +1,4 @@
+import NoteLayout from '@/layouts/NoteLayout';
 import UserLayout from '@/layouts/UserLayout';
 import { Note } from '@/types/note';
 
@@ -18,6 +19,10 @@ const Archive = ({ notes }: ArchiveProps) => {
     );
 };
 
-Archive.layout = (page: React.ReactElement) => <UserLayout children={page} title="Archive" header="Archived Notes" />;
+Archive.layout = (page: React.ReactElement) => (
+    <UserLayout title="Archive" header="Archived Notes">
+        <NoteLayout>{page}</NoteLayout>
+    </UserLayout>
+)
 
 export default Archive;

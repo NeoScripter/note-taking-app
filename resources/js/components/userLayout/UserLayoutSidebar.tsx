@@ -19,7 +19,7 @@ export default function UserLayoutSidebar() {
 
     return (
         (showSidebar || isLarge) && (
-            <aside className="bg-colors border-colors fixed inset-0 top-12 bottom-14 z-30 overflow-y-auto px-4 py-5 sm:top-19 sm:bottom-19 sm:px-8 sm:py-6 md:static md:min-h-screen md:w-68 md:border-r md:px-4 md:py-3">
+            <aside className="bg-colors border-colors fixed inset-0 top-12 bottom-14 z-30 overflow-y-auto px-4 py-5 sm:top-19 sm:bottom-19 sm:px-8 sm:py-6 md:static md:inset-auto md:w-68 md:border-r md:px-4 md:py-3">
                 <div className="hidden md:block">
                     <div className="mb-4 w-24 py-3">
                         <img src={theme === THEMES.LIGHT ? lightLogo : darkLogo} alt="Notes logo" />

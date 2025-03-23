@@ -1,3 +1,4 @@
+import NoteLayout from '@/layouts/NoteLayout';
 import UserLayout from '@/layouts/UserLayout';
 
 const Search = () => {
@@ -9,11 +10,9 @@ const Search = () => {
 };
 
 Search.layout = (page: React.ReactElement) => (
-    <UserLayout
-        children={page}
-        title="Search"
-        header="Show results for: "
-    />
+    <UserLayout title="Search" header="Show results for: ">
+        <NoteLayout>{page}</NoteLayout>
+    </UserLayout>
 );
 
 export default Search;
