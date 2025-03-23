@@ -1,4 +1,4 @@
-import ChevronRight from './svgs/ChevronRight';
+import ChevronRight from '../svgs/ChevronRight';
 import clsx from 'clsx';
 
 type SettingsBtnItemProps = {

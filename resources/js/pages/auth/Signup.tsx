@@ -1,4 +1,4 @@
-import PrimaryBtn from '@/components/PrimaryBtn';
+import PrimaryBtn from '@/components/shared/PrimaryBtn';
 import PasswordField from '@/components/forms/PasswordField';
 import TextField from '@/components/forms/TextField';
 import AuthLayout from '@/layouts/AuthLayout';

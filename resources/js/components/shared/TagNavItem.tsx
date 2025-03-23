@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import ChevronRight from './svgs/ChevronRight';
+import ChevronRight from '../svgs/ChevronRight';
 import clsx from 'clsx';
 
 type TagNavItemProps = {

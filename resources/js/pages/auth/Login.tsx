@@ -1,7 +1,7 @@
 import CheckboxField from '@/components/forms/CheckboxField';
 import PasswordField from '@/components/forms/PasswordField';
 import TextField from '@/components/forms/TextField';
-import PrimaryBtn from '@/components/PrimaryBtn';
+import PrimaryBtn from '@/components/shared/PrimaryBtn';
 import AuthLayout from '@/layouts/AuthLayout';
 import { Link, useForm } from '@inertiajs/react';
 
