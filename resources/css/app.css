@@ -20,12 +20,14 @@
     --font-notoserif:
         'Noto Serif', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
+    --color-gray-pale: oklch(96.95% 0.0045 258.32);
     --color-gray-neutral: oklch(96.95% 0.0045 258.32);
     --color-slate-neutral: oklch(30.9% 0.021 265.9);
     --color-dark-black: oklch(18.26% 0.0196 265.9);
     --color-primary-blue: oklch(55.5% 0.2449 266.68);
     --color-hover-blue: oklch(47.07% 0.2134 266.52);
     --color-pale-blue: oklch(95.77% 0.0199 267.29);
+    --color-black-pale: oklch(26.73% 0.0207 276.84);
 
     --breakpoint-sm: 768px;
     --breakpoint-md: 1250px;

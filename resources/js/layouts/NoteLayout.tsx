@@ -38,9 +38,9 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
                                 },
                                 only: ['notes', 'page', 'isNextPageExists'],
                             }}
-                            fallback={<p>You reach the end.</p>}
+                            fallback={<SkeletonList />}
                         >
-                            <p>Loading...</p>
+                            <SkeletonList />
                         </WhenVisible>
                     )}
                 </nav>
@@ -70,15 +70,15 @@ type NoteItemProps = {
 function NoteItem({ note }: NoteItemProps) {
     const { url } = usePage();
 
-    const currentNoteId = Number(url.split('/').pop());
+    const currentNoteId = Number((url.split('/').pop() || '').split('?')[0]);
 
     const isCurrent = currentNoteId === note.id;
 
     return (
         <Link
-            preserveScroll
+            replace
             href={route(route().current() || 'home', note.id)}
-            className={clsx('border-colors block space-y-3 border-b p-2 pb-3', isCurrent && 'bg-red-400')}
+            className={clsx('border-colors block space-y-3 rounded-lg border-b p-2 pb-3', isCurrent && 'bg-gray-pale dark:bg-black-pale border-none')}
         >
             <p className="font-bold">{note.title}</p>
             <ul className="flex flex-wrap items-center gap-1">
@@ -90,5 +90,29 @@ function NoteItem({ note }: NoteItemProps) {
             </ul>
             <p className="body-text text-xs">{note.updated_at ? formatDate(new Date(note.updated_at), { dateStyle: 'medium' }) : 'No update date'}</p>
         </Link>
+    );
+}
+
+function NoteItemSkeleton() {
+    return (
+        <li className="block animate-pulse space-y-3 rounded-lg border-b p-2 pb-3 text-transparent">
+            <p className="bg-gray-pale dark:bg-black-pale">title</p>
+            <ul className="flex flex-wrap items-center gap-1">
+                {[0, 1, 2].map((number) => (
+                    <li key={`NoteItemSkeleton-${number}`} className="bg-gray-pale dark:bg-black-pale rounded-sm px-1.5 py-1 text-xs">tag</li>
+                ))}
+            </ul>
+            <p className="bg-gray-pale dark:bg-black-pale w-1/2 text-xs">timestamp</p>
+        </li>
+    );
+}
+
+function SkeletonList() {
+    return (
+        <ul className="space-y-2 px-4 sm:px-8 md:pr-0 md:pl-4">
+            {[0, 1, 2, 3, 4, 5].map((number) => (
+                <NoteItemSkeleton key={number + 'skeleton'} />
+            ))}
+        </ul>
     );
 }
