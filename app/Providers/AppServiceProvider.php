@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Note;
+use App\Models\Tag;
+use App\Policies\NotePolicy;
+use App\Policies\TagPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::policy(Note::class, NotePolicy::class);
+        Gate::policy(Tag::class, TagPolicy::class);
     }
 }

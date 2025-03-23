@@ -6,17 +6,17 @@ import SearchIcon from '@/components/svgs/SeachIcon';
 import SettingsIcon from '@/components/svgs/SettingsIcon';
 import TagIcon from '@/components/svgs/TagIcon';
 import TagNavItem from '@/components/TagNavItem';
+import Toast from '@/components/Toast';
 import { useModalContext } from '@/hooks/useModalContext';
 import { useScreenResize } from '@/hooks/useScreenResize';
 import useThemeContext from '@/hooks/useThemeContext';
 import { FontProvider } from '@/providers/FontProvider';
 import { THEMES } from '@/utils/theme';
 import { Input } from '@headlessui/react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import clsx from 'clsx';
 import darkLogo from '../../images/logo-dark.webp';
 import lightLogo from '../../images/logo-light.webp';
-import Toast from '@/components/Toast';
 
 type UserLayoutProps = {
     children: React.ReactElement;
@@ -39,7 +39,7 @@ export default function UserLayout({ children, title, header }: UserLayoutProps)
                 <UserLayoutFooter />
             </main>
 
-            <Toast/>
+            <Toast />
         </FontProvider>
     );
 }
@@ -75,6 +75,7 @@ function UserLayoutSidebar() {
     const { theme } = useThemeContext();
     const { showSidebar } = useModalContext();
     const isLarge = useScreenResize();
+    const { props } = usePage<{ tags: { id: number; name: string }[] }>();
 
     return (
         (showSidebar || isLarge) && (
@@ -100,18 +101,11 @@ function UserLayoutSidebar() {
                 </p>
                 <nav>
                     <ul>
-                        <TagNavItem routeName="tag" label="React">
-                            <TagIcon width="20" height="20" />
-                        </TagNavItem>
-                        <TagNavItem routeName="tag" label="React">
-                            <TagIcon width="20" height="20" />
-                        </TagNavItem>
-                        <TagNavItem routeName="tag" label="React">
-                            <TagIcon width="20" height="20" />
-                        </TagNavItem>
-                        <TagNavItem routeName="tag" label="React">
-                            <TagIcon width="20" height="20" />
-                        </TagNavItem>
+                        {props.tags.map((tag) => (
+                            <TagNavItem key={tag.id} routeName="tag" label={tag.name}>
+                                <TagIcon width="20" height="20" />
+                            </TagNavItem>
+                        ))}
                     </ul>
                 </nav>
             </aside>

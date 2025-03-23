@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -8,17 +9,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return Inertia::render('user/Dashboard', [
-            'user' => Auth::user(),
-        ]);
-    })->name('home');
+    Route::get('/', [NoteController::class, 'index'])->name('home');
 
-    Route::get('/archive', function () {
-        return Inertia::render('user/Archive', [
-            'user' => Auth::user(),
-        ]);
-    })->name('archive');
+    Route::get('/archive', [NoteController::class, 'archive'])->name('archive');
 
     Route::get('/search', function () {
         return Inertia::render('user/Search', [
@@ -29,7 +22,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings', function () {
         return Inertia::render('user/Settings', [
             'user' => Auth::user(),
-            'userFont' => Auth::user()->font ?? 'Inter',
         ]);
     })->name('settings');
 

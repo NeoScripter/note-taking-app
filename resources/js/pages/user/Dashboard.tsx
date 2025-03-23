@@ -1,20 +1,25 @@
 import UserLayout from '@/layouts/UserLayout';
-import { Link } from '@inertiajs/react';
+import { Note } from '@/types/note';
 
 type DashboardProps = {
     user: {
         name: string;
     };
+    notes: Note[];
 };
-const Dashboard = ({ user }: DashboardProps) => {
+const Dashboard = ({ user, notes }: DashboardProps) => {
     return (
         <>
             <h1>Welcome, {user.name}</h1>
             <p>Hello, welcome to your first Inertia app!</p>
 
-            <Link href="/logout" method="post" as="button" className="rounded bg-red-500 px-4 py-2 text-white cursor-pointer">
-                Logout
-            </Link>
+            <ul>
+                {notes.map(note => (
+                    <li key={note.id}>
+                        {note.content}
+                    </li>
+                ))}
+            </ul>
 
         </>
     );
