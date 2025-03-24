@@ -2,6 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import clsx from 'clsx';
 import ChevronRight from '../svgs/ChevronRight';
 import { Tag } from '@/types/note';
+import { useModalContext } from '@/hooks/useModalContext';
 
 type TagNavItemProps = {
     routeName: string;
@@ -15,6 +16,7 @@ type TagNavItemProps = {
 
 export default function TagNavItem({ routeName, children, label, className, tagId }: TagNavItemProps) {
     const { props } = usePage<{ tag: Tag }>();
+    const { closeSidebar } = useModalContext();
 
     const isCurrent =
         route().current(routeName) &&
@@ -23,6 +25,7 @@ export default function TagNavItem({ routeName, children, label, className, tagI
     return (
         <li>
             <Link
+                onClick={closeSidebar}
                 href={tagId !== undefined ? route(routeName, { tag: tagId }) : route(routeName)}
                 className={clsx(
                     'border-colors flex items-center gap-2 border-b px-3 py-3 text-sm md:rounded-lg md:border-none',

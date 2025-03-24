@@ -21,3 +21,14 @@ export type Tag = {
 export type ExtendedNote = Note & {
     tags: Tag[];
 };
+
+export type NotePropsType = {
+    notes: ExtendedNote[];
+    isNextPageExists: boolean;
+    page: number;
+};
+
+export type DashboardProps = {
+    notes: Note[];
+    note?: ExtendedNote | null;
+};

@@ -27,7 +27,7 @@ export default function UserLayoutFooter() {
                     onClick={openSidebar}
                     className={clsx(
                         'flex w-full cursor-pointer flex-col items-center justify-center rounded-sm py-1',
-                        showSidebar && 'bg-pale-blue text-primary-blue dark:bg-[#232530]',
+                        (showSidebar || route().current() === 'tag') && 'bg-pale-blue text-primary-blue dark:bg-[#232530]',
                     )}
                 >
                     <TagIcon />

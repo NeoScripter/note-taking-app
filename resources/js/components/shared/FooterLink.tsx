@@ -9,12 +9,12 @@ type FooterLinkProps = {
 };
 
 export default function FooterLink({ routeName, children, title }: FooterLinkProps) {
-    const { showSidebar, closeSidebar } = useModalContext();
+    const { showSidebar, closeSidebar, closeNotePage } = useModalContext();
 
     return (
         <div className="basis-1/5">
             <Link
-                onClick={closeSidebar}
+                onClick={() => {closeSidebar(); closeNotePage()}}
                 href={route(routeName)}
                 className={clsx(
                     'flex flex-col items-center justify-center rounded-sm py-1 sm:mx-8',

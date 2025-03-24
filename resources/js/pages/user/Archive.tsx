@@ -1,23 +1,14 @@
+import NoteCard from '@/components/noteLayout/NoteCard';
 import NoteLayout from '@/layouts/NoteLayout';
 import UserLayout from '@/layouts/UserLayout';
-import { Note } from '@/types/note';
+import { DashboardProps } from '@/types/note';
 
-type ArchiveProps = {
-    notes: Note[];
+const Archive = ({ note }: DashboardProps) => {
+    if (note == null) return null;
+
+    return <NoteCard note={note} />;
 };
 
-const Archive = ({ notes }: ArchiveProps) => {
-    return (
-        <>
-            <h1>this is archive page</h1>
-            <ul>
-                {notes.map((note) => (
-                    <li key={note.id}>{note.content}</li>
-                ))}
-            </ul>
-        </>
-    );
-};
 
 Archive.layout = (page: React.ReactElement) => (
     <UserLayout title="Archive" header="Archived Notes">

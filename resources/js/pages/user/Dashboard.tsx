@@ -1,26 +1,12 @@
-import NoteShow from '@/components/shared/NoteShow';
+import NoteCard from '@/components/noteLayout/NoteCard';
 import NoteLayout from '@/layouts/NoteLayout';
 import UserLayout from '@/layouts/UserLayout';
-import { ExtendedNote, Note } from '@/types/note';
+import { DashboardProps } from '@/types/note';
 
-type DashboardProps = {
-    user: {
-        name: string;
-    };
-    notes: Note[];
-    note?: ExtendedNote | null;
-};
-const Dashboard = ({ user, note, notes }: DashboardProps) => {
+const Dashboard = ({ note }: DashboardProps) => {
+    if (note == null) return null;
 
-    return (
-        <>
-            <h1>Welcome, {user.name}</h1>
-            <p>Hello, welcome to your first Inertia app!</p>
-            <p>You currently have {notes.length} notes</p>
-
-            {note && <NoteShow note={note} />}
-        </>
-    );
+    return <NoteCard note={note} />;
 };
 
 Dashboard.layout = (page: React.ReactElement) => (
@@ -30,3 +16,4 @@ Dashboard.layout = (page: React.ReactElement) => (
 );
 
 export default Dashboard;
+

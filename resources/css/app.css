@@ -29,6 +29,7 @@
     --color-pale-blue: oklch(95.77% 0.0199 267.29);
     --color-black-pale: oklch(26.73% 0.0207 276.84);
 
+    --breakpoint-xs: 350px;
     --breakpoint-sm: 768px;
     --breakpoint-md: 1250px;
 
@@ -102,5 +103,30 @@
     100% {
         transform: translateX(200%);
         opacity: 0;
+    }
+}
+
+.scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+}
+
+.notes-height {
+    height: calc(100svh - 186px);
+}
+
+@media screen and (min-width: 768px) {
+    .notes-height {
+        height: calc(100svh - 242px);
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    .notes-height {
+        height: calc(100svh - 174px);
     }
 }

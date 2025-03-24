@@ -1,8 +1,12 @@
+import NoteItem from '@/components/noteLayout/NoteItem';
+import SkeletonList from '@/components/noteLayout/SkeletonList';
+import PrimaryBtn from '@/components/shared/PrimaryBtn';
+import ArchiveIcon from '@/components/svgs/ArchiveIcon';
 import ChevronLeft from '@/components/svgs/ChevronLeft';
-import { formatDate } from '@/lib/formatDate';
-import { ExtendedNote } from '@/types/note';
-import { Link, usePage, WhenVisible } from '@inertiajs/react';
-import clsx from 'clsx';
+import TrashIcon from '@/components/svgs/TrashIcon';
+import { useModalContext } from '@/hooks/useModalContext';
+import { ExtendedNote, NotePropsType } from '@/types/note';
+import { usePage, WhenVisible } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
 type NoteLayoutProps = {
@@ -10,14 +14,8 @@ type NoteLayoutProps = {
     header: string;
 };
 
-type NotePropsType = {
-    notes: ExtendedNote[];
-    isNextPageExists: boolean;
-    page: number;
-};
-
 export default function NoteLayout({ children, header }: NoteLayoutProps) {
-    const [showPage, setShowPage] = useState(true);
+    const { showNotePage, closeNotePage } = useModalContext();
     const { props } = usePage<NotePropsType>();
     const [notes, setNotes] = useState<ExtendedNote[]>(props.notes);
 
@@ -31,17 +29,17 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
 
     useEffect(() => {
         setNotes(props.notes);
-    }, [route().current()]);
-
+    }, [route().current(), props.tag]);
 
     return (
         <div className="relative md:flex">
-            <div className="border-colors flex-1 md:min-h-screen md:max-w-72.5 md:border-r md:px-4 md:py-4">
-                <p className="mb-4 text-2xl font-bold md:hidden">{header}</p>
+            <div className="border-colors flex-1 md:max-w-72.5 md:border-r md:py-5 md:pr-4 md:pl-8">
+                <p className="mb-4 text-2xl ml-2 font-bold md:hidden">{header}</p>
+                <PrimaryBtn className="mb-4 hidden w-full md:block">Create new Note</PrimaryBtn>
                 <nav>
-                    <ul className="h-[80vh] space-y-2 overflow-y-auto px-4 sm:px-8 md:pr-0 md:pl-4" scroll-region="true">
+                    <ul className="notes-height scrollbar-hidden space-y-2 overflow-y-auto" scroll-region="true">
                         {notes.map((note) => (
-                            <NoteItem key={note.id} note={note} noteProps={props} onClick={() => setShowPage(true)} />
+                            <NoteItem key={note.id} note={note} noteProps={props} />
                         ))}
                         {props.isNextPageExists && (
                             <WhenVisible
@@ -61,82 +59,32 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
                     </ul>
                 </nav>
             </div>
-            <article className="max-w-146 flex-1">
-                {showPage && (
-                    <div className="bg-colors absolute inset-0 z-10 md:static md:p-8">
-                        <button
-                            onClick={() => setShowPage(false)}
-                            className="body-text mb-4 flex cursor-pointer items-center gap-2 text-sm md:hidden"
-                        >
-                            <ChevronLeft />
-                            Go Back
-                        </button>
-                        {children}
-                    </div>
+            <article className="w-full flex-1 md:flex md:items-stretch">
+                {showNotePage && (
+                    <>
+                        <div className="bg-colors absolute inset-0 z-40 flex-1 md:static md:py-5 md:px-6">
+                            <div className="body-text xs:gap-4 border-colors mb-4 flex items-center justify-end gap-3 border-b pb-4 text-sm md:hidden">
+                                <button onClick={closeNotePage} className="mr-auto flex cursor-pointer items-center gap-2">
+                                    <ChevronLeft />
+                                    Go Back
+                                </button>
+                                <button className="cursor-pointer">
+                                    <TrashIcon />
+                                </button>
+                                <button className="cursor-pointer">
+                                    <ArchiveIcon width="18" height="18" />
+                                </button>
+                                <button className="cursor-pointer">Cancel</button>
+                                <button className="text-primary-blue mr-2 cursor-pointer">Save Note</button>
+                            </div>
+                            {children}
+                        </div>
+                        <div className="border-colors hidden flex-1 md:block md:w-full md:max-w-62.5 md:border-l md:py-5 md:pr-8 md:pl-4">
+                            <button>restore note</button>
+                        </div>
+                    </>
                 )}
             </article>
         </div>
-    );
-}
-
-type NoteItemProps = {
-    note: ExtendedNote;
-    noteProps: NotePropsType;
-    onClick: () => void;
-};
-
-function NoteItem({ note, onClick, noteProps }: NoteItemProps) {
-    const { url } = usePage();
-
-    const queryParams = new URLSearchParams(url.split('?')[1]);
-    const currentNoteId = Number(queryParams.get('note_id')) || null;
-
-    const isCurrent = currentNoteId === note.id;
-
-    return (
-        <Link
-            preserveState
-            preserveScroll
-            onClick={onClick}
-            href={url}
-            data={{ note_id: note.id, page: noteProps.page }}
-            className={clsx('border-colors block space-y-3 rounded-lg border-b p-2 pb-3', isCurrent && 'bg-gray-pale dark:bg-black-pale border-none')}
-        >
-            <p className="font-bold">{note.title}</p>
-            <ul className="flex flex-wrap items-center gap-1">
-                {note.tags.map((tag) => (
-                    <li key={tag.id} className="title-text rounded-sm bg-[#E0E4EA] px-1.5 py-1 text-xs dark:bg-[#232530]">
-                        {tag.name}
-                    </li>
-                ))}
-            </ul>
-            <p className="body-text text-xs">{note.updated_at ? formatDate(new Date(note.updated_at), { dateStyle: 'medium' }) : 'No update date'}</p>
-        </Link>
-    );
-}
-
-function NoteItemSkeleton() {
-    return (
-        <li className="block animate-pulse space-y-3 rounded-lg border-b p-2 pb-3 text-transparent">
-            <p className="bg-gray-pale dark:bg-black-pale">title</p>
-            <ul className="flex flex-wrap items-center gap-1">
-                {[0, 1, 2].map((number) => (
-                    <li key={`NoteItemSkeleton-${number}`} className="bg-gray-pale dark:bg-black-pale rounded-sm px-1.5 py-1 text-xs">
-                        tag
-                    </li>
-                ))}
-            </ul>
-            <p className="bg-gray-pale dark:bg-black-pale w-1/2 text-xs">timestamp</p>
-        </li>
-    );
-}
-
-function SkeletonList() {
-    return (
-        <ul className="space-y-2 px-4 sm:px-8 md:pr-0 md:pl-4">
-            {[0, 1, 2, 3, 4, 5].map((number) => (
-                <NoteItemSkeleton key={number + 'skeleton'} />
-            ))}
-        </ul>
     );
 }

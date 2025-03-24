@@ -4,7 +4,7 @@ import clsx from 'clsx';
 type PrimaryBtnProps = {
     children: React.ReactNode;
     className?: string;
-    type: "button" | "submit" | "reset" | undefined;
+    type?: "button" | "submit" | "reset" | undefined;
 };
 export default function PrimaryBtn({ children, className, type = 'button' }: PrimaryBtnProps) {
     return (
