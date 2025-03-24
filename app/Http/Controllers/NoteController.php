@@ -133,16 +133,28 @@ class NoteController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'nullable|string',
-            'archived' => 'boolean',
-            'tags' => 'array',
-            'tags.*' => 'exists:tags,id',
+            'content' => 'required|string',
+            'tags' => 'nullable|string',
         ]);
 
-        $note = $request->user()->notes()->create($validated);
-        $note->tags()->attach($validated['tags'] ?? []);
 
-        return redirect()->back();
+        $note = $request->user()->notes()->create($validated);
+
+        if (!empty($validated['tags'])) {
+            $tagNames = array_filter(array_map('trim', explode(',', $validated['tags'])));
+
+            $tagIds = [];
+            foreach ($tagNames as $tagName) {
+                $tag = Tag::firstOrCreate(
+                    ['user_id' => $request->user()->id, 'name' => $tagName]
+                );
+                $tagIds[] = $tag->id;
+            }
+
+            $note->tags()->attach($tagIds);
+        }
+
+        return redirect()->intended(route('home'))->with('message', 'Note successfully created!');
     }
 
     public function update(Request $request, Note $note)

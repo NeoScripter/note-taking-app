@@ -16,7 +16,7 @@ type TagNavItemProps = {
 
 export default function TagNavItem({ routeName, children, label, className, tagId }: TagNavItemProps) {
     const { props } = usePage<{ tag: Tag }>();
-    const { closeSidebar } = useModalContext();
+    const { closeSidebar, closeCreateNew } = useModalContext();
 
     const isCurrent =
         route().current(routeName) &&
@@ -25,7 +25,7 @@ export default function TagNavItem({ routeName, children, label, className, tagI
     return (
         <li>
             <Link
-                onClick={closeSidebar}
+                onClick={() => {closeSidebar(); closeCreateNew()}}
                 href={tagId !== undefined ? route(routeName, { tag: tagId }) : route(routeName)}
                 className={clsx(
                     'border-colors flex items-center gap-2 border-b px-3 py-3 text-sm md:rounded-lg md:border-none',

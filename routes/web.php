@@ -30,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('update-password');
+
+    Route::post('/note', [NoteController::class, 'store'])->name('notes.store');
 });
 
 
