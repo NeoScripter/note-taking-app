@@ -10,13 +10,15 @@ use Inertia\Inertia;
 
 class NoteController extends Controller
 {
-    public function index(Request $request, ?Note $note = null)
+    public function index(Request $request)
     {
         $page = $request->query('page', 1);
         $perPage = 10;
+        $noteId = $request->query('note_id');
 
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
+            ->where('archived', false)
             ->latest()
             ->paginate($perPage);
 
@@ -24,8 +26,13 @@ class NoteController extends Controller
         $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
 
 
-        if ($note && $note->user_id !== $request->user()->id) {
-            abort(403);
+        $note = null;
+        if ($noteId) {
+            $note = Note::where('user_id', $request->user()->id)->find($noteId);
+            if (!$note) {
+                abort(403);
+            }
+            $note->load('tags');
         }
 
         return Inertia::render('user/Dashboard', [
@@ -38,19 +45,34 @@ class NoteController extends Controller
 
     public function archive(Request $request, ?Note $note = null)
     {
+        $page = $request->query('page', 1);
+        $perPage = 10;
+        $noteId = $request->query('note_id');
+
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
             ->where('archived', true)
             ->latest()
-            ->get();
+            ->paginate($perPage);
 
-        if ($note && $note->user_id !== $request->user()->id) {
-            abort(403);
+        $notePaginateProp = $notes->toArray();
+        $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
+
+
+        $note = null;
+        if ($noteId) {
+            $note = Note::where('user_id', $request->user()->id)->find($noteId);
+            if (!$note) {
+                abort(403);
+            }
+            $note->load('tags');
         }
 
-        return inertia('user/Archive', [
-            'notes' => $notes,
+        return Inertia::render('user/Dashboard', [
             'note' => $note ? $note->load('tags') : null,
+            'notes' => Inertia::merge($notes->items()),
+            'page' => $page,
+            'isNextPageExists' => $isNextPageExists
         ]);
     }
 
@@ -73,10 +95,11 @@ class NoteController extends Controller
         return inertia('Notes/Index', compact('notes'));
     }
 
-    public function tag(Request $request, ?Note $note = null, Tag $tag)
+    public function tag(Request $request, Tag $tag)
     {
         $page = $request->query('page', 1);
         $perPage = 10;
+        $noteId = $request->query('note_id');
 
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
@@ -88,9 +111,13 @@ class NoteController extends Controller
         $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
 
 
-        $note = Note::where('user_id', $request->user()->id)->find($note?->id);
-        if ($note === null && $request->route('note')) {
-            abort(403);
+        $note = null;
+        if ($noteId) {
+            $note = Note::where('user_id', $request->user()->id)->find($noteId);
+            if (!$note) {
+                abort(403);
+            }
+            $note->load('tags');
         }
 
         return Inertia::render('user/Dashboard', [

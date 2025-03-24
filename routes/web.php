@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard/{note?}', [NoteController::class, 'index'])->name('home');
+    Route::get('/', [NoteController::class, 'index'])->name('home');
 
-    Route::get('/archive/{note?}', [NoteController::class, 'archive'])->name('archive');
+    Route::get('/archive', [NoteController::class, 'archive'])->name('archive');
 
     Route::get('/search', function () {
         return Inertia::render('user/Search', [
@@ -23,7 +23,7 @@ Route::middleware(['auth'])->group(function () {
         return Inertia::render('user/Settings');
     })->name('settings');
 
-    Route::get('/tag/{tag}/note/{note?}', [NoteController::class, 'tag'])->name('tag');
+    Route::get('/tag/{tag}', [NoteController::class, 'tag'])->name('tag');
 
     Route::post('/update-font', [UserController::class, 'updateFont'])->name('update-font');
 

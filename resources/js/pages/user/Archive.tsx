@@ -21,8 +21,10 @@ const Archive = ({ notes }: ArchiveProps) => {
 
 Archive.layout = (page: React.ReactElement) => (
     <UserLayout title="Archive" header="Archived Notes">
-        <NoteLayout>{page}</NoteLayout>
+        <NoteLayout header="Archived Notes">
+            {page}
+        </NoteLayout>
     </UserLayout>
-)
+);
 
 export default Archive;
