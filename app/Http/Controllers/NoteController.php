@@ -180,6 +180,6 @@ class NoteController extends Controller
         Gate::authorize('delete', $note);
         $note->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Note successfully deleted!');
     }
 }

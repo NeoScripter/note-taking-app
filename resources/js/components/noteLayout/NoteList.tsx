@@ -18,7 +18,7 @@ export default function NoteList() {
 
     useEffect(() => {
         setNotes(props.notes);
-    }, [route().current(), props.tag]);
+    }, [route().current(), props.tag?.id]);
 
     return (
         <nav>

@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('update-password');
 
     Route::post('/note', [NoteController::class, 'store'])->name('notes.store');
+
+    Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->name('notes.destroy');
 });
 
 

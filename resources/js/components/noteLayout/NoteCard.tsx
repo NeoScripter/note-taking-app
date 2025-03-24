@@ -1,17 +1,21 @@
 import { formatDate } from '@/lib/formatDate';
 import { ExtendedNote } from '@/types/note';
+import PrimaryBtn from '../shared/PrimaryBtn';
+import SecondaryBtn from '../shared/SecondaryBtn';
 import ClockIcon from '../svgs/ClockIcon';
 import StatusIcon from '../svgs/StatusIcon';
 import TagIcon from '../svgs/TagIcon';
 import NoteInfo from './NoteInfo';
+import { useModalContext } from '@/hooks/useModalContext';
 
 type NoteCardProps = {
     note: ExtendedNote;
 };
 
 export default function NoteCard({ note }: NoteCardProps) {
+    const { closeNotePage } = useModalContext();
     return (
-        <div className="notes-height">
+        <div className="notes-height flex flex-col">
             <header>
                 <p className="mb-4 text-2xl font-bold">{note.title}</p>
                 <div className="title-text border-colors mb-4 space-y-3.5 border-b pb-4 text-xs sm:text-sm">
@@ -29,10 +33,14 @@ export default function NoteCard({ note }: NoteCardProps) {
                     </NoteInfo>
                 </div>
             </header>
-            <div className="text-sm md:text-base">
-                <pre className='break-words whitespace-pre-wrap'>
+            <div className="text-sm md:text-base overflow-y-auto scrollbar-hidden">
+                <pre className="break-words whitespace-pre-wrap">
                     <code>{note.content}</code>
                 </pre>
+            </div>
+            <div className="border-colors mt-auto hidden items-center gap-4 border-t pt-4 md:flex">
+                <PrimaryBtn>Edit Note</PrimaryBtn>
+                <SecondaryBtn onClick={closeNotePage}>Hide</SecondaryBtn>
             </div>
         </div>
     );

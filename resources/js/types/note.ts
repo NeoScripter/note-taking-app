@@ -26,6 +26,7 @@ export type NotePropsType = {
     notes: ExtendedNote[];
     isNextPageExists: boolean;
     page: number;
+    tag?: Tag;
 };
 
 export type DashboardProps = {
