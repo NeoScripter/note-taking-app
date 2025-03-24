@@ -1,8 +1,10 @@
 import NoteItem from '@/components/noteLayout/NoteItem';
 import SkeletonList from '@/components/noteLayout/SkeletonList';
 import PrimaryBtn from '@/components/shared/PrimaryBtn';
+import SecondaryBtn from '@/components/shared/SecondaryBtn';
 import ArchiveIcon from '@/components/svgs/ArchiveIcon';
 import ChevronLeft from '@/components/svgs/ChevronLeft';
+import RestoreIcon from '@/components/svgs/RestoreIcon';
 import TrashIcon from '@/components/svgs/TrashIcon';
 import { useModalContext } from '@/hooks/useModalContext';
 import { ExtendedNote, NotePropsType } from '@/types/note';
@@ -79,8 +81,15 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
                             </div>
                             {children}
                         </div>
-                        <div className="border-colors hidden flex-1 md:block md:w-full md:max-w-62.5 md:border-l md:py-5 md:pr-8 md:pl-4">
-                            <button>restore note</button>
+                        <div className="border-colors hidden flex-1 md:block md:space-y-3 md:w-full md:max-w-62.5 md:border-l md:py-5 md:pr-8 md:pl-4">
+                            <SecondaryBtn className='w-full'>
+                                <RestoreIcon />
+                                Restore Note
+                            </SecondaryBtn>
+                            <SecondaryBtn className='w-full'>
+                                <TrashIcon width='20' height='20' />
+                                Delete Note
+                            </SecondaryBtn>
                         </div>
                     </>
                 )}
