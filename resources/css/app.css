@@ -38,6 +38,8 @@
     --shadow-btn: 0 0 0 4px rgba(255, 255, 255, 1), 0 0 0 6px #99a0ae;
     --shadow-footer: 0px -4px 6px 0px rgba(240, 240, 240, 0.6);
     --shadow-footer-dark: 0px -5px 6px 0px rgba(0, 0, 0, 0.5);
+    --shadow-create-btn: 0px 7px 11px 0px rgba(202, 207, 216, 0.70);
+    --shadow-create-btn-dark: 0px 7px 11px 0px rgba(0, 0, 0, 0.70);
 }
 
 .theme-colors {

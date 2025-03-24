@@ -2,11 +2,10 @@ import NewNote from '@/components/noteLayout/NewNote';
 import NoteList from '@/components/noteLayout/NoteList';
 import PrimaryBtn from '@/components/shared/PrimaryBtn';
 import SecondaryBtn from '@/components/shared/SecondaryBtn';
-import ArchiveIcon from '@/components/svgs/ArchiveIcon';
-import ChevronLeft from '@/components/svgs/ChevronLeft';
 import RestoreIcon from '@/components/svgs/RestoreIcon';
 import TrashIcon from '@/components/svgs/TrashIcon';
 import { useModalContext } from '@/hooks/useModalContext';
+import { PlusIcon } from '@radix-ui/react-icons';
 
 type NoteLayoutProps = {
     children: React.ReactElement;
@@ -14,7 +13,7 @@ type NoteLayoutProps = {
 };
 
 export default function NoteLayout({ children, header }: NoteLayoutProps) {
-    const { showNotePage, closeNotePage, openNotePage, showCreateNew, closeCreateNew, openCreateNew } = useModalContext();
+    const { showNotePage, openNotePage, showCreateNew, openCreateNew } = useModalContext();
 
     return (
         <div className="relative md:flex">
@@ -25,35 +24,16 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
                         openCreateNew();
                         openNotePage();
                     }}
-                    className="mb-4 hidden w-full md:block"
+                    className="md:mb-4 shadow-create-btn dark:shadow-create-btn-dark md:shadow-none md:w-full size-12 sm:size-16 md:size-auto z-[25] fixed md:static bottom-18 sm:bottom-26.5 sm:right-9 rounded-full! md:rounded-lg! right-4 flex items-center justify-center"
                 >
-                    + Create New Note
+                    <PlusIcon className='size-8 shrink-0 md:hidden'/>
+                    <span className='hidden md:block'>+ Create New Note</span>
                 </PrimaryBtn>
                 <NoteList />
             </div>
             {showNotePage && (
                 <article className="w-full flex-1 md:flex md:items-stretch">
                     <div className="bg-colors absolute inset-0 z-40 flex-1 md:static md:px-6 md:py-5">
-                        <div className="body-text xs:gap-4 border-colors mb-4 flex items-center justify-end gap-3 border-b pb-4 text-sm md:hidden">
-                            <button
-                                onClick={() => {
-                                    closeNotePage();
-                                    closeCreateNew();
-                                }}
-                                className="mr-auto flex cursor-pointer items-center gap-2"
-                            >
-                                <ChevronLeft />
-                                Go Back
-                            </button>
-                            <button className="cursor-pointer">
-                                <TrashIcon />
-                            </button>
-                            <button className="cursor-pointer">
-                                <ArchiveIcon width="18" height="18" />
-                            </button>
-                            <button className="cursor-pointer">Cancel</button>
-                            <button className="text-primary-blue mr-2 cursor-pointer">Save Note</button>
-                        </div>
                         {showCreateNew ? <NewNote /> : children}
                     </div>
                     <div className="border-colors hidden flex-1 md:block md:w-full md:max-w-62.5 md:space-y-3 md:border-l md:py-5 md:pr-8 md:pl-4">

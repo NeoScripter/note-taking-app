@@ -29,7 +29,11 @@ export default function NoteCard({ note }: NoteCardProps) {
                     </NoteInfo>
                 </div>
             </header>
-            <div className="text-sm md:text-base">{note.content}</div>
+            <div className="text-sm md:text-base">
+                <pre className='break-words whitespace-pre-wrap'>
+                    <code>{note.content}</code>
+                </pre>
+            </div>
         </div>
     );
 }
