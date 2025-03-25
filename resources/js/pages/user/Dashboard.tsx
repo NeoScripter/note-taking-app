@@ -9,22 +9,25 @@ import UserLayout from '@/layouts/UserLayout';
 import { DashboardProps } from '@/types/note';
 
 const Dashboard = ({ note }: DashboardProps) => {
-    const { closeNotePage, openDeleteModal, openArchiveModal, isEdited, startEditing } = useModalContext();
+    const { openDeleteModal, openArchiveModal, isEdited, startEditing } = useModalContext();
 
     if (note == null) return null;
 
     return (
         <>
-            <NoteMobileBar>
-                <button onClick={openDeleteModal} className="cursor-pointer">
-                    <TrashIcon />
-                </button>
-                <button onClick={openArchiveModal} className="cursor-pointer">
-                    <ArchiveIcon width="18" height="18" />
-                </button>
-                <button onClick={closeNotePage} className="cursor-pointer">Hide</button>
-                <button onClick={startEditing} className="text-primary-blue mr-2 cursor-pointer">Edit Note</button>
-            </NoteMobileBar>
+            {isEdited == false && (
+                <NoteMobileBar>
+                    <button onClick={openDeleteModal} className="cursor-pointer">
+                        <TrashIcon />
+                    </button>
+                    <button onClick={openArchiveModal} className="cursor-pointer">
+                        <ArchiveIcon width="18" height="18" />
+                    </button>
+                    <button onClick={startEditing} className="text-primary-blue mr-2 cursor-pointer">
+                        Edit Note
+                    </button>
+                </NoteMobileBar>
+            )}
             {isEdited ? <EditNote note={note} /> : <NoteCard note={note} />}
         </>
     );

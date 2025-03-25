@@ -74,21 +74,42 @@ class NoteController extends Controller
 
     public function search(Request $request)
     {
+        $page = $request->query('page', 1);
+        $perPage = 10;
+        $noteId = $request->query('note_id');
+
+        $normalilzedQuery = strtolower($request->search);
+
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
-            ->when($request->search, function ($query, $search) {
+            ->when($normalilzedQuery, function ($query, $search) {
                 $query->where(function ($q) use ($search) {
-                    $q->where('title', 'like', "%$search%")
-                        ->orWhere('content', 'like', "%$search%")
+                    $q->where('title', 'like', "%{$search}%")
                         ->orWhereHas('tags', function ($q) use ($search) {
-                            $q->where('name', 'like', "%$search%");
+                            $q->where('name', 'like', "%{$search}%");
                         });
                 });
             })
             ->latest()
-            ->get();
+            ->paginate($perPage);
 
-        return inertia('user/Archive', compact('notes'));
+        $notePaginateProp = $notes->toArray();
+        $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
+
+
+        $note = null;
+        if ($noteId) {
+            $note = Note::findOrFail($noteId);
+            Gate::authorize('view', $note);
+            $note->load('tags');
+        }
+
+        return Inertia::render('user/Search', [
+            'note' => $note ? $note->load('tags') : null,
+            'notes' => Inertia::merge($notes->items()),
+            'page' => $page,
+            'isNextPageExists' => $isNextPageExists
+        ]);
     }
 
     public function tag(Request $request, Tag $tag)

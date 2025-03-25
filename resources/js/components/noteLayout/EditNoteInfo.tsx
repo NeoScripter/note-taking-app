@@ -17,7 +17,7 @@ export default function EditNoteInfo({ children, value = '', placeholder = '', o
             <Input
                 onChange={onChange}
                 className={clsx(
-                    'border-colors hover:bg-gray-neutral focus:shadow-input focus:dark:shadow-input-dark w-full flex-1 rounded-lg border p-1 outline-none focus:ring-1 hover:dark:bg-[#232530]',
+                    'border-colors data-[hover]:bg-gray-neutral data-[focus]:shadow-input data-[focus]:dark:shadow-input-dark w-full flex-1 rounded-lg border p-1 outline-none data-[focus]:ring-1 data-[hover]:dark:bg-[#232530]',
                     error && 'border-red-600!',
                 )}
                 value={value}

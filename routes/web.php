@@ -13,11 +13,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/archive', [NoteController::class, 'archive'])->name('archive');
 
-    Route::get('/search', function () {
-        return Inertia::render('user/Search', [
-            'user' => Auth::user(),
-        ]);
-    })->name('search');
+    Route::get('/search', [NoteController::class, 'search'])->name('search');
 
     Route::get('/settings', function () {
         return Inertia::render('user/Settings');
