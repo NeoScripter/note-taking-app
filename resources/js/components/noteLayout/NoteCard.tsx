@@ -13,13 +13,13 @@ type NoteCardProps = {
 };
 
 export default function NoteCard({ note }: NoteCardProps) {
-    const { closeNotePage } = useModalContext();
+    const { closeNotePage, startEditing } = useModalContext();
     return (
         <div className="notes-height flex flex-col">
             <header>
                 <p className="mb-4 text-2xl font-bold">{note.title}</p>
                 <div className="title-text border-colors mb-4 space-y-3.5 border-b pb-4 text-xs sm:text-sm">
-                    <NoteInfo info={note.tags.map((tag) => tag.name).join(', ')}>
+                    <NoteInfo info={note.tags.map((tag) => (tag.name.charAt(0).toUpperCase() + tag.name.slice(1).toLocaleLowerCase())).join(', ')}>
                         <TagIcon width="16" height="16" />
                         Tags
                     </NoteInfo>
@@ -39,7 +39,7 @@ export default function NoteCard({ note }: NoteCardProps) {
                 </pre>
             </div>
             <div className="border-colors mt-auto hidden items-center gap-4 border-t pt-4 md:flex">
-                <PrimaryBtn>Edit Note</PrimaryBtn>
+                <PrimaryBtn onClick={startEditing}>Edit Note</PrimaryBtn>
                 <SecondaryBtn onClick={closeNotePage}>Hide</SecondaryBtn>
             </div>
         </div>

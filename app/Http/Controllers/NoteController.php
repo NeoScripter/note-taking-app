@@ -28,10 +28,8 @@ class NoteController extends Controller
 
         $note = null;
         if ($noteId) {
-            $note = Note::where('user_id', $request->user()->id)->find($noteId);
-            if (!$note) {
-                abort(403);
-            }
+            $note = Note::findOrFail($noteId);
+            Gate::authorize('view', $note);
             $note->load('tags');
         }
 
@@ -61,14 +59,12 @@ class NoteController extends Controller
 
         $note = null;
         if ($noteId) {
-            $note = Note::where('user_id', $request->user()->id)->find($noteId);
-            if (!$note) {
-                abort(403);
-            }
+            $note = Note::findOrFail($noteId);
+            Gate::authorize('view', $note);
             $note->load('tags');
         }
 
-        return Inertia::render('user/Dashboard', [
+        return Inertia::render('user/Archive', [
             'note' => $note ? $note->load('tags') : null,
             'notes' => Inertia::merge($notes->items()),
             'page' => $page,
@@ -92,7 +88,7 @@ class NoteController extends Controller
             ->latest()
             ->get();
 
-        return inertia('Notes/Index', compact('notes'));
+        return inertia('user/Archive', compact('notes'));
     }
 
     public function tag(Request $request, Tag $tag)
@@ -113,10 +109,8 @@ class NoteController extends Controller
 
         $note = null;
         if ($noteId) {
-            $note = Note::where('user_id', $request->user()->id)->find($noteId);
-            if (!$note) {
-                abort(403);
-            }
+            $note = Note::findOrFail($noteId);
+            Gate::authorize('view', $note);
             $note->load('tags');
         }
 
@@ -141,7 +135,11 @@ class NoteController extends Controller
         $note = $request->user()->notes()->create($validated);
 
         if (!empty($validated['tags'])) {
-            $tagNames = array_filter(array_map('trim', explode(',', $validated['tags'])));
+
+            $tagNames = array_filter(array_map(
+                fn($tag) => strtolower(trim($tag)),
+                explode(',', $validated['tags'])
+            ));
 
             $tagIds = [];
             foreach ($tagNames as $tagName) {
@@ -151,7 +149,7 @@ class NoteController extends Controller
                 $tagIds[] = $tag->id;
             }
 
-            $note->tags()->attach($tagIds);
+            $note->tags()->sync($tagIds);
         }
 
         return redirect()->intended(route('home'))->with('message', 'Note successfully created!');
@@ -164,15 +162,32 @@ class NoteController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'nullable|string',
-            'archived' => 'boolean',
-            'tags' => 'array',
-            'tags.*' => 'exists:tags,id',
+            'tags' => 'nullable|string',
         ]);
 
         $note->update($validated);
-        $note->tags()->sync($validated['tags'] ?? []);
 
-        return redirect()->intended(route('home'))->with('message', 'Note successfully updated!');
+        if (isset($validated['tags'])) {
+            $tagNames = array_filter(array_map(
+                fn($tag) => strtolower(trim($tag)),
+                explode(',', $validated['tags'])
+            ));
+
+            $tagIds = [];
+
+            foreach ($tagNames as $tagName) {
+                $tag = Tag::firstOrCreate(
+                    ['user_id' => $request->user()->id, 'name' => $tagName]
+                );
+                $tagIds[] = $tag->id;
+            }
+
+            $note->tags()->sync($tagIds);
+        } else {
+            $note->tags()->sync([]);
+        }
+
+        return redirect()->back()->with('message', 'Note successfully updated!');
     }
 
     public function archiveNote(Note $note)

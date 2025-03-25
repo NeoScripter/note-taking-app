@@ -1,3 +1,4 @@
+import EditNote from '@/components/noteLayout/EditNote';
 import NoteCard from '@/components/noteLayout/NoteCard';
 import NoteMobileBar from '@/components/noteLayout/NoteMobileBar';
 import ArchiveIcon from '@/components/svgs/ArchiveIcon';
@@ -8,7 +9,7 @@ import UserLayout from '@/layouts/UserLayout';
 import { DashboardProps } from '@/types/note';
 
 const Dashboard = ({ note }: DashboardProps) => {
-    const { closeNotePage, openDeleteModal, openArchiveModal } = useModalContext();
+    const { closeNotePage, openDeleteModal, openArchiveModal, isEdited, startEditing } = useModalContext();
 
     if (note == null) return null;
 
@@ -22,9 +23,9 @@ const Dashboard = ({ note }: DashboardProps) => {
                     <ArchiveIcon width="18" height="18" />
                 </button>
                 <button onClick={closeNotePage} className="cursor-pointer">Hide</button>
-                <button className="text-primary-blue mr-2 cursor-pointer">Edit Note</button>
+                <button onClick={startEditing} className="text-primary-blue mr-2 cursor-pointer">Edit Note</button>
             </NoteMobileBar>
-            <NoteCard note={note} />
+            {isEdited ? <EditNote note={note} /> : <NoteCard note={note} />}
         </>
     );
 };

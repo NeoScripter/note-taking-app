@@ -11,7 +11,7 @@ type NoteLayoutProps = {
 };
 
 export default function NoteLayout({ children, header }: NoteLayoutProps) {
-    const { showNotePage, openNotePage, showCreateNew, openCreateNew } = useModalContext();
+    const { showNotePage, openNotePage, showCreateNew, openCreateNew, isEdited } = useModalContext();
 
     return (
         <div className="md:flex">
@@ -35,7 +35,7 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
                         {showCreateNew ? <NewNote /> : children}
                     </div>
                     <div className="border-colors hidden flex-1 md:block md:w-full md:max-w-62.5 md:space-y-3 md:border-l md:py-5 md:pr-8 md:pl-4">
-                        {showCreateNew == false && <SidePanel />}
+                        {(showCreateNew == false && isEdited == false) && <SidePanel />}
                     </div>
                 </article>
             )}

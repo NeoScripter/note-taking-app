@@ -34,7 +34,7 @@ export default function TagNavItem({ routeName, children, label, className, tagI
                 )}
             >
                 {children}
-                <span className="body-text">{label}</span>
+                <span className="body-text">{label.charAt(0).toUpperCase() + label.slice(1).toLocaleLowerCase()}</span>
                 {isCurrent && <ChevronRight className="body-text ml-auto" />}
             </Link>
         </li>

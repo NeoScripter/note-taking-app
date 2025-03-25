@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/notes-restore/{note}', [NoteController::class, 'restoreNote'])->name('notes.restore');
 
+    Route::post('/notes/{note}', [NoteController::class, 'update'])->name('notes.update');
 
 });
 

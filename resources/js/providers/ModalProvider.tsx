@@ -16,6 +16,9 @@ type ModalContextType = {
     showArchiveModal: boolean;
     openArchiveModal: () => void;
     closeArchiveModal: () => void;
+    isEdited: boolean;
+    startEditing: () => void;
+    finishEditing: () => void;
 };
 
 export const ModalContext = createContext<ModalContextType | null>(null);
@@ -26,6 +29,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
     const [showNotePage, setShowNotePage] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showArchiveModal, setShowArchiveModal] = useState(false);
+    const [isEdited, setIsEdited] = useState(false);
 
 
     function openSidebar() {
@@ -68,6 +72,14 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
         setShowArchiveModal(false);
     }
 
+    function startEditing() {
+        setIsEdited(true);
+    }
 
-    return <ModalContext.Provider value={{ showSidebar, openSidebar, closeSidebar, showNotePage, openNotePage, closeNotePage, showCreateNew, openCreateNew, closeCreateNew, showDeleteModal, openDeleteModal, closeDeleteModal, showArchiveModal, openArchiveModal, closeArchiveModal }}>{children}</ModalContext.Provider>;
+    function finishEditing() {
+        setIsEdited(false);
+    }
+
+
+    return <ModalContext.Provider value={{ showSidebar, openSidebar, closeSidebar, showNotePage, openNotePage, closeNotePage, showCreateNew, openCreateNew, closeCreateNew, showDeleteModal, openDeleteModal, closeDeleteModal, showArchiveModal, openArchiveModal, closeArchiveModal, isEdited, startEditing, finishEditing }}>{children}</ModalContext.Provider>;
 }
