@@ -1,8 +1,9 @@
+import { ROUTES } from '@/consts/routeNames';
 import useDebounce from '@/hooks/useDebounce';
 import { Input } from '@headlessui/react';
 import { router, useForm } from '@inertiajs/react';
-import SearchIcon from '../svgs/SeachIcon';
 import { useEffect } from 'react';
+import SearchIcon from '../svgs/SeachIcon';
 
 export default function SearchNotes() {
     const { data, setData, reset } = useForm({
@@ -11,7 +12,7 @@ export default function SearchNotes() {
 
     useEffect(() => {
         reset();
-    }, [route().current()])
+    }, [route().current()]);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setData('search', e.target.value);
@@ -19,7 +20,7 @@ export default function SearchNotes() {
 
     useDebounce(
         () => {
-            router.get(route('search'), { search: data.search }, { preserveState: true, replace: true });
+            router.get(route(ROUTES.SEARCH), { search: data.search }, { preserveState: true, replace: true });
         },
         400,
         [data.search],
@@ -27,18 +28,20 @@ export default function SearchNotes() {
 
     return (
         <>
-        <div className="relative ml-auto block mb-4 md:mb-0">
-            <SearchIcon className="body-text absolute bottom-1/2 left-3 translate-y-1/2" />
-            <Input
-                value={data.search}
-                onChange={handleInput}
-                type="search"
-                name="search"
-                placeholder="Search..."
-                className="light-border-colors data-[hover]:dark:bg-[#232530] data-[focus]:shadow-input data-[focus]:dark:shadow-input-dark w-full rounded-lg border px-4 py-3 pl-12 text-sm outline-none data-[focus]:ring-1"
-            />
-        </div>
-        {data.search !== '' && <p className='block md:hidden my-4 body-text text-sm'>{`All notes matching ”${data.search}” are displayed below.`}</p>}
+            <div className="relative mb-4 ml-auto block md:mb-0 md:w-100">
+                <SearchIcon className="body-text absolute bottom-1/2 left-3 translate-y-1/2" />
+                <Input
+                    value={data.search}
+                    onChange={handleInput}
+                    type="search"
+                    name="search"
+                    placeholder="Search by title, content, or tags…"
+                    className="light-border-colors data-[focus]:shadow-input data-[focus]:dark:shadow-input-dark w-full rounded-lg border px-4 py-3 pl-12 text-sm outline-none data-[focus]:ring-1 data-[hover]:dark:bg-[#232530]"
+                />
+            </div>
+            {data.search !== '' && (
+                <p className="body-text my-4 block text-sm md:hidden">{`All notes matching ”${data.search}” are displayed below.`}</p>
+            )}
         </>
     );
 }

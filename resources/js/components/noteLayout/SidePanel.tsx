@@ -5,13 +5,14 @@ import SecondaryBtn from '../shared/SecondaryBtn';
 import ArchiveIcon from '../svgs/ArchiveIcon';
 import RestoreIcon from '../svgs/RestoreIcon';
 import TrashIcon from '../svgs/TrashIcon';
+import { ROUTES } from '@/consts/routeNames';
 
 export default function SidePanel() {
     const { openArchiveModal, openDeleteModal, closeNotePage } = useModalContext();
     const noteId = useNoteId();
     return (
         <>
-            {route().current() === 'archive' ? (
+            {route().current() === ROUTES.ARCHIVE ? (
                 <SecondaryBtn
                     onClick={() => {
                         if (noteId) {

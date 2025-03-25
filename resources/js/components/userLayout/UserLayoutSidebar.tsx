@@ -10,6 +10,7 @@ import ArchiveIcon from '../svgs/ArchiveIcon';
 import HouseIcon from '../svgs/HouseIcon';
 import TagIcon from '../svgs/TagIcon';
 import TagNavItem from '../shared/TagNavItem';
+import { ROUTES } from '@/consts/routeNames';
 
 export default function UserLayoutSidebar() {
     const { theme } = useThemeContext();
@@ -27,10 +28,10 @@ export default function UserLayoutSidebar() {
 
                     <nav>
                         <ul>
-                            <TagNavItem routeName="home" label="All Notes">
+                            <TagNavItem routeName={ROUTES.HOME} label="All Notes">
                                 <HouseIcon width="20" height="20" />
                             </TagNavItem>
-                            <TagNavItem routeName="archive" label="Archived Notes">
+                            <TagNavItem routeName={ROUTES.ARCHIVE} label="Archived Notes">
                                 <ArchiveIcon width="20" height="20" />
                             </TagNavItem>
                         </ul>
@@ -42,7 +43,7 @@ export default function UserLayoutSidebar() {
                 <nav>
                     <ul>
                         {props.tags.map((tag) => (
-                            <TagNavItem key={tag.id} routeName="tag" tagId={tag.id} label={tag.name}>
+                            <TagNavItem key={tag.id} routeName={ROUTES.TAG} tagId={tag.id} label={tag.name}>
                                 <TagIcon width="20" height="20" />
                             </TagNavItem>
                         ))}

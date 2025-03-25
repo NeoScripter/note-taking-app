@@ -7,6 +7,7 @@ import StatusIcon from '../svgs/StatusIcon';
 import TagIcon from '../svgs/TagIcon';
 import NoteInfo from './NoteInfo';
 import { useModalContext } from '@/hooks/useModalContext';
+import { capitalize } from '@/utils/capitalize';
 
 type NoteCardProps = {
     note: ExtendedNote;
@@ -19,7 +20,7 @@ export default function NoteCard({ note }: NoteCardProps) {
             <header>
                 <p className="mb-4 text-2xl font-bold">{note.title}</p>
                 <div className="title-text border-colors mb-4 space-y-3.5 border-b pb-4 text-xs sm:text-sm">
-                    <NoteInfo info={note.tags.map((tag) => (tag.name.charAt(0).toUpperCase() + tag.name.slice(1).toLocaleLowerCase())).join(', ')}>
+                    <NoteInfo info={note.tags.map((tag) => capitalize(tag.name)).join(', ')}>
                         <TagIcon width="16" height="16" />
                         Tags
                     </NoteInfo>

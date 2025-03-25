@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import ChevronRight from '../svgs/ChevronRight';
 import { Tag } from '@/types/note';
 import { useModalContext } from '@/hooks/useModalContext';
+import { capitalize } from '@/utils/capitalize';
 
 type TagNavItemProps = {
     routeName: string;
@@ -34,7 +35,7 @@ export default function TagNavItem({ routeName, children, label, className, tagI
                 )}
             >
                 {children}
-                <span className="body-text">{label.charAt(0).toUpperCase() + label.slice(1).toLocaleLowerCase()}</span>
+                <span className="body-text">{capitalize(label)}</span>
                 {isCurrent && <ChevronRight className="body-text ml-auto" />}
             </Link>
         </li>

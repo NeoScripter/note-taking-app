@@ -3,6 +3,7 @@ import NewNote from '@/components/noteLayout/NewNote';
 import NoteList from '@/components/noteLayout/NoteList';
 import SidePanel from '@/components/noteLayout/SidePanel';
 import PrimaryBtn from '@/components/shared/PrimaryBtn';
+import { ROUTES } from '@/consts/routeNames';
 import { useModalContext } from '@/hooks/useModalContext';
 import { useScreenResize } from '@/hooks/useScreenResize';
 import { PlusIcon } from '@radix-ui/react-icons';
@@ -16,12 +17,13 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
     const { showNotePage, openNotePage, showCreateNew, openCreateNew, isEdited } = useModalContext();
     const isLarge = useScreenResize();
 
+
     return (
         <div className="md:flex">
             <div className="border-colors flex-1 md:max-w-72.5 md:border-r md:py-5 md:pr-4 md:pl-8">
-                <p className="mb-4 ml-2 text-2xl font-bold md:hidden">{header}</p>
+                <p className="mb-4 ml-2 text-2xl font-bold md:hidden">{header} </p>
 
-                {(route().current() === 'search' && !isLarge) && <SearchNotes />}
+                {(route().current() === ROUTES.SEARCH && !isLarge) && <SearchNotes />}
                 <PrimaryBtn
                     onClick={() => {
                         openCreateNew();

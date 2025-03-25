@@ -135,7 +135,7 @@ class NoteController extends Controller
             $note->load('tags');
         }
 
-        return Inertia::render('user/Dashboard', [
+        return Inertia::render('user/Tag', [
             'tag' => $tag,
             'note' => $note ? $note->load('tags') : null,
             'notes' => Inertia::merge($notes->items()),

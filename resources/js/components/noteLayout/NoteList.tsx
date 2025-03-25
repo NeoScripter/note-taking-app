@@ -3,6 +3,7 @@ import { usePage, WhenVisible } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import NoteItem from './NoteItem';
 import SkeletonList from './SkeletonList';
+import EmptyNoteMessage from './EmptyNoteMessage';
 
 export default function NoteList() {
     const { props } = usePage<NotePropsType>();
@@ -23,9 +24,7 @@ export default function NoteList() {
     return (
         <nav>
             <ul className="notes-height scrollbar-hidden space-y-2 overflow-y-auto" scroll-region="true">
-                {notes.map((note) => (
-                    <NoteItem key={note.id} note={note} noteProps={props} />
-                ))}
+                {notes.length > 0 ? notes.map((note) => <NoteItem key={note.id} note={note} noteProps={props} />) : <EmptyNoteMessage />}
                 {props.isNextPageExists && (
                     <WhenVisible
                         as="div"
