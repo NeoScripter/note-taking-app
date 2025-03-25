@@ -13,6 +13,9 @@ type ModalContextType = {
     showDeleteModal: boolean;
     openDeleteModal: () => void;
     closeDeleteModal: () => void;
+    showArchiveModal: boolean;
+    openArchiveModal: () => void;
+    closeArchiveModal: () => void;
 };
 
 export const ModalContext = createContext<ModalContextType | null>(null);
@@ -21,7 +24,9 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
     const [showSidebar, setShowSidebar] = useState(false);
     const [showCreateNew, setShowCreateNew] = useState(false);
     const [showNotePage, setShowNotePage] = useState(false);
-    const [showDeleteModal, setShowDeleteModal] = useState(true);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showArchiveModal, setShowArchiveModal] = useState(false);
+
 
     function openSidebar() {
         setShowSidebar(true);
@@ -55,6 +60,14 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
         setShowDeleteModal(false);
     }
 
+    function openArchiveModal() {
+        setShowArchiveModal(true);
+    }
 
-    return <ModalContext.Provider value={{ showSidebar, openSidebar, closeSidebar, showNotePage, openNotePage, closeNotePage, showCreateNew, openCreateNew, closeCreateNew, showDeleteModal, openDeleteModal, closeDeleteModal }}>{children}</ModalContext.Provider>;
+    function closeArchiveModal() {
+        setShowArchiveModal(false);
+    }
+
+
+    return <ModalContext.Provider value={{ showSidebar, openSidebar, closeSidebar, showNotePage, openNotePage, closeNotePage, showCreateNew, openCreateNew, closeCreateNew, showDeleteModal, openDeleteModal, closeDeleteModal, showArchiveModal, openArchiveModal, closeArchiveModal }}>{children}</ModalContext.Provider>;
 }

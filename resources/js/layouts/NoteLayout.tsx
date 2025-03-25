@@ -1,9 +1,7 @@
 import NewNote from '@/components/noteLayout/NewNote';
 import NoteList from '@/components/noteLayout/NoteList';
+import SidePanel from '@/components/noteLayout/SidePanel';
 import PrimaryBtn from '@/components/shared/PrimaryBtn';
-import SecondaryBtn from '@/components/shared/SecondaryBtn';
-import RestoreIcon from '@/components/svgs/RestoreIcon';
-import TrashIcon from '@/components/svgs/TrashIcon';
 import { useModalContext } from '@/hooks/useModalContext';
 import { PlusIcon } from '@radix-ui/react-icons';
 
@@ -33,20 +31,11 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
             </div>
             {showNotePage && (
                 <article className="w-full flex-1 md:flex md:items-stretch">
-                    <div className="bg-colors absolute inset-0 z-40 flex-1 md:static md:px-6 md:py-5 px-4 py-5 sm:px-8 sm:py-6 md:p-0">{showCreateNew ? <NewNote /> : children}</div>
+                    <div className="bg-colors absolute inset-0 z-40 flex-1 px-4 py-5 sm:px-8 sm:py-6 md:static md:p-0 md:px-6 md:py-5">
+                        {showCreateNew ? <NewNote /> : children}
+                    </div>
                     <div className="border-colors hidden flex-1 md:block md:w-full md:max-w-62.5 md:space-y-3 md:border-l md:py-5 md:pr-8 md:pl-4">
-                        {showCreateNew == false && (
-                            <>
-                                <SecondaryBtn className="w-full">
-                                    <RestoreIcon />
-                                    Restore Note
-                                </SecondaryBtn>
-                                <SecondaryBtn className="w-full">
-                                    <TrashIcon width="20" height="20" />
-                                    Delete Note
-                                </SecondaryBtn>
-                            </>
-                        )}
+                        {showCreateNew == false && <SidePanel />}
                     </div>
                 </article>
             )}

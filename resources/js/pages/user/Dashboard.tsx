@@ -8,17 +8,17 @@ import UserLayout from '@/layouts/UserLayout';
 import { DashboardProps } from '@/types/note';
 
 const Dashboard = ({ note }: DashboardProps) => {
-    const { closeNotePage } = useModalContext();
+    const { closeNotePage, openDeleteModal, openArchiveModal } = useModalContext();
 
     if (note == null) return null;
 
     return (
         <>
             <NoteMobileBar>
-                <button className="cursor-pointer">
+                <button onClick={openDeleteModal} className="cursor-pointer">
                     <TrashIcon />
                 </button>
-                <button className="cursor-pointer">
+                <button onClick={openArchiveModal} className="cursor-pointer">
                     <ArchiveIcon width="18" height="18" />
                 </button>
                 <button onClick={closeNotePage} className="cursor-pointer">Hide</button>

@@ -1,4 +1,5 @@
 import { useModalContext } from '@/hooks/useModalContext';
+import useNoteId from '@/hooks/useNoteId';
 import { formatDate } from '@/lib/formatDate';
 import { ExtendedNote, NotePropsType } from '@/types/note';
 import { Link, usePage } from '@inertiajs/react';
@@ -13,16 +14,18 @@ export default function NoteItem({ note, noteProps }: NoteItemProps) {
     const { openNotePage, closeCreateNew } = useModalContext();
     const { url } = usePage();
 
-    const queryParams = new URLSearchParams(url.split('?')[1]);
-    const currentNoteId = Number(queryParams.get('note_id')) || null;
+    const noteId = useNoteId();
 
-    const isCurrent = currentNoteId === note.id;
+    const isCurrent = Number(noteId) === note.id;
 
     return (
         <Link
             preserveState
             preserveScroll
-            onClick={() => {openNotePage(); closeCreateNew()}}
+            onClick={() => {
+                openNotePage();
+                closeCreateNew();
+            }}
             href={url}
             data={{ note_id: note.id, page: noteProps.page }}
             className={clsx('border-colors block space-y-3 rounded-lg border-b p-2 pb-3', isCurrent && 'bg-gray-pale dark:bg-black-pale border-none')}

@@ -18,15 +18,26 @@ export default function Toast() {
         if (flash?.message) {
             setShowMessage(true);
             setTimeout(() => setShouldSlideOut(true), 2700);
-            setTimeout(() => setShowMessage(false), 3000);
-            return () => setShouldSlideOut(false);
+            setTimeout(() => {
+                setShowMessage(false);
+                setShouldSlideOut(false);
+            }, 3000);
+            return () => {
+                setShouldSlideOut(false);
+                setShowMessage(true);
+            };
         }
     }, [flash]);
 
     if (!flash?.message || !showMessage) return null;
 
     return (
-        <div className={clsx("bg-colors border-colors fixed right-4 bottom-19 z-30 flex items-center justify-between rounded-lg border p-2.5 text-xs sm:right-8 sm:bottom-27 sm:text-sm md:right-16 md:bottom-16", shouldSlideOut ? 'toast-disappear' : 'toast-appear')}>
+        <div
+            className={clsx(
+                'bg-colors border-colors fixed right-4 bottom-19 z-30 flex items-center justify-between rounded-lg border p-2.5 text-xs sm:right-8 sm:bottom-27 sm:text-sm md:right-16 md:bottom-16',
+                shouldSlideOut ? 'toast-disappear' : 'toast-appear',
+            )}
+        >
             <div className="flex flex-wrap items-center gap-2">
                 <div>
                     <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -172,7 +172,23 @@ class NoteController extends Controller
         $note->update($validated);
         $note->tags()->sync($validated['tags'] ?? []);
 
-        return redirect()->back();
+        return redirect()->intended(route('home'))->with('message', 'Note successfully updated!');
+    }
+
+    public function archiveNote(Note $note)
+    {
+        Gate::authorize('update', $note);
+        $note->update(['archived' => true]);
+
+        return redirect()->intended(route('home'))->with('message', 'Note successfully archived!');
+    }
+
+    public function restoreNote(Note $note)
+    {
+        Gate::authorize('update', $note);
+        $note->update(['archived' => false]);
+
+        return redirect()->intended(route('home'))->with('message', 'Note successfully restored!');
     }
 
     public function destroy(Note $note)
@@ -180,6 +196,6 @@ class NoteController extends Controller
         Gate::authorize('delete', $note);
         $note->delete();
 
-        return redirect()->back()->with('message', 'Note successfully deleted!');
+        return redirect()->intended(route('home'))->with('message', 'Note successfully deleted!');
     }
 }

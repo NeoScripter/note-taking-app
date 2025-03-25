@@ -25,8 +25,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/tag/{tag}', [NoteController::class, 'tag'])->name('tag');
 
-    Route::post('/update-font', [UserController::class, 'updateFont'])->name('update-font');
-
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('update-password');
@@ -34,6 +32,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/note', [NoteController::class, 'store'])->name('notes.store');
 
     Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->name('notes.destroy');
+
+    Route::post('/notes-archive/{note}', [NoteController::class, 'archiveNote'])->name('notes.archive');
+
+    Route::post('/notes-restore/{note}', [NoteController::class, 'restoreNote'])->name('notes.restore');
+
+
 });
 
 
