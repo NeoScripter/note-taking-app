@@ -42,6 +42,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/meta/favicon-16x16.png') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+
     <title inertia>{{ config('app.name', 'Note Flow') }}</title>
 
     @routes

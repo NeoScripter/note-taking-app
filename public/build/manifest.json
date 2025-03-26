@@ -1,0 +1,371 @@
+{
+  "_AuthLayout-Bm74Kujw.js": {
+    "file": "assets/AuthLayout-Bm74Kujw.js",
+    "name": "AuthLayout",
+    "imports": [
+      "resources/js/app.tsx",
+      "_useThemeContext-0_uWMxSf.js"
+    ]
+  },
+  "_NoteLayout-Be3Io_Uj.js": {
+    "file": "assets/NoteLayout-Be3Io_Uj.js",
+    "name": "NoteLayout",
+    "imports": [
+      "resources/js/app.tsx",
+      "_useThemeContext-0_uWMxSf.js",
+      "_SecondaryBtn-De0HoaGe.js",
+      "_UserLayout-ByymoxLf.js"
+    ]
+  },
+  "_PasswordField-B4Q_6J9J.js": {
+    "file": "assets/PasswordField-B4Q_6J9J.js",
+    "name": "PasswordField",
+    "imports": [
+      "resources/js/app.tsx",
+      "_useThemeContext-0_uWMxSf.js"
+    ]
+  },
+  "_SecondaryBtn-De0HoaGe.js": {
+    "file": "assets/SecondaryBtn-De0HoaGe.js",
+    "name": "SecondaryBtn",
+    "imports": [
+      "resources/js/app.tsx",
+      "_useThemeContext-0_uWMxSf.js"
+    ]
+  },
+  "_UserLayout-ByymoxLf.js": {
+    "file": "assets/UserLayout-ByymoxLf.js",
+    "name": "UserLayout",
+    "imports": [
+      "resources/js/app.tsx",
+      "_useThemeContext-0_uWMxSf.js",
+      "_SecondaryBtn-De0HoaGe.js"
+    ]
+  },
+  "_bugs-B5i5-Bxt.js": {
+    "file": "assets/bugs-B5i5-Bxt.js",
+    "name": "bugs",
+    "imports": [
+      "resources/js/app.tsx",
+      "_useThemeContext-0_uWMxSf.js"
+    ]
+  },
+  "_useThemeContext-0_uWMxSf.js": {
+    "file": "assets/useThemeContext-0_uWMxSf.js",
+    "name": "useThemeContext",
+    "imports": [
+      "resources/js/app.tsx"
+    ],
+    "assets": [
+      "assets/logo-light-bdpIR5pb.webp",
+      "assets/logo-dark-D4Az5ihi.webp"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-BAHjl-7O.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/fonts/inter/Inter18pt-Bold.woff": {
+    "file": "assets/Inter18pt-Bold-AFsRy5NV.woff",
+    "src": "resources/fonts/inter/Inter18pt-Bold.woff"
+  },
+  "resources/fonts/inter/Inter18pt-Bold.woff2": {
+    "file": "assets/Inter18pt-Bold-MbOruhI0.woff2",
+    "src": "resources/fonts/inter/Inter18pt-Bold.woff2"
+  },
+  "resources/fonts/inter/Inter18pt-Light.woff": {
+    "file": "assets/Inter18pt-Light-us4MLwDi.woff",
+    "src": "resources/fonts/inter/Inter18pt-Light.woff"
+  },
+  "resources/fonts/inter/Inter18pt-Light.woff2": {
+    "file": "assets/Inter18pt-Light-D9iiu9Ht.woff2",
+    "src": "resources/fonts/inter/Inter18pt-Light.woff2"
+  },
+  "resources/fonts/inter/Inter18pt-Medium.woff": {
+    "file": "assets/Inter18pt-Medium-DrEj_JTH.woff",
+    "src": "resources/fonts/inter/Inter18pt-Medium.woff"
+  },
+  "resources/fonts/inter/Inter18pt-Medium.woff2": {
+    "file": "assets/Inter18pt-Medium-Bqylrw2L.woff2",
+    "src": "resources/fonts/inter/Inter18pt-Medium.woff2"
+  },
+  "resources/fonts/inter/Inter18pt-Regular.woff": {
+    "file": "assets/Inter18pt-Regular-D9G9T7cw.woff",
+    "src": "resources/fonts/inter/Inter18pt-Regular.woff"
+  },
+  "resources/fonts/inter/Inter18pt-Regular.woff2": {
+    "file": "assets/Inter18pt-Regular-B2uJs5iC.woff2",
+    "src": "resources/fonts/inter/Inter18pt-Regular.woff2"
+  },
+  "resources/fonts/monospace/SpaceMono-Bold.woff": {
+    "file": "assets/SpaceMono-Bold-BbQc_8vO.woff",
+    "src": "resources/fonts/monospace/SpaceMono-Bold.woff"
+  },
+  "resources/fonts/monospace/SpaceMono-Bold.woff2": {
+    "file": "assets/SpaceMono-Bold-Btcdqweb.woff2",
+    "src": "resources/fonts/monospace/SpaceMono-Bold.woff2"
+  },
+  "resources/fonts/monospace/SpaceMono-Regular.woff": {
+    "file": "assets/SpaceMono-Regular-DRT7ukCy.woff",
+    "src": "resources/fonts/monospace/SpaceMono-Regular.woff"
+  },
+  "resources/fonts/monospace/SpaceMono-Regular.woff2": {
+    "file": "assets/SpaceMono-Regular-BkLBrzQJ.woff2",
+    "src": "resources/fonts/monospace/SpaceMono-Regular.woff2"
+  },
+  "resources/fonts/notoserif/NotoSerif-Bold.woff": {
+    "file": "assets/NotoSerif-Bold-Cp_FV6UP.woff",
+    "src": "resources/fonts/notoserif/NotoSerif-Bold.woff"
+  },
+  "resources/fonts/notoserif/NotoSerif-Bold.woff2": {
+    "file": "assets/NotoSerif-Bold-K1GtlwsD.woff2",
+    "src": "resources/fonts/notoserif/NotoSerif-Bold.woff2"
+  },
+  "resources/fonts/notoserif/NotoSerif-Light.woff": {
+    "file": "assets/NotoSerif-Light-Cpmskhkz.woff",
+    "src": "resources/fonts/notoserif/NotoSerif-Light.woff"
+  },
+  "resources/fonts/notoserif/NotoSerif-Light.woff2": {
+    "file": "assets/NotoSerif-Light-Cp9TIcip.woff2",
+    "src": "resources/fonts/notoserif/NotoSerif-Light.woff2"
+  },
+  "resources/fonts/notoserif/NotoSerif-Medium.woff": {
+    "file": "assets/NotoSerif-Medium-BS1VKy7A.woff",
+    "src": "resources/fonts/notoserif/NotoSerif-Medium.woff"
+  },
+  "resources/fonts/notoserif/NotoSerif-Medium.woff2": {
+    "file": "assets/NotoSerif-Medium-DBBOVLJd.woff2",
+    "src": "resources/fonts/notoserif/NotoSerif-Medium.woff2"
+  },
+  "resources/fonts/notoserif/NotoSerif-Regular.woff": {
+    "file": "assets/NotoSerif-Regular-DavV7e0c.woff",
+    "src": "resources/fonts/notoserif/NotoSerif-Regular.woff"
+  },
+  "resources/fonts/notoserif/NotoSerif-Regular.woff2": {
+    "file": "assets/NotoSerif-Regular-BY05lZr8.woff2",
+    "src": "resources/fonts/notoserif/NotoSerif-Regular.woff2"
+  },
+  "resources/fonts/philosopher/Philosopher-Bold.woff": {
+    "file": "assets/Philosopher-Bold-CQEnGSqX.woff",
+    "src": "resources/fonts/philosopher/Philosopher-Bold.woff"
+  },
+  "resources/fonts/philosopher/Philosopher-Bold.woff2": {
+    "file": "assets/Philosopher-Bold-BqLQMbIg.woff2",
+    "src": "resources/fonts/philosopher/Philosopher-Bold.woff2"
+  },
+  "resources/fonts/philosopher/Philosopher-Regular.woff": {
+    "file": "assets/Philosopher-Regular-BgE-shuK.woff",
+    "src": "resources/fonts/philosopher/Philosopher-Regular.woff"
+  },
+  "resources/fonts/philosopher/Philosopher-Regular.woff2": {
+    "file": "assets/Philosopher-Regular-D6aDIMRb.woff2",
+    "src": "resources/fonts/philosopher/Philosopher-Regular.woff2"
+  },
+  "resources/images/DarkTheme.svg": {
+    "file": "assets/DarkTheme-OsWFG6xV.svg",
+    "src": "resources/images/DarkTheme.svg"
+  },
+  "resources/images/Inter.webp": {
+    "file": "assets/Inter-B4cbDTko.webp",
+    "src": "resources/images/Inter.webp"
+  },
+  "resources/images/LightTheme.svg": {
+    "file": "assets/LightTheme-CIyAGNdy.svg",
+    "src": "resources/images/LightTheme.svg"
+  },
+  "resources/images/Monospace.webp": {
+    "file": "assets/Monospace-CGKTJ7oG.webp",
+    "src": "resources/images/Monospace.webp"
+  },
+  "resources/images/NotoSerif.webp": {
+    "file": "assets/NotoSerif-DjXNb5vj.webp",
+    "src": "resources/images/NotoSerif.webp"
+  },
+  "resources/images/Philosopher.webp": {
+    "file": "assets/Philosopher-DintEjG9.webp",
+    "src": "resources/images/Philosopher.webp"
+  },
+  "resources/images/SystemTheme.svg": {
+    "file": "assets/SystemTheme-B3Aio0y4.svg",
+    "src": "resources/images/SystemTheme.svg"
+  },
+  "resources/images/logo-dark.webp": {
+    "file": "assets/logo-dark-D4Az5ihi.webp",
+    "src": "resources/images/logo-dark.webp"
+  },
+  "resources/images/logo-light.webp": {
+    "file": "assets/logo-light-bdpIR5pb.webp",
+    "src": "resources/images/logo-light.webp"
+  },
+  "resources/js/app.tsx": {
+    "file": "assets/app-DqRuztU1.js",
+    "name": "app",
+    "src": "resources/js/app.tsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/pages/auth/ForgotPassword.tsx",
+      "resources/js/pages/auth/Login.tsx",
+      "resources/js/pages/auth/ResetPassword.tsx",
+      "resources/js/pages/auth/Signup.tsx",
+      "resources/js/pages/user/Archive.tsx",
+      "resources/js/pages/user/Dashboard.tsx",
+      "resources/js/pages/user/Search.tsx",
+      "resources/js/pages/user/Settings.tsx",
+      "resources/js/pages/user/Tag.tsx"
+    ],
+    "css": [
+      "assets/app-BAHjl-7O.css"
+    ],
+    "assets": [
+      "assets/Inter18pt-Bold-MbOruhI0.woff2",
+      "assets/Inter18pt-Bold-AFsRy5NV.woff",
+      "assets/Inter18pt-Light-D9iiu9Ht.woff2",
+      "assets/Inter18pt-Light-us4MLwDi.woff",
+      "assets/Inter18pt-Medium-Bqylrw2L.woff2",
+      "assets/Inter18pt-Medium-DrEj_JTH.woff",
+      "assets/Inter18pt-Regular-B2uJs5iC.woff2",
+      "assets/Inter18pt-Regular-D9G9T7cw.woff",
+      "assets/SpaceMono-Bold-Btcdqweb.woff2",
+      "assets/SpaceMono-Bold-BbQc_8vO.woff",
+      "assets/SpaceMono-Regular-BkLBrzQJ.woff2",
+      "assets/SpaceMono-Regular-DRT7ukCy.woff",
+      "assets/Philosopher-Bold-BqLQMbIg.woff2",
+      "assets/Philosopher-Bold-CQEnGSqX.woff",
+      "assets/Philosopher-Regular-D6aDIMRb.woff2",
+      "assets/Philosopher-Regular-BgE-shuK.woff",
+      "assets/NotoSerif-Bold-K1GtlwsD.woff2",
+      "assets/NotoSerif-Bold-Cp_FV6UP.woff",
+      "assets/NotoSerif-Light-Cp9TIcip.woff2",
+      "assets/NotoSerif-Light-Cpmskhkz.woff",
+      "assets/NotoSerif-Medium-DBBOVLJd.woff2",
+      "assets/NotoSerif-Medium-BS1VKy7A.woff",
+      "assets/NotoSerif-Regular-BY05lZr8.woff2",
+      "assets/NotoSerif-Regular-DavV7e0c.woff"
+    ]
+  },
+  "resources/js/pages/auth/ForgotPassword.tsx": {
+    "file": "assets/ForgotPassword-CErAkgV4.js",
+    "name": "ForgotPassword",
+    "src": "resources/js/pages/auth/ForgotPassword.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.tsx",
+      "_AuthLayout-Bm74Kujw.js",
+      "_useThemeContext-0_uWMxSf.js"
+    ]
+  },
+  "resources/js/pages/auth/Login.tsx": {
+    "file": "assets/Login-DiuWcaut.js",
+    "name": "Login",
+    "src": "resources/js/pages/auth/Login.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.tsx",
+      "_useThemeContext-0_uWMxSf.js",
+      "_bugs-B5i5-Bxt.js",
+      "_SecondaryBtn-De0HoaGe.js",
+      "_PasswordField-B4Q_6J9J.js",
+      "_AuthLayout-Bm74Kujw.js"
+    ]
+  },
+  "resources/js/pages/auth/ResetPassword.tsx": {
+    "file": "assets/ResetPassword-jieFN2QC.js",
+    "name": "ResetPassword",
+    "src": "resources/js/pages/auth/ResetPassword.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.tsx",
+      "_PasswordField-B4Q_6J9J.js",
+      "_AuthLayout-Bm74Kujw.js",
+      "_useThemeContext-0_uWMxSf.js"
+    ]
+  },
+  "resources/js/pages/auth/Signup.tsx": {
+    "file": "assets/Signup-LeVs2xId.js",
+    "name": "Signup",
+    "src": "resources/js/pages/auth/Signup.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.tsx",
+      "_useThemeContext-0_uWMxSf.js",
+      "_PasswordField-B4Q_6J9J.js",
+      "_AuthLayout-Bm74Kujw.js"
+    ]
+  },
+  "resources/js/pages/user/Archive.tsx": {
+    "file": "assets/Archive-BmGjOHNR.js",
+    "name": "Archive",
+    "src": "resources/js/pages/user/Archive.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.tsx",
+      "_NoteLayout-Be3Io_Uj.js",
+      "_UserLayout-ByymoxLf.js",
+      "_useThemeContext-0_uWMxSf.js",
+      "_SecondaryBtn-De0HoaGe.js"
+    ]
+  },
+  "resources/js/pages/user/Dashboard.tsx": {
+    "file": "assets/Dashboard-CRbkXeeQ.js",
+    "name": "Dashboard",
+    "src": "resources/js/pages/user/Dashboard.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.tsx",
+      "_NoteLayout-Be3Io_Uj.js",
+      "_UserLayout-ByymoxLf.js",
+      "_useThemeContext-0_uWMxSf.js",
+      "_SecondaryBtn-De0HoaGe.js"
+    ]
+  },
+  "resources/js/pages/user/Search.tsx": {
+    "file": "assets/Search-D9eKLNWs.js",
+    "name": "Search",
+    "src": "resources/js/pages/user/Search.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.tsx",
+      "_NoteLayout-Be3Io_Uj.js",
+      "_UserLayout-ByymoxLf.js",
+      "_useThemeContext-0_uWMxSf.js",
+      "_SecondaryBtn-De0HoaGe.js"
+    ]
+  },
+  "resources/js/pages/user/Settings.tsx": {
+    "file": "assets/Settings-BfWOlZuA.js",
+    "name": "Settings",
+    "src": "resources/js/pages/user/Settings.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.tsx",
+      "_useThemeContext-0_uWMxSf.js",
+      "_bugs-B5i5-Bxt.js",
+      "_UserLayout-ByymoxLf.js",
+      "_SecondaryBtn-De0HoaGe.js",
+      "_PasswordField-B4Q_6J9J.js"
+    ],
+    "assets": [
+      "assets/DarkTheme-OsWFG6xV.svg",
+      "assets/LightTheme-CIyAGNdy.svg",
+      "assets/SystemTheme-B3Aio0y4.svg",
+      "assets/Inter-B4cbDTko.webp",
+      "assets/Monospace-CGKTJ7oG.webp",
+      "assets/NotoSerif-DjXNb5vj.webp",
+      "assets/Philosopher-DintEjG9.webp"
+    ]
+  },
+  "resources/js/pages/user/Tag.tsx": {
+    "file": "assets/Tag-BvZk7IvF.js",
+    "name": "Tag",
+    "src": "resources/js/pages/user/Tag.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.tsx",
+      "_NoteLayout-Be3Io_Uj.js",
+      "_UserLayout-ByymoxLf.js",
+      "_useThemeContext-0_uWMxSf.js",
+      "_SecondaryBtn-De0HoaGe.js"
+    ]
+  }
+}

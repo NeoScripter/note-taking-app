@@ -24,9 +24,7 @@ createInertiaApp({
             </ThemeProvider>,
         );
     },
-    progress: {
-        color: '#335CFF',
-    },
+    progress: false,
 });
 
 function resetPageOnRefresh() {

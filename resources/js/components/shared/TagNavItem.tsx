@@ -26,6 +26,7 @@ export default function TagNavItem({ routeName, children, label, className, tagI
     return (
         <li>
             <Link
+                preserveScroll
                 onClick={() => {closeSidebar(); closeCreateNew()}}
                 href={tagId !== undefined ? route(routeName, { tag: tagId }) : route(routeName)}
                 className={clsx(

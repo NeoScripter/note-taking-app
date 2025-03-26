@@ -1,4 +1,5 @@
 import DialogModal from '@/components/shared/DialogModal';
+import PageLoader from '@/components/shared/PageLoader';
 import Toast from '@/components/shared/Toast';
 import UserLayoutFooter from '@/components/userLayout/UserLayoutFooter';
 import UserLayoutHeader from '@/components/userLayout/UserLayoutHeader';
@@ -34,6 +35,7 @@ export default function UserLayout({ children, title, header }: UserLayoutProps)
             <DialogModal close={closeDeleteModal} isOpen={showDeleteModal} isDelete={true} />
             <DialogModal close={closeArchiveModal} isOpen={showArchiveModal} isDelete={false} />
 
+            <PageLoader />
         </FontProvider>
     );
 }

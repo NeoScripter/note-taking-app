@@ -41,7 +41,7 @@ export default function UserLayoutSidebar() {
                     Tags
                 </p>
                 <nav>
-                    <ul>
+                    <ul className="notes-height scrollbar-hidden overflow-y-auto" scroll-region="true">
                         {props.tags.map((tag) => (
                             <TagNavItem key={tag.id} routeName={ROUTES.TAG} tagId={tag.id} label={tag.name}>
                                 <TagIcon width="20" height="20" />
