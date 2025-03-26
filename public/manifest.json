@@ -1,15 +1,27 @@
 {
-    "name": "NoteFlow",
-    "short_name": "Notes",
+    "name": "NoteFlow — Effortless Note-Taking",
+    "short_name": "NoteFlow",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#317EFB",
     "icons": [
-      {
-        "src": "images/meta/apple-192x192.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      }
+        {
+            "src": "/images/meta/apple-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/meta/apple-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/meta/apple-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
     ]
-  }
+}
