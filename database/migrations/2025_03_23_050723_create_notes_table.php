@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Indexes for faster search
-            $table->index(['title', 'content']);
+            $table->index(['title']);
         });
     }
 
