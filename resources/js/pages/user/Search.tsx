@@ -34,7 +34,7 @@ const Search = ({ note }: DashboardProps) => {
 };
 
 Search.layout = (page: React.ReactElement) => (
-    <UserLayout title="Search" header="Show results for: ">
+    <UserLayout title="Note Flow - Search" header="Show results for: ">
         <NoteLayout header="Search">{page}</NoteLayout>
     </UserLayout>
 );

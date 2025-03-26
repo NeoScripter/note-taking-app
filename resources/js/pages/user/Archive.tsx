@@ -45,7 +45,7 @@ const Archive = ({ note }: DashboardProps) => {
 };
 
 Archive.layout = (page: React.ReactElement) => (
-    <UserLayout title="Archive" header="Archived Notes">
+    <UserLayout title="Note Flow - Archive" header="Archived Notes">
         <NoteLayout header="Archived Notes">{page}</NoteLayout>
     </UserLayout>
 );

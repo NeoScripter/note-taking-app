@@ -34,7 +34,7 @@ const Dashboard = ({ note }: DashboardProps) => {
 };
 
 Dashboard.layout = (page: React.ReactElement) => (
-    <UserLayout title="Dashboard" header="All Notes">
+    <UserLayout title="Note Flow - Dashboard" header="All Notes">
         <NoteLayout header="All Notes">{page}</NoteLayout>
     </UserLayout>
 );

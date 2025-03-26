@@ -70,6 +70,6 @@ const Settings = () => {
     );
 };
 
-Settings.layout = (page: React.ReactElement) => <UserLayout children={page} title="Settings" header="Settings" />;
+Settings.layout = (page: React.ReactElement) => <UserLayout children={page} title="Note Flow - Settings" header="Settings" />;
 
 export default Settings;
