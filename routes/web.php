@@ -61,3 +61,5 @@ Route::get('/reset-password/{token}', [AuthController::class, 'resetPasswordPage
 
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.store');
 
+Route::post('/login/demo', [AuthController::class, 'demoLogin'])->name('login.demo');
+

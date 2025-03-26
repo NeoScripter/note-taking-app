@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $users = collect([
+        /* $users = collect([
             User::factory()->create([
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
@@ -39,6 +39,6 @@ class DatabaseSeeder extends Seeder
             $notes->each(function ($note) use ($tags) {
                 $note->tags()->attach($tags->random(rand(1, 3)));
             });
-        });
+        }); */
     }
 }

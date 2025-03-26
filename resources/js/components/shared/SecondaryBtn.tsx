@@ -13,7 +13,7 @@ export default function SecondaryBtn({ children, className, type = 'button', onC
         <Button
             onClick={onClick}
             className={clsx(
-                'theme-colors font-medium hover:bg-gray-neutral dark:hover:bg-black-pale focus:shadow-btn cursor-pointer rounded-lg px-4 py-3 text-sm title-text dark:bg-[#0E121B] border border-colors bg-white focus:ring-1 flex items-center gap-2',
+                'theme-colors font-medium hover:bg-gray-neutral dark:hover:bg-black-pale focus:shadow-btn dark:focus:shadow-create-btn-dark cursor-pointer rounded-lg px-4 py-3 text-sm title-text dark:bg-[#0E121B] border border-colors bg-white focus:ring-1 flex items-center gap-2',
                 className,
             )}
             type={type}

@@ -13,7 +13,7 @@ class NoteController extends Controller
     public function index(Request $request)
     {
         $page = $request->query('page', 1);
-        $perPage = 10;
+        $perPage = 25;
         $noteId = $request->query('note_id');
 
         $notes = Note::with('tags')
@@ -44,7 +44,7 @@ class NoteController extends Controller
     public function archive(Request $request, ?Note $note = null)
     {
         $page = $request->query('page', 1);
-        $perPage = 10;
+        $perPage = 25;
         $noteId = $request->query('note_id');
 
         $notes = Note::with('tags')
@@ -75,7 +75,7 @@ class NoteController extends Controller
     public function search(Request $request)
     {
         $page = $request->query('page', 1);
-        $perPage = 10;
+        $perPage = 25;
         $noteId = $request->query('note_id');
 
         $normalilzedQuery = strtolower($request->search);
@@ -115,7 +115,7 @@ class NoteController extends Controller
     public function tag(Request $request, Tag $tag)
     {
         $page = $request->query('page', 1);
-        $perPage = 10;
+        $perPage = 25;
         $noteId = $request->query('note_id');
 
         $notes = Note::with('tags')
@@ -148,8 +148,8 @@ class NoteController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'tags' => 'nullable|string',
+            'content' => 'required|string|max:64000',
+            'tags' => 'nullable|string|max:500',
         ]);
 
 
@@ -182,8 +182,8 @@ class NoteController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'nullable|string',
-            'tags' => 'nullable|string',
+            'content' => 'required|string|max:64000',
+            'tags' => 'nullable|string|max:500',
         ]);
 
         $note->update($validated);

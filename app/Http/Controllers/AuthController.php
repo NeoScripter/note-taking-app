@@ -152,4 +152,19 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
+
+    public function demoLogin()
+    {
+        $key = 'demo-login:' . request()->ip();
+
+        if (RateLimiter::tooManyAttempts($key, 10)) {
+            abort(429, 'Too many demo logins. Please try again later.');
+        }
+
+        RateLimiter::hit($key, 60);
+
+        $user = User::where('email', 'admin@gmail.com')->firstOrFail();
+        Auth::login($user);
+        return redirect()->route('home');
+    }
 }

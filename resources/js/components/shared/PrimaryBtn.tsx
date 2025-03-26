@@ -14,7 +14,7 @@ export default function PrimaryBtn({ children, className, type = 'button', onCli
             disabled={disabled}
             onClick={onClick}
             className={clsx(
-                'theme-colors font-medium bg-primary-blue data-[hover]:bg-hover-blue data-[focus]:shadow-btn cursor-pointer rounded-lg px-4 py-3 text-sm text-white data-[focus]:ring-1',
+                'theme-colors font-medium bg-primary-blue data-[hover]:bg-hover-blue data-[focus]:shadow-btn data-[focus]:dark:shadow-create-btn-dark cursor-pointer rounded-lg px-4 py-3 text-sm text-white data-[focus]:ring-1',
                 className,
             )}
             type={type}

@@ -2,8 +2,9 @@ import CheckboxField from '@/components/forms/CheckboxField';
 import PasswordField from '@/components/forms/PasswordField';
 import TextField from '@/components/forms/TextField';
 import PrimaryBtn from '@/components/shared/PrimaryBtn';
+import SecondaryBtn from '@/components/shared/SecondaryBtn';
 import AuthLayout from '@/layouts/AuthLayout';
-import { Link, useForm } from '@inertiajs/react';
+import { Link, router, useForm } from '@inertiajs/react';
 
 const Login = () => {
     const { data, setData, post, errors } = useForm({
@@ -16,6 +17,10 @@ const Login = () => {
         e.preventDefault();
         post('/login');
     }
+
+    const loginAsDemo = () => {
+        router.post(route('login.demo'));
+    };
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4 text-sm">
@@ -39,6 +44,14 @@ const Login = () => {
             <PrimaryBtn type="submit" className="w-full">
                 Login
             </PrimaryBtn>
+
+            <hr className="hr-colors" />
+
+            <p className="body-text text-center text-sm">Or enter without registration</p>
+
+            <SecondaryBtn onClick={loginAsDemo} type="button" className="w-full justify-center">
+                Try it out
+            </SecondaryBtn>
 
             <hr className="hr-colors" />
 
