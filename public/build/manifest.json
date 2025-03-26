@@ -1,57 +1,57 @@
 {
-  "_AuthLayout-Bm74Kujw.js": {
-    "file": "assets/AuthLayout-Bm74Kujw.js",
+  "_AuthLayout-BEzpbuEn.js": {
+    "file": "assets/AuthLayout-BEzpbuEn.js",
     "name": "AuthLayout",
     "imports": [
       "resources/js/app.tsx",
-      "_useThemeContext-0_uWMxSf.js"
+      "_useThemeContext-C3JZPPNc.js"
     ]
   },
-  "_NoteLayout-Be3Io_Uj.js": {
-    "file": "assets/NoteLayout-Be3Io_Uj.js",
+  "_NoteLayout-BHI1pxhG.js": {
+    "file": "assets/NoteLayout-BHI1pxhG.js",
     "name": "NoteLayout",
     "imports": [
       "resources/js/app.tsx",
-      "_useThemeContext-0_uWMxSf.js",
-      "_SecondaryBtn-De0HoaGe.js",
-      "_UserLayout-ByymoxLf.js"
+      "_useThemeContext-C3JZPPNc.js",
+      "_SecondaryBtn-ByuifzeR.js",
+      "_UserLayout-DR2IE9wR.js"
     ]
   },
-  "_PasswordField-B4Q_6J9J.js": {
-    "file": "assets/PasswordField-B4Q_6J9J.js",
+  "_PasswordField-BJziazLY.js": {
+    "file": "assets/PasswordField-BJziazLY.js",
     "name": "PasswordField",
     "imports": [
       "resources/js/app.tsx",
-      "_useThemeContext-0_uWMxSf.js"
+      "_useThemeContext-C3JZPPNc.js"
     ]
   },
-  "_SecondaryBtn-De0HoaGe.js": {
-    "file": "assets/SecondaryBtn-De0HoaGe.js",
+  "_SecondaryBtn-ByuifzeR.js": {
+    "file": "assets/SecondaryBtn-ByuifzeR.js",
     "name": "SecondaryBtn",
     "imports": [
       "resources/js/app.tsx",
-      "_useThemeContext-0_uWMxSf.js"
+      "_useThemeContext-C3JZPPNc.js"
     ]
   },
-  "_UserLayout-ByymoxLf.js": {
-    "file": "assets/UserLayout-ByymoxLf.js",
+  "_UserLayout-DR2IE9wR.js": {
+    "file": "assets/UserLayout-DR2IE9wR.js",
     "name": "UserLayout",
     "imports": [
       "resources/js/app.tsx",
-      "_useThemeContext-0_uWMxSf.js",
-      "_SecondaryBtn-De0HoaGe.js"
+      "_useThemeContext-C3JZPPNc.js",
+      "_SecondaryBtn-ByuifzeR.js"
     ]
   },
-  "_bugs-B5i5-Bxt.js": {
-    "file": "assets/bugs-B5i5-Bxt.js",
+  "_bugs-wk-TIkL8.js": {
+    "file": "assets/bugs-wk-TIkL8.js",
     "name": "bugs",
     "imports": [
       "resources/js/app.tsx",
-      "_useThemeContext-0_uWMxSf.js"
+      "_useThemeContext-C3JZPPNc.js"
     ]
   },
-  "_useThemeContext-0_uWMxSf.js": {
-    "file": "assets/useThemeContext-0_uWMxSf.js",
+  "_useThemeContext-C3JZPPNc.js": {
+    "file": "assets/useThemeContext-C3JZPPNc.js",
     "name": "useThemeContext",
     "imports": [
       "resources/js/app.tsx"
@@ -62,7 +62,7 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-BAHjl-7O.css",
+    "file": "assets/app-DyA4AJhZ.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -199,7 +199,7 @@
     "src": "resources/images/logo-light.webp"
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-DqRuztU1.js",
+    "file": "assets/app-5U5GH9Nt.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -215,7 +215,7 @@
       "resources/js/pages/user/Tag.tsx"
     ],
     "css": [
-      "assets/app-BAHjl-7O.css"
+      "assets/app-DyA4AJhZ.css"
     ],
     "assets": [
       "assets/Inter18pt-Bold-MbOruhI0.woff2",
@@ -245,105 +245,105 @@
     ]
   },
   "resources/js/pages/auth/ForgotPassword.tsx": {
-    "file": "assets/ForgotPassword-CErAkgV4.js",
+    "file": "assets/ForgotPassword-V78LaR2H.js",
     "name": "ForgotPassword",
     "src": "resources/js/pages/auth/ForgotPassword.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_AuthLayout-Bm74Kujw.js",
-      "_useThemeContext-0_uWMxSf.js"
+      "_AuthLayout-BEzpbuEn.js",
+      "_useThemeContext-C3JZPPNc.js"
     ]
   },
   "resources/js/pages/auth/Login.tsx": {
-    "file": "assets/Login-DiuWcaut.js",
+    "file": "assets/Login-ChMsNwld.js",
     "name": "Login",
     "src": "resources/js/pages/auth/Login.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_useThemeContext-0_uWMxSf.js",
-      "_bugs-B5i5-Bxt.js",
-      "_SecondaryBtn-De0HoaGe.js",
-      "_PasswordField-B4Q_6J9J.js",
-      "_AuthLayout-Bm74Kujw.js"
+      "_useThemeContext-C3JZPPNc.js",
+      "_bugs-wk-TIkL8.js",
+      "_SecondaryBtn-ByuifzeR.js",
+      "_PasswordField-BJziazLY.js",
+      "_AuthLayout-BEzpbuEn.js"
     ]
   },
   "resources/js/pages/auth/ResetPassword.tsx": {
-    "file": "assets/ResetPassword-jieFN2QC.js",
+    "file": "assets/ResetPassword-CgAQfoT6.js",
     "name": "ResetPassword",
     "src": "resources/js/pages/auth/ResetPassword.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_PasswordField-B4Q_6J9J.js",
-      "_AuthLayout-Bm74Kujw.js",
-      "_useThemeContext-0_uWMxSf.js"
+      "_PasswordField-BJziazLY.js",
+      "_AuthLayout-BEzpbuEn.js",
+      "_useThemeContext-C3JZPPNc.js"
     ]
   },
   "resources/js/pages/auth/Signup.tsx": {
-    "file": "assets/Signup-LeVs2xId.js",
+    "file": "assets/Signup-DOfykXRF.js",
     "name": "Signup",
     "src": "resources/js/pages/auth/Signup.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_useThemeContext-0_uWMxSf.js",
-      "_PasswordField-B4Q_6J9J.js",
-      "_AuthLayout-Bm74Kujw.js"
+      "_useThemeContext-C3JZPPNc.js",
+      "_PasswordField-BJziazLY.js",
+      "_AuthLayout-BEzpbuEn.js"
     ]
   },
   "resources/js/pages/user/Archive.tsx": {
-    "file": "assets/Archive-BmGjOHNR.js",
+    "file": "assets/Archive-mHwHx7HX.js",
     "name": "Archive",
     "src": "resources/js/pages/user/Archive.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_NoteLayout-Be3Io_Uj.js",
-      "_UserLayout-ByymoxLf.js",
-      "_useThemeContext-0_uWMxSf.js",
-      "_SecondaryBtn-De0HoaGe.js"
+      "_NoteLayout-BHI1pxhG.js",
+      "_UserLayout-DR2IE9wR.js",
+      "_useThemeContext-C3JZPPNc.js",
+      "_SecondaryBtn-ByuifzeR.js"
     ]
   },
   "resources/js/pages/user/Dashboard.tsx": {
-    "file": "assets/Dashboard-CRbkXeeQ.js",
+    "file": "assets/Dashboard-CM0bDJIR.js",
     "name": "Dashboard",
     "src": "resources/js/pages/user/Dashboard.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_NoteLayout-Be3Io_Uj.js",
-      "_UserLayout-ByymoxLf.js",
-      "_useThemeContext-0_uWMxSf.js",
-      "_SecondaryBtn-De0HoaGe.js"
+      "_NoteLayout-BHI1pxhG.js",
+      "_UserLayout-DR2IE9wR.js",
+      "_useThemeContext-C3JZPPNc.js",
+      "_SecondaryBtn-ByuifzeR.js"
     ]
   },
   "resources/js/pages/user/Search.tsx": {
-    "file": "assets/Search-D9eKLNWs.js",
+    "file": "assets/Search-BCbgCUoY.js",
     "name": "Search",
     "src": "resources/js/pages/user/Search.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_NoteLayout-Be3Io_Uj.js",
-      "_UserLayout-ByymoxLf.js",
-      "_useThemeContext-0_uWMxSf.js",
-      "_SecondaryBtn-De0HoaGe.js"
+      "_NoteLayout-BHI1pxhG.js",
+      "_UserLayout-DR2IE9wR.js",
+      "_useThemeContext-C3JZPPNc.js",
+      "_SecondaryBtn-ByuifzeR.js"
     ]
   },
   "resources/js/pages/user/Settings.tsx": {
-    "file": "assets/Settings-BfWOlZuA.js",
+    "file": "assets/Settings-C4Mq742F.js",
     "name": "Settings",
     "src": "resources/js/pages/user/Settings.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_useThemeContext-0_uWMxSf.js",
-      "_bugs-B5i5-Bxt.js",
-      "_UserLayout-ByymoxLf.js",
-      "_SecondaryBtn-De0HoaGe.js",
-      "_PasswordField-B4Q_6J9J.js"
+      "_useThemeContext-C3JZPPNc.js",
+      "_bugs-wk-TIkL8.js",
+      "_UserLayout-DR2IE9wR.js",
+      "_SecondaryBtn-ByuifzeR.js",
+      "_PasswordField-BJziazLY.js"
     ],
     "assets": [
       "assets/DarkTheme-OsWFG6xV.svg",
@@ -356,16 +356,16 @@
     ]
   },
   "resources/js/pages/user/Tag.tsx": {
-    "file": "assets/Tag-BvZk7IvF.js",
+    "file": "assets/Tag-8lWJZoif.js",
     "name": "Tag",
     "src": "resources/js/pages/user/Tag.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_NoteLayout-Be3Io_Uj.js",
-      "_UserLayout-ByymoxLf.js",
-      "_useThemeContext-0_uWMxSf.js",
-      "_SecondaryBtn-De0HoaGe.js"
+      "_NoteLayout-BHI1pxhG.js",
+      "_UserLayout-DR2IE9wR.js",
+      "_useThemeContext-C3JZPPNc.js",
+      "_SecondaryBtn-ByuifzeR.js"
     ]
   }
 }
