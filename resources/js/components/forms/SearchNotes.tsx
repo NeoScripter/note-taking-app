@@ -1,8 +1,7 @@
 import { ROUTES } from '@/consts/routeNames';
-import useDebounce from '@/hooks/useDebounce';
 import { Input } from '@headlessui/react';
 import { router, useForm } from '@inertiajs/react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import SearchIcon from '../svgs/SeachIcon';
 
 export default function SearchNotes() {
@@ -10,21 +9,25 @@ export default function SearchNotes() {
         search: '',
     });
 
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
     useEffect(() => {
-        reset();
+        if (route().current() !== ROUTES.SEARCH) {
+            reset();
+        }
     }, [route().current()]);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setData('search', e.target.value);
     };
 
-    useDebounce(
-        () => {
+    function search() {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+        timeoutRef.current = setTimeout(() => {
             router.get(route(ROUTES.SEARCH), { search: data.search }, { preserveState: true, replace: true });
-        },
-        400,
-        [data.search],
-    );
+        }, 300);
+    }
 
     return (
         <>
@@ -33,6 +36,7 @@ export default function SearchNotes() {
                 <Input
                     value={data.search}
                     onChange={handleInput}
+                    onKeyUp={search}
                     type="search"
                     name="search"
                     placeholder="Search by title, content, or tags…"

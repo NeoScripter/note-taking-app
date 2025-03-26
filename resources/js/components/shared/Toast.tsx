@@ -3,7 +3,7 @@ import { Cross1Icon } from '@radix-ui/react-icons';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
-type PageProps = {
+export type PageProps = {
     flash?: {
         message?: string;
     };

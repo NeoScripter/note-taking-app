@@ -1,13 +1,21 @@
 import { ExtendedNote, NotePropsType } from '@/types/note';
 import { usePage, WhenVisible } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
+import EmptyNoteMessage from './EmptyNoteMessage';
 import NoteItem from './NoteItem';
 import SkeletonList from './SkeletonList';
-import EmptyNoteMessage from './EmptyNoteMessage';
+import { getSearchQuery } from '@/utils/getSearchQuery';
+
+type NoteListProps = NotePropsType & {
+    flash?: {
+        message?: string;
+    };
+};
 
 export default function NoteList() {
-    const { props } = usePage<NotePropsType>();
+    const { props } = usePage<NoteListProps>();
     const [notes, setNotes] = useState<ExtendedNote[]>(props.notes);
+    const query = getSearchQuery();
 
     useEffect(() => {
         setNotes((prevNotes) => {
@@ -19,7 +27,7 @@ export default function NoteList() {
 
     useEffect(() => {
         setNotes(props.notes);
-    }, [route().current(), props.tag?.id, props.flash]);
+    }, [route().current(), props.tag?.id, props.flash?.message, query]);
 
     return (
         <nav>
