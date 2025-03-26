@@ -9,7 +9,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -67,11 +69,26 @@ class AuthController extends Controller
 
         $remember = $request->boolean('remember');
 
+        $ip = $request->ip();
+
+        $throttleKey = 'login:' . $ip;
+
+        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+            throw ValidationException::withMessages([
+                'email' => "Too many login attempts. Repeat in $seconds seconds.",
+            ]);
+        }
+
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
+            RateLimiter::clear($throttleKey);
+
             return redirect()->intended(route('home'));
         }
+
+        RateLimiter::hit($throttleKey, 30);
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
