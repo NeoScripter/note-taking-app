@@ -1,20 +1,77 @@
+import PasswordField from '@/components/forms/PasswordField';
+import TextField from '@/components/forms/TextField';
+import PrimaryBtn from '@/components/shared/PrimaryBtn';
 import AuthLayout from '@/layouts/AuthLayout';
-import { Field, Input, Label } from '@headlessui/react';
+import { useForm } from '@inertiajs/react';
 
-const ResetPassword = () => {
+interface ResetPasswordProps {
+    token: string;
+    email: string;
+}
+
+type ResetPasswordForm = {
+    token: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+};
+
+const ResetPassword = ({ token, email }: ResetPasswordProps) => {
+    const { data, setData, post, processing, errors, reset } = useForm<Required<ResetPasswordForm>>({
+        token: token,
+        email: email,
+        password: '',
+        password_confirmation: '',
+    });
+
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        post(route('password.store'), {
+            onFinish: () => reset('password', 'password_confirmation'),
+        });
+    }
+
     return (
-        <div className='space-y-4'>
-            <Field>
-                <Label className="mb-1 block">New password</Label>
-                <Input name="full_name" type='password' className="w-full border border-colors px-4 py-3 rounded-lg" />
-            </Field>
+        <form onSubmit={handleSubmit} className="space-y-4 text-sm">
+            <TextField
+                setter={setData}
+                fieldName="email"
+                value={data.email}
+                type="email"
+                error={errors.email}
+                placeholder="email@example.com"
+                label="Email Address"
+                shouldFocus={true}
+            />
 
-        </div>
+            <PasswordField
+                setter={setData}
+                fieldName="password"
+                value={data.password}
+                hasResetLink={false}
+                error={errors.password}
+                description="At least 8 characters"
+                label="New Password"
+            />
+
+            <PasswordField
+                setter={setData}
+                fieldName="password_confirmation"
+                value={data.password_confirmation}
+                hasResetLink={false}
+                error={errors.password_confirmation}
+                label="Confirm New Password"
+            />
+
+            <PrimaryBtn type="submit" disabled={processing} className="w-full">
+                Reset Password
+            </PrimaryBtn>
+        </form>
     );
 };
 
 ResetPassword.layout = (page: React.ReactElement) => (
-    <AuthLayout children={page} title="Forgot Password" heading="Forgot your password" subheading="Enter your email below, and we’ll send you a link to reset it." />
+    <AuthLayout children={page} title="Reset Password" heading="Reset Your Password" subheading="Choose a new password to secure your account." />
 );
 
 export default ResetPassword;

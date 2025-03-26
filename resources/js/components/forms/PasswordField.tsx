@@ -24,7 +24,7 @@ export default function PasswordField({ setter, fieldName, hasResetLink, descrip
             <Label className="mb-1 flex items-center justify-between">
                 {label}
                 {hasResetLink && (
-                    <Link href="/password-reset" className="body-text text-xs underline">
+                    <Link href="/forgot-password" className="body-text text-xs underline">
                         Forgot password
                     </Link>
                 )}

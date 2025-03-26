@@ -51,6 +51,13 @@ Route::get('/signup', function () {
     return Inertia::render('auth/Signup');
 })->name('signup');
 
-Route::get('/password-reset', function () {
-    return Inertia::render('auth/ResetPassword');
-})->name('password-reset');
+Route::get('/forgot-password', function () {
+    return Inertia::render('auth/ForgotPassword');
+})->name('forgot-password');
+
+Route::post('/forgot-password', [AuthController::class, 'passwordResetEmail'])->name('password.email');
+
+Route::get('/reset-password/{token}', [AuthController::class, 'resetPasswordPage'])->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.store');
+

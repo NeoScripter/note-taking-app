@@ -118,12 +118,12 @@
 }
 
 .notes-height {
-    height: calc(100svh - 233px);
+    height: calc(100svh - 200px);
 }
 
 @media screen and (min-width: 768px) {
     .notes-height {
-        height: calc(100svh - 280px);
+        height: calc(100svh - 260px);
     }
 }
 
