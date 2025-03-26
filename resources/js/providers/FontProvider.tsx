@@ -9,7 +9,7 @@ type FontContextType = {
 export const FontContext = createContext<FontContextType | null>(null);
 
 export function FontProvider({ children }: { children: React.ReactNode }) {
-    const [selectedFont, setSelectedFont] = useLocalStorage('user-font', 'notoserif');
+    const [selectedFont, setSelectedFont] = useLocalStorage('user-font', 'inter');
 
     const applyFont = () => {
         if (!selectedFont) return;

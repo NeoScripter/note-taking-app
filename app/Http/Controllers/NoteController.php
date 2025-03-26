@@ -19,7 +19,7 @@ class NoteController extends Controller
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
             ->where('archived', false)
-            ->latest()
+            ->orderBy('updated_at', 'desc')
             ->paginate($perPage);
 
         $notePaginateProp = $notes->toArray();
@@ -50,7 +50,7 @@ class NoteController extends Controller
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
             ->where('archived', true)
-            ->latest()
+            ->orderBy('updated_at', 'desc')
             ->paginate($perPage);
 
         $notePaginateProp = $notes->toArray();
@@ -90,7 +90,7 @@ class NoteController extends Controller
                         });
                 });
             })
-            ->latest()
+            ->orderBy('updated_at', 'desc')
             ->paginate($perPage);
 
         $notePaginateProp = $notes->toArray();
@@ -121,7 +121,7 @@ class NoteController extends Controller
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
             ->whereHas('tags', fn($query) => $query->where('tags.name', $tag->name))
-            ->latest()
+            ->orderBy('updated_at', 'desc')
             ->paginate($perPage);
 
         $notePaginateProp = $notes->toArray();

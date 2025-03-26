@@ -1,6 +1,6 @@
 import { ROUTES } from '@/consts/routeNames';
 import { NotePropsType } from '@/types/note';
-import { getSearchQuery } from '../../utils/getSearchQuery';
+import { getSearchQuery } from './getSearchQuery';
 
 export function getTitle(routeName: (string & {}) | undefined, pageProps: NotePropsType) {
     switch (routeName) {

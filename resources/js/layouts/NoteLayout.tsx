@@ -1,6 +1,7 @@
 import SearchNotes from '@/components/forms/SearchNotes';
 import NewNote from '@/components/noteLayout/NewNote';
 import NoteList from '@/components/noteLayout/NoteList';
+import NoteListSummary from '@/components/noteLayout/NoteListSummary';
 import SidePanel from '@/components/noteLayout/SidePanel';
 import PrimaryBtn from '@/components/shared/PrimaryBtn';
 import { ROUTES } from '@/consts/routeNames';
@@ -34,6 +35,7 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
                     <PlusIcon className="size-8 shrink-0 md:hidden" />
                     <span className="hidden md:block">+ Create New Note</span>
                 </PrimaryBtn>
+                <NoteListSummary />
                 <NoteList />
             </div>
             {showNotePage && (

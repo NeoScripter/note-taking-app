@@ -14,7 +14,7 @@ export const ThemeContext = createContext<ThemeContextType | null>(null);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const getSystemTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? THEMES.DARK : THEMES.LIGHT);
 
-    const [theme, setTheme] = useLocalStorage('theme', THEMES.SYSTEM);
+    const [theme, setTheme] = useLocalStorage('theme', getSystemTheme());
 
     const applyTheme = (currentTheme: Theme) => {
         const root = document.documentElement;
@@ -25,7 +25,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         } else if (currentTheme === THEMES.LIGHT) {
             root.classList.add(THEMES.LIGHT);
         } else {
-            // "system" mode → apply based on system preference
             const systemTheme = getSystemTheme();
             root.classList.add(systemTheme);
         }
@@ -34,9 +33,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         applyTheme(theme);
     }, [theme]);
 
-    // ✅ If "system" is selected, listen for OS theme changes
     useEffect(() => {
-        if (theme !== THEMES.SYSTEM) return; // Skip if user set Light or Dark manually
+        if (theme !== THEMES.SYSTEM) return;
 
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 

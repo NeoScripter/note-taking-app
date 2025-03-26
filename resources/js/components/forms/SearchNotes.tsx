@@ -40,7 +40,7 @@ export default function SearchNotes() {
                     type="search"
                     name="search"
                     placeholder="Search by title, content, or tags…"
-                    className="light-border-colors data-[focus]:shadow-input data-[focus]:dark:shadow-input-dark w-full rounded-lg border px-4 py-3 pl-12 text-sm outline-none data-[focus]:ring-1 data-[hover]:dark:bg-[#232530]"
+                    className="light-border-colors data-[focus]:shadow-input data-[focus]:dark:shadow-input-dark w-full rounded-lg border px-4 py-3 pl-12 text-sm outline-none data-[focus]:ring-1 data-[hover]:bg-gray-neutral data-[hover]:dark:bg-[#232530]"
                 />
             </div>
             {data.search !== '' && (

@@ -9,7 +9,7 @@ import lightLogo from '../../../images/logo-light.webp';
 import SearchNotes from '../forms/SearchNotes';
 import SettingsIcon from '../svgs/SettingsIcon';
 import { capitalize } from '@/utils/capitalize';
-import { getTitle } from '@/components/userLayout/getTitle';
+import { getTitle } from '@/utils/getTitle';
 
 export default function UserLayoutHeader({ header }: { header: string }) {
     const { theme } = useThemeContext();

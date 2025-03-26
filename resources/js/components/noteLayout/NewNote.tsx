@@ -83,7 +83,7 @@ export default function NewNote() {
                         placeholder="Start typing your note here…"
                         className={clsx(
                             'border-colors data-[hover]:bg-gray-neutral data-[focus]:shadow-input data-[focus]:dark:shadow-input-dark h-full w-full flex-1 rounded-lg border p-1 text-sm outline-none data-[focus]:ring-1 md:text-base data-[hover]:dark:bg-[#232530]',
-                            errors.title && 'border-red-600!',
+                            errors.content && 'border-red-600!',
                         )}
                         value={data.content}
                         onChange={(e) => setData('content', e.target.value)}
