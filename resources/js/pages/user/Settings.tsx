@@ -10,6 +10,8 @@ import SettingsBtnItem from '@/components/shared/SettingsBtnItem';
 import UserLayout from '@/layouts/UserLayout';
 import { SETTINGS } from '@/utils/settings';
 import { useState } from 'react';
+import LocaleSettings from '@/components/settings/LocaleSettings';
+import LanguageIcon from '@/components/svgs/LanguageIcon';
 
 const Settings = () => {
     const [currentSettingPage, setCurrentSettingPage] = useState('');
@@ -25,6 +27,8 @@ const Settings = () => {
             return <FontTheme onClick={closePage} />;
         } else if (currentSettingPage === SETTINGS.PASSWORD) {
             return <SettingPassword onClick={closePage} />;
+        } else if (currentSettingPage === SETTINGS.LOCALE) {
+            return <LocaleSettings onClick={closePage} />;
         } else {
             return null;
         }
@@ -59,6 +63,14 @@ const Settings = () => {
                             className="border-none"
                         >
                             <ChangePasswordIcon />
+                        </SettingsBtnItem>
+                        <SettingsBtnItem
+                            onClick={() => setCurrentSettingPage(SETTINGS.LOCALE)}
+                            isCurrent={currentSettingPage === SETTINGS.LOCALE}
+                            label="Language"
+                            className="border-none"
+                        >
+                            <LanguageIcon width='20' height='20' />
                         </SettingsBtnItem>
                         <hr className="hr-colors" />
                         <LogoutButton />

@@ -19,5 +19,5 @@ export default function ColorTheme({ onClick }: ColorThemeProps) {
         { key: 'SystemTheme', imagePath: SystemTheme, name: 'System', description: "Adapts to your device's theme", value: THEMES.SYSTEM },
     ];
 
-    return <ThemeBody onClick={onClick} title="Color" onChange={setTheme} ariaLabel="Theme Picker" value={theme} radioBtns={radioBtns} />;
+    return <ThemeBody onClick={onClick} title="Color Theme" onChange={setTheme} ariaLabel="Theme Picker" value={theme} radioBtns={radioBtns} />;
 }

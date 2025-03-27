@@ -10,13 +10,14 @@ type ThemeBodyProps = {
     value: string;
     ariaLabel: string;
     radioBtns: RadioBtn[];
+    shouldInvert?: boolean;
 };
 
-export default function ThemeBody({ onClick, title, onChange, value, ariaLabel, radioBtns }: ThemeBodyProps) {
+export default function ThemeBody({ onClick, title, onChange, value, ariaLabel, radioBtns, shouldInvert = true }: ThemeBodyProps) {
     return (
         <ThemeBodyLayout onClick={onClick}>
-            <p className="mb-2 text-2xl font-bold">{title} Theme</p>
-            <p className="mb-4">{`Choose your ${title.toLowerCase()} theme:`}</p>
+            <p className="mb-2 text-2xl font-bold">{title}</p>
+            <p className="mb-4">{`Choose your ${title.toLowerCase()}:`}</p>
             <RadioGroup value={value} onChange={onChange} aria-label={ariaLabel} className="space-y-4">
                 {radioBtns.map((radioBtn) => (
                     <RadioField
@@ -25,6 +26,7 @@ export default function ThemeBody({ onClick, title, onChange, value, ariaLabel, 
                         fontName={radioBtn.name}
                         fontDescription={radioBtn.description}
                         value={radioBtn.value}
+                        shouldInvert={shouldInvert}
                     />
                 ))}
             </RadioGroup>

@@ -40,7 +40,7 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
             </div>
             {showNotePage && (
                 <article className="w-full flex-1 md:flex md:items-stretch">
-                    <div className="bg-colors absolute notes-height inset-0 z-40 flex-1 px-4 py-5 sm:px-8 sm:py-6 md:static md:p-0 md:px-6 md:py-5">
+                    <div className="bg-colors absolute inset-0 z-40 flex-1 px-4 py-5 sm:px-8 sm:py-6 md:static md:p-0 md:px-6 md:py-5">
                         {showCreateNew ? <NewNote /> : children}
                     </div>
                     <div className="border-colors hidden flex-1 md:block md:w-full md:max-w-62.5 md:space-y-3 md:border-l md:py-5 md:pr-8 md:pl-4">

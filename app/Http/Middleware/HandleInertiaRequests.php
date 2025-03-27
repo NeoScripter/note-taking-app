@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Tag;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
@@ -47,6 +48,10 @@ class HandleInertiaRequests extends Middleware
 
         return [
             ...parent::share($request),
+            'locale' => fn() => App::getLocale(),
+            'translations' => function () {
+                return json_decode(file_get_contents(lang_path(app()->getLocale() . ".json")), true);
+            },
             'name' => config('app.name'),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'tags' => $user ? $user->tags->pluck('name')->sort()->values() : [],

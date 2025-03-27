@@ -6,17 +6,19 @@ import { usePage } from '@inertiajs/react';
 import darkLogo from '../../../images/logo-dark.webp';
 import lightLogo from '../../../images/logo-light.webp';
 
+import { ROUTES } from '@/consts/routeNames';
+import useTrans from '@/hooks/useTrans';
+import TagNavItem from '../shared/TagNavItem';
 import ArchiveIcon from '../svgs/ArchiveIcon';
 import HouseIcon from '../svgs/HouseIcon';
 import TagIcon from '../svgs/TagIcon';
-import TagNavItem from '../shared/TagNavItem';
-import { ROUTES } from '@/consts/routeNames';
 
 export default function UserLayoutSidebar() {
     const { theme } = useThemeContext();
     const { showSidebar } = useModalContext();
     const isLarge = useScreenResize();
     const { props } = usePage<{ tags: string[] }>();
+    const t = useTrans();
 
     return (
         (showSidebar || isLarge) && (
@@ -28,10 +30,10 @@ export default function UserLayoutSidebar() {
 
                     <nav>
                         <ul>
-                            <TagNavItem routeName={ROUTES.HOME} label="All Notes">
+                            <TagNavItem routeName={ROUTES.HOME} label={t('All Notes')}>
                                 <HouseIcon width="20" height="20" />
                             </TagNavItem>
-                            <TagNavItem routeName={ROUTES.ARCHIVE} label="Archived Notes">
+                            <TagNavItem routeName={ROUTES.ARCHIVE} label={t('Archived Notes')}>
                                 <ArchiveIcon width="20" height="20" />
                             </TagNavItem>
                         </ul>

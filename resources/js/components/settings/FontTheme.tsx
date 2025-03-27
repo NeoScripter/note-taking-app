@@ -21,5 +21,5 @@ export default function FontTheme({ onClick }: FontThemeProps) {
         { key: 'Philosopher', imagePath: Philosopher, name: 'Philosopher', description: 'Elegant and eye-appealing style', value: FONTS.PHILOSOPHER },
     ];
 
-    return <ThemeBody onClick={onClick} title="Font" onChange={setSelectedFont} ariaLabel="Font Picker" value={selectedFont} radioBtns={radioBtns} />;
+    return <ThemeBody onClick={onClick} title="Font Theme" onChange={setSelectedFont} ariaLabel="Font Picker" value={selectedFont} radioBtns={radioBtns} />;
 }
