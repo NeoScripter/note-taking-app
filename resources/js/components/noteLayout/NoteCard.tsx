@@ -16,7 +16,7 @@ type NoteCardProps = {
 export default function NoteCard({ note }: NoteCardProps) {
     const { closeNotePage, startEditing } = useModalContext();
     return (
-        <div className="notes-height flex flex-col">
+        <div className="notes-height flex flex-col bg-colors">
             <header>
                 <p className="mb-4 text-2xl font-bold">{note.title}</p>
                 <div className="title-text border-colors mb-4 space-y-3.5 border-b pb-4 text-xs sm:text-sm">
@@ -34,7 +34,7 @@ export default function NoteCard({ note }: NoteCardProps) {
                     </NoteInfo>
                 </div>
             </header>
-            <div className="text-sm md:text-base overflow-y-auto scrollbar-hidden">
+            <div className="text-sm md:text-base overflow-y-auto py-1 scrollbar-hidden">
                 <pre className="break-words whitespace-pre-wrap">
                     <code>{note.content}</code>
                 </pre>

@@ -9,26 +9,26 @@ type TagNavItemProps = {
     routeName: string;
     children: React.ReactNode;
     label: string;
-    tagId?: number;
+    tagName?: string;
     className?: string;
 };
 
 
 
-export default function TagNavItem({ routeName, children, label, className, tagId }: TagNavItemProps) {
-    const { props } = usePage<{ tag: Tag }>();
+export default function TagNavItem({ routeName, children, label, className, tagName }: TagNavItemProps) {
+    const { props } = usePage<{ tag: string }>();
     const { closeSidebar, closeCreateNew } = useModalContext();
 
     const isCurrent =
-        route().current(routeName) &&
-        (tagId === undefined || Number(props.tag?.id ?? props.tag) === tagId);
+    route().current(routeName) &&
+    (tagName === undefined || props.tag === tagName);
 
     return (
         <li>
             <Link
                 preserveScroll
                 onClick={() => {closeSidebar(); closeCreateNew()}}
-                href={tagId !== undefined ? route(routeName, { tag: tagId }) : route(routeName)}
+                href={tagName !== undefined ? route(routeName, { tag: tagName }) : route(routeName)}
                 className={clsx(
                     'border-colors flex items-center gap-2 border-b px-3 py-3 text-sm md:rounded-lg md:border-none',
                     isCurrent && 'text-primary-blue bg-gray-neutral dark:bg-[#232530]',

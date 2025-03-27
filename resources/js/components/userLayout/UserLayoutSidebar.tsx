@@ -16,7 +16,7 @@ export default function UserLayoutSidebar() {
     const { theme } = useThemeContext();
     const { showSidebar } = useModalContext();
     const isLarge = useScreenResize();
-    const { props } = usePage<{ tags: { id: number; name: string }[] }>();
+    const { props } = usePage<{ tags: string[] }>();
 
     return (
         (showSidebar || isLarge) && (
@@ -43,7 +43,7 @@ export default function UserLayoutSidebar() {
                 <nav>
                     <ul className="notes-height scrollbar-hidden overflow-y-auto" scroll-region="true">
                         {props.tags.map((tag) => (
-                            <TagNavItem key={tag.id} routeName={ROUTES.TAG} tagId={tag.id} label={tag.name}>
+                            <TagNavItem key={tag} routeName={ROUTES.TAG} tagName={tag} label={tag}>
                                 <TagIcon width="20" height="20" />
                             </TagNavItem>
                         ))}

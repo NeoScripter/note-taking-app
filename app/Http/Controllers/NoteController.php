@@ -34,7 +34,7 @@ class NoteController extends Controller
         }
 
         return Inertia::render('user/Dashboard', [
-            'note' => $note ? $note->load('tags') : null,
+            'note' => $note,
             'notes' => Inertia::merge($notes->items()),
             'page' => $page,
             'isNextPageExists' => $isNextPageExists
@@ -65,7 +65,7 @@ class NoteController extends Controller
         }
 
         return Inertia::render('user/Archive', [
-            'note' => $note ? $note->load('tags') : null,
+            'note' => $note,
             'notes' => Inertia::merge($notes->items()),
             'page' => $page,
             'isNextPageExists' => $isNextPageExists
@@ -105,14 +105,14 @@ class NoteController extends Controller
         }
 
         return Inertia::render('user/Search', [
-            'note' => $note ? $note->load('tags') : null,
+            'note' => $note,
             'notes' => Inertia::merge($notes->items()),
             'page' => $page,
             'isNextPageExists' => $isNextPageExists
         ]);
     }
 
-    public function tag(Request $request, Tag $tag)
+    public function tag(Request $request, string $tag)
     {
         $page = $request->query('page', 1);
         $perPage = 25;
@@ -120,7 +120,7 @@ class NoteController extends Controller
 
         $notes = Note::with('tags')
             ->where('user_id', $request->user()->id)
-            ->whereHas('tags', fn($query) => $query->where('tags.name', $tag->name))
+            ->whereHas('tags', fn($query) => $query->where('tags.name', $tag))
             ->orderBy('updated_at', 'desc')
             ->paginate($perPage);
 
@@ -137,7 +137,7 @@ class NoteController extends Controller
 
         return Inertia::render('user/Tag', [
             'tag' => $tag,
-            'note' => $note ? $note->load('tags') : null,
+            'note' => $note,
             'notes' => Inertia::merge($notes->items()),
             'page' => $page,
             'isNextPageExists' => $isNextPageExists

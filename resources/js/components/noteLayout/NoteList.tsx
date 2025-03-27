@@ -27,7 +27,7 @@ export default function NoteList() {
 
     useEffect(() => {
         setNotes(props.notes);
-    }, [route().current(), props.tag?.id, props.flash?.message, query]);
+    }, [route().current(), props.tag, props.flash?.message, query]);
 
     return (
         <nav>

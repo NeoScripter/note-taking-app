@@ -10,7 +10,7 @@ export default function NoteListSummary() {
         if (route().current() === ROUTES.ARCHIVE) {
             return <p>All your archived notes are stored here. You can restore or delete them anytime.</p>;
         } else if (route().current() === ROUTES.TAG) {
-            return <p>All notes with the ”{props.tag ? capitalize(props.tag.name) : ''}” tag are shown here.</p>;
+            return <p>All notes with the ”{props.tag ? capitalize(props.tag) : ''}” tag are shown here.</p>;
         } else {
             return null;
         }
