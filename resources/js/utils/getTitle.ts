@@ -5,7 +5,7 @@ import { getSearchQuery } from './getSearchQuery';
 export function getTitle(routeName: (string & {}) | undefined, pageProps: NotePropsType) {
     switch (routeName) {
         case ROUTES.TAG:
-            return pageProps.tag?.name ?? '';
+            return pageProps.tag ?? '';
         case ROUTES.SEARCH:
             return getSearchQuery() ?? '';
         default:

@@ -6,6 +6,7 @@ import English from '../../../images/flags/en.webp';
 import French from '../../../images/flags/fr.webp';
 import Russian from '../../../images/flags/ru.webp';
 import ThemeBody from './ThemeBody';
+import useTrans from '@/hooks/useTrans';
 
 type LocaleProps = {
     onClick: () => void;
@@ -14,6 +15,7 @@ type LocaleProps = {
 export default function LocaleSettings({ onClick }: LocaleProps) {
     const { locale } = usePage<{ locale: string }>().props;
     const [currentLocale, setLocale] = useState<string>(locale);
+    const t = useTrans();
 
     useEffect(() => {
         router.visit(route('locale', currentLocale), {
@@ -24,10 +26,10 @@ export default function LocaleSettings({ onClick }: LocaleProps) {
     }, [currentLocale])
 
     const radioBtns: RadioBtn[] = [
-        { key: 'English', imagePath: English, name: 'English', description: 'The English language', value: LOCALE.ENGLISH },
-        { key: 'DarkTheme', imagePath: Russian, name: 'Русский', description: 'The Russian language', value: LOCALE.RUSSIAN },
-        { key: 'SystemTheme', imagePath: French, name: 'Francais', description: "The French language", value: LOCALE.FRENCH },
+        { key: 'English', imagePath: English, name: 'English', description: t('The English language'), value: LOCALE.ENGLISH },
+        { key: 'Russian', imagePath: Russian, name: 'Русский', description: t('The Russian language'), value: LOCALE.RUSSIAN },
+        { key: 'French', imagePath: French, name: 'Francais', description: t("The French language"), value: LOCALE.FRENCH },
     ];
 
-    return <ThemeBody onClick={onClick} title="Language" onChange={setLocale} ariaLabel="Language Picker" value={currentLocale} radioBtns={radioBtns} shouldInvert={false} />;
+    return <ThemeBody onClick={onClick} title={t("Language")} onChange={setLocale} ariaLabel="Language Picker" value={currentLocale} radioBtns={radioBtns} shouldInvert={false} />;
 }

@@ -1,6 +1,7 @@
 import PasswordField from '@/components/forms/PasswordField';
 import TextField from '@/components/forms/TextField';
 import PrimaryBtn from '@/components/shared/PrimaryBtn';
+import useTrans from '@/hooks/useTrans';
 import AuthLayout from '@/layouts/AuthLayout';
 import { useForm } from '@inertiajs/react';
 
@@ -17,6 +18,7 @@ type ResetPasswordForm = {
 };
 
 const ResetPassword = ({ token, email }: ResetPasswordProps) => {
+    const t = useTrans();
     const { data, setData, post, processing, errors, reset } = useForm<Required<ResetPasswordForm>>({
         token: token,
         email: email,
@@ -40,7 +42,7 @@ const ResetPassword = ({ token, email }: ResetPasswordProps) => {
                 type="email"
                 error={errors.email}
                 placeholder="email@example.com"
-                label="Email Address"
+                label={t("Email Address")}
                 shouldFocus={true}
             />
 
@@ -50,8 +52,8 @@ const ResetPassword = ({ token, email }: ResetPasswordProps) => {
                 value={data.password}
                 hasResetLink={false}
                 error={errors.password}
-                description="At least 8 characters"
-                label="New Password"
+                description={t("At least 8 characters")}
+                label={t("New Password")}
             />
 
             <PasswordField
@@ -60,11 +62,11 @@ const ResetPassword = ({ token, email }: ResetPasswordProps) => {
                 value={data.password_confirmation}
                 hasResetLink={false}
                 error={errors.password_confirmation}
-                label="Confirm New Password"
+                label={t("Confirm New Password")}
             />
 
             <PrimaryBtn type="submit" disabled={processing} className="w-full">
-                Reset Password
+                {t('Reset Password')}
             </PrimaryBtn>
         </form>
     );

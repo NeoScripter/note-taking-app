@@ -17,17 +17,22 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $supportedLocales = ['en', 'fr', 'ru'];
 
-        if ($locale = Session::get('locale')) {
+        $locale = Session::get('locale');
+
+        if ($locale && in_array($locale, $supportedLocales)) {
             App::setLocale($locale);
-        } else if (!Session::has('locale')) {
-            $browserLocale = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
+        } else {
+            $browserLocale = strtolower(substr($request->getPreferredLanguage($supportedLocales), 0, 2));
+            $locale = in_array($browserLocale, $supportedLocales)
+                ? $browserLocale
+                : config('app.locale');
 
-            $supportedLocales = ['en', 'fr', 'ru'];
-            $locale = in_array($browserLocale, $supportedLocales) ? $browserLocale : config('app.locale');
             Session::put('locale', $locale);
             App::setLocale($locale);
         }
+
 
         return $next($request);
     }

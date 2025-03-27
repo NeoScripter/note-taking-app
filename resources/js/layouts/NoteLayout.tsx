@@ -7,6 +7,7 @@ import PrimaryBtn from '@/components/shared/PrimaryBtn';
 import { ROUTES } from '@/consts/routeNames';
 import { useModalContext } from '@/hooks/useModalContext';
 import { useScreenResize } from '@/hooks/useScreenResize';
+import useTrans from '@/hooks/useTrans';
 import { PlusIcon } from '@radix-ui/react-icons';
 
 type NoteLayoutProps = {
@@ -17,6 +18,7 @@ type NoteLayoutProps = {
 export default function NoteLayout({ children, header }: NoteLayoutProps) {
     const { showNotePage, openNotePage, showCreateNew, openCreateNew, isEdited } = useModalContext();
     const isLarge = useScreenResize();
+    const t = useTrans();
 
 
     return (
@@ -33,7 +35,7 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
                     className="shadow-create-btn dark:shadow-create-btn-dark fixed right-4 bottom-18 z-[25] flex size-12 items-center justify-center rounded-full! sm:right-9 sm:bottom-26.5 sm:size-16 md:static md:mb-4 md:size-auto md:w-full md:rounded-lg! md:shadow-none"
                 >
                     <PlusIcon className="size-8 shrink-0 md:hidden" />
-                    <span className="hidden md:block">+ Create New Note</span>
+                    <span className="hidden md:block">{t('+ Create New Note')}</span>
                 </PrimaryBtn>
                 <NoteListSummary />
                 <NoteList />

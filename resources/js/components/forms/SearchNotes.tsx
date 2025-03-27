@@ -3,8 +3,10 @@ import { Input } from '@headlessui/react';
 import { router, useForm } from '@inertiajs/react';
 import { useEffect, useRef } from 'react';
 import SearchIcon from '../svgs/SeachIcon';
+import useTrans from '@/hooks/useTrans';
 
 export default function SearchNotes() {
+    const t = useTrans();
     const { data, setData, reset } = useForm({
         search: '',
     });
@@ -26,7 +28,7 @@ export default function SearchNotes() {
 
         timeoutRef.current = setTimeout(() => {
             router.get(route(ROUTES.SEARCH), { search: data.search }, { preserveState: true, replace: true });
-        }, 300);
+        }, 500);
     }
 
     return (
@@ -39,12 +41,12 @@ export default function SearchNotes() {
                     onKeyUp={search}
                     type="search"
                     name="search"
-                    placeholder="Search by title, content, or tags…"
+                    placeholder={t("Search by title, content, or tags…")}
                     className="light-border-colors data-[focus]:shadow-input data-[focus]:dark:shadow-input-dark w-full rounded-lg border px-4 py-3 pl-12 text-sm outline-none data-[focus]:ring-1 data-[hover]:bg-gray-neutral data-[hover]:dark:bg-[#232530]"
                 />
             </div>
             {data.search !== '' && (
-                <p className="body-text my-4 block text-sm md:hidden">{`All notes matching ”${data.search}” are displayed below.`}</p>
+                <p className="body-text my-4 block text-sm md:hidden">{t('All notes matching ')+ data.search.toString() + t(' are displayed below.')}</p>
             )}
         </>
     );

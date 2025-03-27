@@ -4,12 +4,14 @@ import NoteMobileBar from '@/components/noteLayout/NoteMobileBar';
 import ArchiveIcon from '@/components/svgs/ArchiveIcon';
 import TrashIcon from '@/components/svgs/TrashIcon';
 import { useModalContext } from '@/hooks/useModalContext';
+import useTrans from '@/hooks/useTrans';
 import NoteLayout from '@/layouts/NoteLayout';
 import UserLayout from '@/layouts/UserLayout';
 import { DashboardProps } from '@/types/note';
 
 const Dashboard = ({ note }: DashboardProps) => {
     const { openDeleteModal, openArchiveModal, isEdited, startEditing } = useModalContext();
+    const t = useTrans();
 
     if (note == null) return null;
 
@@ -24,7 +26,7 @@ const Dashboard = ({ note }: DashboardProps) => {
                         <ArchiveIcon width="18" height="18" />
                     </button>
                     <button onClick={startEditing} className="text-primary-blue mr-2 cursor-pointer">
-                        Edit Note
+                    {t('Edit Note')}
                     </button>
                 </NoteMobileBar>
             )}

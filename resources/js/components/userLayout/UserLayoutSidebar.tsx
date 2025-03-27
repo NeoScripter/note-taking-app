@@ -40,7 +40,7 @@ export default function UserLayoutSidebar() {
                     </nav>
                 </div>
                 <p className="border-colors mb-4 text-2xl font-bold md:mt-2 md:mb-0 md:border-t md:px-3 md:py-2 md:text-sm md:font-normal md:text-[#717784]">
-                    Tags
+                {t('Tags')}
                 </p>
                 <nav>
                     <ul className="notes-height scrollbar-hidden overflow-y-auto" scroll-region="true">

@@ -5,6 +5,7 @@ import RestoreIcon from '@/components/svgs/RestoreIcon';
 import TrashIcon from '@/components/svgs/TrashIcon';
 import { useModalContext } from '@/hooks/useModalContext';
 import useNoteId from '@/hooks/useNoteId';
+import useTrans from '@/hooks/useTrans';
 import NoteLayout from '@/layouts/NoteLayout';
 import UserLayout from '@/layouts/UserLayout';
 import { DashboardProps } from '@/types/note';
@@ -12,6 +13,7 @@ import { router } from '@inertiajs/react';
 
 const Archive = ({ note }: DashboardProps) => {
     const { closeNotePage, openDeleteModal, startEditing, isEdited } = useModalContext();
+    const t = useTrans();
 
     const noteId = useNoteId();
 
@@ -35,7 +37,7 @@ const Archive = ({ note }: DashboardProps) => {
                         <RestoreIcon width="18" height="18" />
                     </button>
                     <button onClick={startEditing} className="text-primary-blue mr-2 cursor-pointer">
-                        Edit Note
+                        {t('Edit Note')}
                     </button>
                 </NoteMobileBar>
             )}

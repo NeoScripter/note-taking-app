@@ -1,6 +1,6 @@
 import { usePage } from '@inertiajs/react';
 
-type Translations = Record<string, string>;
+export type Translations = Record<string, string>;
 
 export default function useTrans() {
     const { translations } = usePage<{ translations: Translations }>().props;

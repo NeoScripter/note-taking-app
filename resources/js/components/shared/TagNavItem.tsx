@@ -1,7 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import clsx from 'clsx';
 import ChevronRight from '../svgs/ChevronRight';
-import { Tag } from '@/types/note';
 import { useModalContext } from '@/hooks/useModalContext';
 import { capitalize } from '@/utils/capitalize';
 

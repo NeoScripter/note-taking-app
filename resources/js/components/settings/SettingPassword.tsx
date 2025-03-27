@@ -1,13 +1,15 @@
+import useTrans from '@/hooks/useTrans';
 import { useForm } from '@inertiajs/react';
 import PasswordField from '../forms/PasswordField';
-import ThemeBodyLayout from './ThemeBodyLayout';
 import PrimaryBtn from '../shared/PrimaryBtn';
+import ThemeBodyLayout from './ThemeBodyLayout';
 
 type SettingPasswordProps = {
     onClick: () => void;
 };
 
 export default function SettingPassword({ onClick }: SettingPasswordProps) {
+    const t = useTrans();
     const { data, setData, post, errors, reset } = useForm({
         old_password: '',
         new_password: '',
@@ -23,7 +25,7 @@ export default function SettingPassword({ onClick }: SettingPasswordProps) {
 
     return (
         <ThemeBodyLayout onClick={onClick}>
-            <p className="mb-6 text-2xl font-bold">Change Password</p>
+            <p className="mb-6 text-2xl font-bold">{t('Change Password')}</p>
 
             <form onSubmit={handleSubmit} className="space-y-6 text-sm">
                 <PasswordField
@@ -32,7 +34,7 @@ export default function SettingPassword({ onClick }: SettingPasswordProps) {
                     fieldName="old_password"
                     hasResetLink={false}
                     error={errors.old_password}
-                    label="Old Password"
+                    label={t('Old Password')}
                 />
 
                 <PasswordField
@@ -41,8 +43,8 @@ export default function SettingPassword({ onClick }: SettingPasswordProps) {
                     value={data.new_password}
                     hasResetLink={false}
                     error={errors.new_password}
-                    description="At least 8 characters"
-                    label="New Password"
+                    description={t('At least 8 characters')}
+                    label={t('New Password')}
                 />
 
                 <PasswordField
@@ -51,11 +53,11 @@ export default function SettingPassword({ onClick }: SettingPasswordProps) {
                     value={data.new_password_confirmation}
                     hasResetLink={false}
                     error={errors.new_password_confirmation}
-                    label="Confirm New Password"
+                    label={t('Confirm New Password')}
                 />
 
                 <PrimaryBtn type="submit" className="ml-auto block">
-                    Save Password
+                    {t('Save Password')}
                 </PrimaryBtn>
             </form>
         </ThemeBodyLayout>

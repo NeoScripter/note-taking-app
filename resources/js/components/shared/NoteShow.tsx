@@ -1,3 +1,4 @@
+import useTrans from "@/hooks/useTrans";
 import { ExtendedNote } from "@/types/note";
 
 type NoteShowProps = {
@@ -5,6 +6,7 @@ type NoteShowProps = {
 }
 
 export default function NoteShow({ note }: NoteShowProps) {
+    const t = useTrans();
 
     return (
         <>
@@ -23,7 +25,7 @@ export default function NoteShow({ note }: NoteShowProps) {
                     ))}
                 </div>
 
-                <p className="text-xs text-gray-500 mt-4">Last updated: {note.updated_at}</p>
+                <p className="text-xs text-gray-500 mt-4">{t('Last updated: ')}{note.updated_at}</p>
             </div>
         </>
     );

@@ -7,9 +7,11 @@ import SettingsIcon from "../svgs/SettingsIcon";
 import TagIcon from "../svgs/TagIcon";
 import { useModalContext } from "@/hooks/useModalContext";
 import { ROUTES } from "@/consts/routeNames";
+import useTrans from "@/hooks/useTrans";
 
 export default function UserLayoutFooter() {
     const { showSidebar, openSidebar, closeNotePage } = useModalContext();
+    const t = useTrans();
 
     return (
         <footer className="shadow-footer dark:shadow-footer-dark divide-colors bg-colors border-colors fixed right-0 bottom-0 left-0 z-20 flex items-center border-t px-4 py-3 sm:divide-x sm:px-0 md:hidden">
@@ -33,7 +35,7 @@ export default function UserLayoutFooter() {
                 >
                     <TagIcon />
 
-                    <p className="mt-1 hidden text-center text-xs sm:block">Tags</p>
+                    <p className="mt-1 hidden text-center text-xs sm:block">{t('Tags')}</p>
                 </button>
             </div>
 

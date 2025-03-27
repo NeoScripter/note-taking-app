@@ -5,6 +5,7 @@ import { useState } from 'react';
 import ErrorField from './ErrorField';
 import HintField from './HintField';
 import ShowInputBtn from './ShowInputBtn';
+import useTrans from '@/hooks/useTrans';
 
 type PasswordFieldProps = {
     setter: (key: string, value: string) => void;
@@ -18,6 +19,7 @@ type PasswordFieldProps = {
 
 export default function PasswordField({ setter, fieldName, hasResetLink, description, error, label, value }: PasswordFieldProps) {
     const [showInput, setShowInput] = useState(false);
+    const t = useTrans();
 
     return (
         <Field>
@@ -25,7 +27,7 @@ export default function PasswordField({ setter, fieldName, hasResetLink, descrip
                 {label}
                 {hasResetLink && (
                     <Link href="/forgot-password" className="body-text text-xs underline">
-                        Forgot password
+                        {t('Forgot password')}
                     </Link>
                 )}
             </Label>

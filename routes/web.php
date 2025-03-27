@@ -34,13 +34,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/notes/{note}', [NoteController::class, 'update'])->name('notes.update');
 
-    Route::get('/locale/{locale}', function ($locale) {
-        Session::put('locale', $locale);
-        App::setLocale($locale);
-
-        return redirect()->back();
-    })->name('locale');
 });
+
+Route::get('/locale/{locale}', function ($locale) {
+    Session::put('locale', $locale);
+    App::setLocale($locale);
+
+    return redirect()->back();
+})->name('locale');
 
 
 

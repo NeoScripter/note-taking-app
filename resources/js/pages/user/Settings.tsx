@@ -12,9 +12,11 @@ import { SETTINGS } from '@/utils/settings';
 import { useState } from 'react';
 import LocaleSettings from '@/components/settings/LocaleSettings';
 import LanguageIcon from '@/components/svgs/LanguageIcon';
+import useTrans from '@/hooks/useTrans';
 
 const Settings = () => {
     const [currentSettingPage, setCurrentSettingPage] = useState('');
+    const t = useTrans();
 
     function closePage() {
         setCurrentSettingPage('');
@@ -37,13 +39,13 @@ const Settings = () => {
     return (
         <div className="relative md:flex">
             <div className="border-colors flex-1 md:min-h-screen md:max-w-64.5 md:border-r md:px-4 md:py-4">
-                <p className="mb-4 text-2xl font-bold md:hidden">Settings</p>
+                <p className="mb-4 text-2xl font-bold md:hidden">{t('Settings')}</p>
                 <nav>
                     <ul className="space-y-2">
                         <SettingsBtnItem
                             onClick={() => setCurrentSettingPage(SETTINGS.COLOR)}
                             isCurrent={currentSettingPage === SETTINGS.COLOR}
-                            label="Color Theme"
+                            label={t("Color Theme")}
                             className="border-none"
                         >
                             <ColorThemeIcon />
@@ -51,7 +53,7 @@ const Settings = () => {
                         <SettingsBtnItem
                             onClick={() => setCurrentSettingPage(SETTINGS.FONT)}
                             isCurrent={currentSettingPage === SETTINGS.FONT}
-                            label="Font Theme"
+                            label={t("Font Theme")}
                             className="border-none"
                         >
                             <FontThemeIcon />
@@ -59,7 +61,7 @@ const Settings = () => {
                         <SettingsBtnItem
                             onClick={() => setCurrentSettingPage(SETTINGS.PASSWORD)}
                             isCurrent={currentSettingPage === SETTINGS.PASSWORD}
-                            label="Change Password"
+                            label={t("Change Password")}
                             className="border-none"
                         >
                             <ChangePasswordIcon />
@@ -67,7 +69,7 @@ const Settings = () => {
                         <SettingsBtnItem
                             onClick={() => setCurrentSettingPage(SETTINGS.LOCALE)}
                             isCurrent={currentSettingPage === SETTINGS.LOCALE}
-                            label="Language"
+                            label={t("Language")}
                             className="border-none"
                         >
                             <LanguageIcon width='20' height='20' />

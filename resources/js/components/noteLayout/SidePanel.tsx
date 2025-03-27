@@ -6,10 +6,12 @@ import ArchiveIcon from '../svgs/ArchiveIcon';
 import RestoreIcon from '../svgs/RestoreIcon';
 import TrashIcon from '../svgs/TrashIcon';
 import { ROUTES } from '@/consts/routeNames';
+import useTrans from '@/hooks/useTrans';
 
 export default function SidePanel() {
     const { openArchiveModal, openDeleteModal, closeNotePage } = useModalContext();
     const noteId = useNoteId();
+    const t = useTrans();
     return (
         <>
             {route().current() === ROUTES.ARCHIVE ? (
@@ -23,17 +25,17 @@ export default function SidePanel() {
                     className="w-full"
                 >
                     <RestoreIcon />
-                    Restore Note
+                    {t('Restore Note')}
                 </SecondaryBtn>
             ) : (
                 <SecondaryBtn onClick={openArchiveModal} className="w-full">
                     <ArchiveIcon width="20" height="20" />
-                    Archive Note
+                    {t('Archive Note')}
                 </SecondaryBtn>
             )}
             <SecondaryBtn onClick={openDeleteModal} className="w-full">
                 <TrashIcon width="20" height="20" />
-                Delete Note
+                {t('Delete Note')}
             </SecondaryBtn>
         </>
     );
