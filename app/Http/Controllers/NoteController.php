@@ -4,36 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
 class NoteController extends Controller
 {
-    public function index(Request $request)
+    private function getNotesData(Request $request, Builder $query, string $view, $note = null, $tag = null)
     {
         $page = $request->query('page', 1);
         $perPage = 25;
         $noteId = $request->query('note_id');
 
-        $notes = Note::with('tags')
-            ->where('user_id', $request->user()->id)
-            ->where('archived', false)
+        $notes = $query
             ->orderBy('updated_at', 'desc')
             ->paginate($perPage);
 
         $notePaginateProp = $notes->toArray();
         $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
 
-
-        $note = null;
         if ($noteId) {
             $note = Note::findOrFail($noteId);
             Gate::authorize('view', $note);
             $note->load('tags');
         }
 
-        return Inertia::render('user/Dashboard', [
+        return Inertia::render($view, [
+            'tag' => $tag,
             'note' => $note,
             'notes' => Inertia::merge($notes->items()),
             'page' => $page,
@@ -41,46 +39,31 @@ class NoteController extends Controller
         ]);
     }
 
-    public function archive(Request $request, ?Note $note = null)
+
+    public function index(Request $request)
     {
-        $page = $request->query('page', 1);
-        $perPage = 25;
-        $noteId = $request->query('note_id');
 
-        $notes = Note::with('tags')
+        $query = Note::with('tags')
             ->where('user_id', $request->user()->id)
-            ->where('archived', true)
-            ->orderBy('updated_at', 'desc')
-            ->paginate($perPage);
+            ->where('archived', false);
 
-        $notePaginateProp = $notes->toArray();
-        $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
+        return $this->getNotesData($request, $query, 'user/Dashboard');
+    }
 
+    public function archive(Request $request)
+    {
+        $query = Note::with('tags')
+            ->where('user_id', $request->user()->id)
+            ->where('archived', true);
 
-        $note = null;
-        if ($noteId) {
-            $note = Note::findOrFail($noteId);
-            Gate::authorize('view', $note);
-            $note->load('tags');
-        }
-
-        return Inertia::render('user/Archive', [
-            'note' => $note,
-            'notes' => Inertia::merge($notes->items()),
-            'page' => $page,
-            'isNextPageExists' => $isNextPageExists
-        ]);
+        return $this->getNotesData($request, $query, 'user/Archive');
     }
 
     public function search(Request $request)
     {
-        $page = $request->query('page', 1);
-        $perPage = 25;
-        $noteId = $request->query('note_id');
-
         $normalilzedQuery = strtolower($request->search);
 
-        $notes = Note::with('tags')
+        $query = Note::with('tags')
             ->where('user_id', $request->user()->id)
             ->when($normalilzedQuery, function ($query, $search) {
                 $query->where(function ($q) use ($search) {
@@ -89,59 +72,18 @@ class NoteController extends Controller
                             $q->where('name', 'like', "%{$search}%");
                         });
                 });
-            })
-            ->orderBy('updated_at', 'desc')
-            ->paginate($perPage);
+            });
 
-        $notePaginateProp = $notes->toArray();
-        $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
-
-
-        $note = null;
-        if ($noteId) {
-            $note = Note::findOrFail($noteId);
-            Gate::authorize('view', $note);
-            $note->load('tags');
-        }
-
-        return Inertia::render('user/Search', [
-            'note' => $note,
-            'notes' => Inertia::merge($notes->items()),
-            'page' => $page,
-            'isNextPageExists' => $isNextPageExists
-        ]);
+        return $this->getNotesData($request, $query, 'user/Search');
     }
 
     public function tag(Request $request, string $tag)
     {
-        $page = $request->query('page', 1);
-        $perPage = 25;
-        $noteId = $request->query('note_id');
-
-        $notes = Note::with('tags')
+        $query = Note::with('tags')
             ->where('user_id', $request->user()->id)
-            ->whereHas('tags', fn($query) => $query->where('tags.name', $tag))
-            ->orderBy('updated_at', 'desc')
-            ->paginate($perPage);
+            ->whereHas('tags', fn($query) => $query->where('tags.name', $tag));
 
-        $notePaginateProp = $notes->toArray();
-        $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
-
-
-        $note = null;
-        if ($noteId) {
-            $note = Note::findOrFail($noteId);
-            Gate::authorize('view', $note);
-            $note->load('tags');
-        }
-
-        return Inertia::render('user/Tag', [
-            'tag' => $tag,
-            'note' => $note,
-            'notes' => Inertia::merge($notes->items()),
-            'page' => $page,
-            'isNextPageExists' => $isNextPageExists
-        ]);
+        return $this->getNotesData($request, $query, 'user/Tag', null, $tag);
     }
 
     public function store(Request $request)
@@ -173,7 +115,10 @@ class NoteController extends Controller
             $note->tags()->sync($tagIds);
         }
 
-        return redirect()->intended(route('home'))->with('message', 'Note successfully created!');
+        return redirect()->intended(route('home'))->with('message', [
+            'id' => uniqid(),
+            'text' => 'Note successfully created!',
+        ]);
     }
 
     public function update(Request $request, Note $note)
@@ -208,7 +153,10 @@ class NoteController extends Controller
             $note->tags()->sync([]);
         }
 
-        return redirect()->back()->with('message', 'Note successfully updated!');
+        return redirect()->back()->with('message', [
+            'id' => uniqid(),
+            'text' => 'Note successfully updated!',
+        ]);
     }
 
     public function archiveNote(Note $note)
@@ -216,7 +164,10 @@ class NoteController extends Controller
         Gate::authorize('update', $note);
         $note->update(['archived' => true]);
 
-        return redirect()->intended(route('home'))->with('message', 'Note successfully archived!');
+        return redirect()->intended(route('home'))->with('message', [
+            'id' => uniqid(),
+            'text' => 'Note successfully archived!',
+        ]);
     }
 
     public function restoreNote(Note $note)
@@ -224,7 +175,10 @@ class NoteController extends Controller
         Gate::authorize('update', $note);
         $note->update(['archived' => false]);
 
-        return redirect()->intended(route('home'))->with('message', 'Note successfully restored!');
+        return redirect()->intended(route('home'))->with('message', [
+            'id' => uniqid(),
+            'text' => 'Note successfully restored!',
+        ]);
     }
 
     public function destroy(Note $note)
@@ -232,6 +186,9 @@ class NoteController extends Controller
         Gate::authorize('delete', $note);
         $note->delete();
 
-        return redirect()->intended(route('home'))->with('message', 'Note successfully deleted!');
+        return redirect()->intended(route('home'))->with('message', [
+            'id' => uniqid(),
+            'text' => 'Note successfully deleted!',
+        ]);
     }
 }

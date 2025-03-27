@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NoteController;
-use App\Http\Controllers\UserController;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\App;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [NoteController::class, 'index'])->name('home');
@@ -35,6 +34,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/notes/{note}', [NoteController::class, 'update'])->name('notes.update');
 
+    Route::get('/locale/{locale}', function ($locale) {
+        Session::put('locale', $locale);
+        App::setLocale($locale);
+
+        return redirect()->back();
+    })->name('locale');
 });
 
 

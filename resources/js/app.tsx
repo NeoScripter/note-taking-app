@@ -1,6 +1,7 @@
 import '../css/app.css';
 
 import { createInertiaApp } from '@inertiajs/react';
+import { LaravelReactI18nProvider } from 'laravel-react-i18n';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 import { ModalProvider } from './providers/ModalProvider';
@@ -17,11 +18,14 @@ createInertiaApp({
         const root = createRoot(el);
 
         root.render(
-            <ThemeProvider>
-                <ModalProvider>
-                    <App {...props} />
-                </ModalProvider>
-            </ThemeProvider>,
+            <LaravelReactI18nProvider locale={'en'} fallbackLocale={'en'} files={import.meta.glob('/lang/*.json')}>
+                <ThemeProvider>
+                    <ModalProvider>
+                        <App {...props} />
+                    </ModalProvider>
+                </ThemeProvider>
+                ,
+            </LaravelReactI18nProvider>,
         );
     },
     progress: false,

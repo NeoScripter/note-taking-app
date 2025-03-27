@@ -5,7 +5,10 @@ import { useEffect, useState } from 'react';
 
 export type PageProps = {
     flash?: {
-        message?: string;
+        message?: {
+            id: string;
+            text: string;
+          };
     };
 };
 
@@ -29,7 +32,7 @@ export default function Toast() {
         }
     }, [flash]);
 
-    if (!flash?.message || !showMessage) return null;
+    if (!flash?.message?.text || !showMessage) return null;
 
     return (
         <div
@@ -49,7 +52,7 @@ export default function Toast() {
                         />
                     </svg>
                 </div>
-                <div className="mr-20 sm:mr-30">{flash.message}</div>
+                <div className="mr-20 sm:mr-30">{flash.message.text}</div>
             </div>
             <button onClick={() => setShowMessage(false)} aria-label="Dismiss Toast" className="relative cursor-pointer">
                 <span className="absolute -inset-3 [@media(pointer:fine)]:hidden"></span>

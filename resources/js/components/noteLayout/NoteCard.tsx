@@ -17,7 +17,7 @@ export default function NoteCard({ note }: NoteCardProps) {
     const { closeNotePage, startEditing } = useModalContext();
     return (
         <div className="notes-height flex flex-col bg-colors">
-            <header>
+            <header className='select-none'>
                 <p className="mb-4 text-2xl font-bold">{note.title}</p>
                 <div className="title-text border-colors mb-4 space-y-3.5 border-b pb-4 text-xs sm:text-sm">
                     <NoteInfo info={note.tags.map((tag) => capitalize(tag.name)).join(', ')}>

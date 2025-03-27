@@ -56,7 +56,10 @@ class AuthController extends Controller
             'password' => Hash::make($credentials['new_password']),
         ]);
 
-        return back()->with('message', 'Password changed successfully!');
+        return back()->with('message', [
+            'id' => uniqid(),
+            'text' => 'Password changed successfully!',
+        ]);
     }
 
     public function authenticate(Request $request): RedirectResponse
@@ -85,7 +88,10 @@ class AuthController extends Controller
 
             RateLimiter::clear($throttleKey);
 
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('home'))->with('message', [
+                'id' => uniqid(),
+                'text' => 'Successfully logged in!',
+            ]);
         }
 
         RateLimiter::hit($throttleKey, 30);
@@ -165,6 +171,9 @@ class AuthController extends Controller
 
         $user = User::where('email', 'admin@gmail.com')->firstOrFail();
         Auth::login($user);
-        return redirect()->route('home');
+        return redirect()->route('home')->with('message', [
+            'id' => uniqid(),
+            'text' => 'Successfully logged in!',
+        ]);
     }
 }

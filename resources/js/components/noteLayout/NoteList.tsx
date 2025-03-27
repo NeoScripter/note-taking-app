@@ -8,7 +8,10 @@ import { getSearchQuery } from '@/utils/getSearchQuery';
 
 type NoteListProps = NotePropsType & {
     flash?: {
-        message?: string;
+        message?: {
+            id: string;
+            text: string;
+          };
     };
 };
 
@@ -27,11 +30,11 @@ export default function NoteList() {
 
     useEffect(() => {
         setNotes(props.notes);
-    }, [route().current(), props.tag, props.flash?.message, query]);
+    }, [route().current(), props.tag, props.flash?.message?.id, query]);
 
     return (
         <nav>
-            <ul className="notes-height scrollbar-hidden space-y-2 overflow-y-auto" scroll-region="true">
+            <ul className="notes-height scrollbar-hidden space-y-2 overflow-y-auto select-none" scroll-region="true">
                 {notes.length > 0 ? notes.map((note) => <NoteItem key={note.id} note={note} noteProps={props} />) : <EmptyNoteMessage />}
                 {props.isNextPageExists && (
                     <WhenVisible
