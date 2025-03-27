@@ -3,6 +3,7 @@ import lightLogo from '../../images/logo-light.webp';
 import darkLogo from '../../images/logo-dark.webp';
 import useThemeContext from '@/hooks/useThemeContext';
 import { THEMES } from '@/utils/theme';
+import useTrans from '@/hooks/useTrans';
 
 type AuthLayoutProps = {
     children: React.ReactElement;
@@ -13,6 +14,8 @@ type AuthLayoutProps = {
 
 export default function AuthLayout({ children, title, heading, subheading }: AuthLayoutProps) {
     const { theme } = useThemeContext();
+    const t = useTrans();
+
     return (
         <>
             <Head title={title} />
@@ -22,8 +25,8 @@ export default function AuthLayout({ children, title, heading, subheading }: Aut
                         <Link as='div' href='/' className="mx-auto mb-6 w-24 cursor-pointer">
                             <img src={theme === THEMES.DARK ? darkLogo : lightLogo} alt="Notes logo" className="w-full object-contain object-center" />
                         </Link>
-                        <h1 className="mb-1 text-2xl font-bold">{heading}</h1>
-                        <p className="body-text text-sm">{subheading}</p>
+                        <h1 className="mb-1 text-2xl font-bold">{t(heading)}</h1>
+                        <p className="body-text text-sm">{t(subheading)}</p>
                     </header>
                     <article>{children}</article>
                 </div>

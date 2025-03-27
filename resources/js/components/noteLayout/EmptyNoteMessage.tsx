@@ -10,7 +10,7 @@ export default function EmptyNoteMessage() {
         if (route().current() === ROUTES.SEARCH) {
             return (
                 <p>
-                    {t('No notes match your search. Try a different keyword or')}{' '}
+                    {t('No notes match your search. Try a different keyword or ')}{' '}
                     <button
                         className="cursor-pointer underline underline-offset-4"
                         onClick={() => {
@@ -25,7 +25,7 @@ export default function EmptyNoteMessage() {
         } else if (route().current() === ROUTES.ARCHIVE) {
             return (
                 <p>
-                    {t('No notes have been archived yet. Move notes here for safekeeping, or ')}{' '}
+                    {t('No notes have been archived yet. Move notes here for safekeeping, ')}{' '}
                     <button
                         className="cursor-pointer underline underline-offset-4"
                         onClick={() => {

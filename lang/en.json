@@ -12,7 +12,8 @@
     "Start typing your note here…": "Start typing your note here…",
     "No notes match your search. Try a different keyword or": "No notes match your search. Try a different keyword or",
     " create a new note.": " create a new note.",
-    "No notes have been archived yet. Move notes here for safekeeping, or create a new note.": "No notes have been archived yet. Move notes here for safekeeping, or create a new note.",
+    "No notes have been archived yet. Move notes here for safekeeping, ": "No notes have been archived yet. Move notes here for safekeeping, ",
+    "or create a new note.": "or create a new note.",
     "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.": "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.",
     "All notes matching ": "All notes matching ",
     " are displayed below.": " are displayed below.",
@@ -86,7 +87,7 @@
     "Show results for: ": "Show results for: ",
     "Notes Tagged: ": "Notes Tagged: ",
     "active": "active",
-    "Search by title, content, or tags…": "Search by title, content, or tags…",
+    "Search by title, content, or tags…": "Search by title or tags…",
     "Choose your ": "Choose your ",
     "Color Theme Subtitle": "Color Theme"
 }

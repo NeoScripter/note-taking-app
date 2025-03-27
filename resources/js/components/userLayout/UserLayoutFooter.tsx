@@ -14,7 +14,7 @@ export default function UserLayoutFooter() {
     const t = useTrans();
 
     return (
-        <footer className="shadow-footer dark:shadow-footer-dark divide-colors bg-colors border-colors fixed right-0 bottom-0 left-0 z-20 flex items-center border-t px-4 py-3 sm:divide-x sm:px-0 md:hidden">
+        <footer className="shadow-footer dark:shadow-footer-dark divide-colors bg-colors border-colors fixed right-0 bottom-0 left-0 z-40 flex items-center border-t px-4 py-3 sm:divide-x sm:px-0 md:hidden">
             <FooterLink routeName={ROUTES.HOME} title="Home">
                 <HouseIcon />
             </FooterLink>

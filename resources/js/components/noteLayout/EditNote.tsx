@@ -72,14 +72,13 @@ export default function EditNote({ note }: EditNoteProps) {
                             error={errors.tags}
                         >
                             <TagIcon width="16" height="16" />
-                            Tags{t('Save Note')}
+                            {t('Tags')}
                         </EditNoteInfo>
 
                         <div className="flex items-center gap-2">
                             <div className="flex w-full max-w-28.75 items-center gap-1.5">
                                 <ClockIcon width="16" height="16" />
-                                Last edited
-                                {t('Save Note')}
+                                {t('Last edited')}
                             </div>
                             <div className="flex-1 text-gray-400">
                                 {note.updated_at ? formatDate(new Date(note.updated_at), { dateStyle: 'medium' }) : 'No update date'}

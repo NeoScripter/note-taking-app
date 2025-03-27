@@ -24,7 +24,7 @@ export default function NoteLayout({ children, header }: NoteLayoutProps) {
     return (
         <div className="md:flex">
             <div className="border-colors flex-1 md:max-w-72.5 md:border-r md:py-5 md:pr-4 md:pl-8">
-                <p className="mb-4 ml-2 text-2xl font-bold md:hidden">{header} </p>
+                <p className="mb-4 ml-2 text-2xl font-bold md:hidden">{t(header)} </p>
 
                 {(route().current() === ROUTES.SEARCH && !isLarge) && <SearchNotes />}
                 <PrimaryBtn
