@@ -49,7 +49,7 @@ Route::get('/login', function () {
     return Inertia::render('auth/Login');
 })->name('login');
 
-Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
+Route::post('/signup', [AuthController::class, 'signup'])->name('signup.post');
 
 Route::post('/login', [AuthController::class, 'authenticate']);
 
