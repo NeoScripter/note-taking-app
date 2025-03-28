@@ -88,5 +88,13 @@
     "active": "активна",
     "Search by title, content, or tags…": "Поиск по заголовку или тегу...",
     "Choose your ": "Изменить ",
-    "Color Theme Subtitle" : "цветовую тему"
+    "Color Theme Subtitle" : "цветовую тему",
+    "Note successfully created!": "Заметка успешно создана!",
+    "Note successfully updated!": "Заметка успешно обновлена!",
+    "Note successfully archived!": "Заметка успешно архивирована!",
+    "Note successfully restored!": "Заметка успешно восстановлена!",
+    "Note successfully deleted!": "Заметка успешно удалена!",
+    "Password changed successfully!": "Пароль успешно изменён!",
+    "Successfully logged in!": "Вход выполнен успешно!",
+    "The provided credentials do not match our records.": "Неверные логин или пароль."
   }

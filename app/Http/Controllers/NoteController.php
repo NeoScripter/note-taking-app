@@ -117,7 +117,7 @@ class NoteController extends Controller
 
         return redirect()->intended(route('home'))->with('message', [
             'id' => uniqid(),
-            'text' => 'Note successfully created!',
+            'text' => __('Note successfully created!'),
         ]);
     }
 
@@ -155,7 +155,7 @@ class NoteController extends Controller
 
         return redirect()->back()->with('message', [
             'id' => uniqid(),
-            'text' => 'Note successfully updated!',
+            'text' => __('Note successfully updated!'),
         ]);
     }
 
@@ -166,7 +166,7 @@ class NoteController extends Controller
 
         return redirect()->intended(route('home'))->with('message', [
             'id' => uniqid(),
-            'text' => 'Note successfully archived!',
+            'text' => __('Note successfully archived!'),
         ]);
     }
 
@@ -177,7 +177,7 @@ class NoteController extends Controller
 
         return redirect()->intended(route('home'))->with('message', [
             'id' => uniqid(),
-            'text' => 'Note successfully restored!',
+            'text' => __('Note successfully restored!'),
         ]);
     }
 
@@ -188,7 +188,7 @@ class NoteController extends Controller
 
         return redirect()->intended(route('home'))->with('message', [
             'id' => uniqid(),
-            'text' => 'Note successfully deleted!',
+            'text' => __('Note successfully deleted!'),
         ]);
     }
 }

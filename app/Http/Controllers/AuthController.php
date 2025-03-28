@@ -90,14 +90,14 @@ class AuthController extends Controller
 
             return redirect()->intended(route('home'))->with('message', [
                 'id' => uniqid(),
-                'text' => 'Successfully logged in!',
+                'text' => __('Successfully logged in!'),
             ]);
         }
 
         RateLimiter::hit($throttleKey, 30);
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => __('The provided credentials do not match our records.'),
         ])->onlyInput('email');
     }
 
@@ -173,7 +173,7 @@ class AuthController extends Controller
         Auth::login($user);
         return redirect()->route('home')->with('message', [
             'id' => uniqid(),
-            'text' => 'Successfully logged in!',
+            'text' => __('Successfully logged in!'),
         ]);
     }
 }

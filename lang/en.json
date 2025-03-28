@@ -89,5 +89,13 @@
     "active": "active",
     "Search by title, content, or tags…": "Search by title or tags…",
     "Choose your ": "Choose your ",
-    "Color Theme Subtitle": "Color Theme"
+    "Color Theme Subtitle": "Color Theme",
+    "Note successfully created!": "Note successfully created!",
+    "Note successfully updated!": "Note successfully updated!",
+    "Note successfully archived!": "Note successfully archived!",
+    "Note successfully restored!": "Note successfully restored!",
+    "Note successfully deleted!": "Note successfully deleted!",
+    "Password changed successfully!": "Password changed successfully!",
+    "Successfully logged in!": "Successfully logged in!",
+    "The provided credentials do not match our records.": "The provided credentials do not match our records."
 }
