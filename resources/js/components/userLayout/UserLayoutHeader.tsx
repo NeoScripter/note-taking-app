@@ -28,7 +28,7 @@ export default function UserLayoutHeader({ header }: { header: string }) {
 
             {isLarge && <SearchNotes />}
 
-            <Link href={route(ROUTES.SETTIGNS)} className="body-text hidden shrink-0 p-2.5 md:block">
+            <Link prefetch href={route(ROUTES.SETTIGNS)} className="body-text hidden shrink-0 p-2.5 md:block">
                 <SettingsIcon />
             </Link>
         </header>

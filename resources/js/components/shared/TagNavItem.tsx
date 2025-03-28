@@ -25,6 +25,7 @@ export default function TagNavItem({ routeName, children, label, className, tagN
     return (
         <li>
             <Link
+                prefetch
                 preserveScroll
                 onClick={() => {closeSidebar(); closeCreateNew()}}
                 href={tagName !== undefined ? route(routeName, { tag: tagName }) : route(routeName)}

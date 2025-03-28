@@ -20,6 +20,7 @@ export default function NoteItem({ note, noteProps }: NoteItemProps) {
 
     return (
         <Link
+            prefetch
             preserveState
             preserveScroll
             onClick={() => {

@@ -14,6 +14,7 @@ export default function FooterLink({ routeName, children, title }: FooterLinkPro
     return (
         <div className="basis-1/5">
             <Link
+                prefetch
                 onClick={() => {closeSidebar(); closeNotePage()}}
                 href={route(routeName)}
                 className={clsx(
