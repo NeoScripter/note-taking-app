@@ -7,7 +7,7 @@ import useTrans from '@/hooks/useTrans';
 type ThemeBodyProps = {
     onClick: () => void;
     title: string;
-    onChange: React.Dispatch<React.SetStateAction<string>>;
+    onChange: (newLocale: string) => void;
     value: string;
     ariaLabel: string;
     radioBtns: RadioBtn[];
