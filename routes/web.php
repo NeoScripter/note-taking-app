@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [NoteController::class, 'index'])->name('home');
@@ -54,7 +55,7 @@ Route::get('/locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
     App::setLocale($locale);
 
-    return redirect()->back();
+    return Inertia::location(URL::previous());
 })->name('locale');
 
 

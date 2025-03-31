@@ -21,7 +21,9 @@ export default function LocaleSettings({ onClick }: LocaleProps) {
         setLocale(newLocale);
 
         router.visit(route('locale', newLocale), {
+            preserveState: true,
             preserveScroll: true,
+            only: ['translations', 'locale'],
             showProgress: false,
         });
     }
