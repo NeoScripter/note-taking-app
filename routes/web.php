@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NoteController;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [NoteController::class, 'index'])->name('home');
@@ -14,8 +16,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/search', [NoteController::class, 'search'])->name('search');
 
-    Route::get('/settings', function () {
-        return Inertia::render('user/Settings');
+    Route::get('/settings', function (Request $request) {
+
+        return Inertia::render('user/Settings', [
+            'tags' => Inertia::defer(fn () => Tag::where('user_id', $request->user()->id)
+            ->pluck('name')
+            ->sort()
+            ->values())
+        ]);
+
     })->name('settings');
 
     Route::get('/tag/{tag}', [NoteController::class, 'tag'])->name('tag');

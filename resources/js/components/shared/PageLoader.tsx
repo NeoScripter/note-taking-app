@@ -6,13 +6,15 @@ import { ScaleLoader } from 'react-spinners';
 export default function PageLoader() {
     const [loading, setLoading] = useState(false);
 
-    const start = (event: { detail: { visit: { prefetch: boolean } } }) => {
+   /*  const start = (event: { detail: { visit: { prefetch: boolean } } }) => {
         if (!event.detail.visit.prefetch) {
             setLoading(true);
         }
-    };
+    }; */
+    const start = () => setLoading(true);
     const stop = () => setLoading(false);
 
+    router.on('prefetching', stop);
     router.on('start', start);
     router.on('finish', stop);
     router.on('error', stop);

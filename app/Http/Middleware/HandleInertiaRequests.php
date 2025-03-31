@@ -40,11 +40,6 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
-        $user = $request->user();
-
-        if ($user) {
-            $user->loadMissing('tags');
-        }
 
         return [
             ...parent::share($request),
@@ -54,7 +49,6 @@ class HandleInertiaRequests extends Middleware
             },
             'name' => config('app.name'),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
-            'tags' => $user ? $user->tags->pluck('name')->sort()->values() : [],
             'ziggy' => fn(): array => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),

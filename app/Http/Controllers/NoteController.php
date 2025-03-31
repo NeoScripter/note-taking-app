@@ -25,12 +25,25 @@ class NoteController extends Controller
         $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
 
         if ($noteId) {
-            $note = Note::findOrFail($noteId);
+            $note = $notes->getCollection()->firstWhere('id', $noteId);
             Gate::authorize('view', $note);
-            $note->load('tags');
         }
 
+        $user = $request->user();
+
+        if ($user) {
+            $user->loadMissing('tags');
+        }
+
+        $tags = $user ? $user->tags->pluck('name')->sort()->values() : [];
+
+        /* $tags = Inertia::defer(fn () => Tag::where('user_id', $request->user()->id)
+            ->pluck('name')
+            ->sort()
+            ->values()); */
+
         return Inertia::render($view, [
+            'tags' => $tags,
             'tag' => $tag,
             'note' => $note,
             'notes' => Inertia::merge($notes->items()),

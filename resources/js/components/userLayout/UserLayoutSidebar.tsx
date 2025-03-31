@@ -2,12 +2,14 @@ import { useModalContext } from '@/hooks/useModalContext';
 import { useScreenResize } from '@/hooks/useScreenResize';
 import useThemeContext from '@/hooks/useThemeContext';
 import { THEMES } from '@/utils/theme';
-import { usePage } from '@inertiajs/react';
+import { Deferred, usePage } from '@inertiajs/react';
 import darkLogo from '../../../images/logo-dark.webp';
 import lightLogo from '../../../images/logo-light.webp';
 
 import { ROUTES } from '@/consts/routeNames';
 import useTrans from '@/hooks/useTrans';
+import { useEffect, useRef } from 'react';
+import TagSkeletonList from '../noteLayout/TagSkeletonList';
 import TagNavItem from '../shared/TagNavItem';
 import ArchiveIcon from '../svgs/ArchiveIcon';
 import HouseIcon from '../svgs/HouseIcon';
@@ -19,6 +21,26 @@ export default function UserLayoutSidebar() {
     const isLarge = useScreenResize();
     const { props } = usePage<{ tags: string[] }>();
     const t = useTrans();
+
+    const tagsRef = useRef<string[]>(props.tags ?? []);
+
+    useEffect(() => {
+        if (props.tags && props.tags.length > 0 && props.tags.length !== tagsRef.current.length) {
+            tagsRef.current = props.tags;
+        }
+    }, [props.tags]);
+
+    const renderPrevTags = () => (
+        <ul className="notes-height scrollbar-hidden overflow-y-auto" scroll-region="true">
+            {tagsRef.current.map((tag) => (
+                <TagNavItem key={tag} routeName={ROUTES.TAG} tagName={tag} label={tag}>
+                    <TagIcon width="20" height="20" />
+                </TagNavItem>
+            ))}
+        </ul>
+    );
+
+    const fallback = tagsRef.current.length > 0 ? renderPrevTags() : <TagSkeletonList />;
 
     return (
         (showSidebar || isLarge) && (
@@ -40,16 +62,28 @@ export default function UserLayoutSidebar() {
                     </nav>
                 </div>
                 <p className="border-colors mb-4 text-2xl font-bold md:mt-2 md:mb-0 md:border-t md:px-3 md:py-2 md:text-sm md:font-normal md:text-[#717784]">
-                {t('Tags')}
+                    {t('Tags')}
                 </p>
                 <nav>
+                    {/* <Deferred data="tags" fallback={fallback}>
+                        <ul className="notes-height scrollbar-hidden overflow-y-auto" scroll-region="true">
+                            {props.tags &&
+                                props.tags.map((tag) => (
+                                    <TagNavItem key={tag} routeName={ROUTES.TAG} tagName={tag} label={tag}>
+                                        <TagIcon width="20" height="20" />
+                                    </TagNavItem>
+                                ))}
+                        </ul>
+                    </Deferred> */}
+
                     <ul className="notes-height scrollbar-hidden overflow-y-auto" scroll-region="true">
-                        {props.tags.map((tag) => (
-                            <TagNavItem key={tag} routeName={ROUTES.TAG} tagName={tag} label={tag}>
-                                <TagIcon width="20" height="20" />
-                            </TagNavItem>
-                        ))}
-                    </ul>
+                            {props.tags &&
+                                props.tags.map((tag) => (
+                                    <TagNavItem key={tag} routeName={ROUTES.TAG} tagName={tag} label={tag}>
+                                        <TagIcon width="20" height="20" />
+                                    </TagNavItem>
+                                ))}
+                        </ul>
                 </nav>
             </aside>
         )
