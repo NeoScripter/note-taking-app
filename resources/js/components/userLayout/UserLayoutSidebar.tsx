@@ -65,7 +65,7 @@ export default function UserLayoutSidebar() {
                     {t('Tags')}
                 </p>
                 <nav>
-                    {/* <Deferred data="tags" fallback={fallback}>
+                    <Deferred data="tags" fallback={fallback}>
                         <ul className="notes-height scrollbar-hidden overflow-y-auto" scroll-region="true">
                             {props.tags &&
                                 props.tags.map((tag) => (
@@ -74,16 +74,16 @@ export default function UserLayoutSidebar() {
                                     </TagNavItem>
                                 ))}
                         </ul>
-                    </Deferred> */}
+                    </Deferred>
 
-                    <ul className="notes-height scrollbar-hidden overflow-y-auto" scroll-region="true">
-                            {props.tags &&
-                                props.tags.map((tag) => (
-                                    <TagNavItem key={tag} routeName={ROUTES.TAG} tagName={tag} label={tag}>
-                                        <TagIcon width="20" height="20" />
-                                    </TagNavItem>
-                                ))}
-                        </ul>
+                    {/* <ul className="notes-height scrollbar-hidden overflow-y-auto" scroll-region="true">
+                        {props.tags &&
+                            props.tags.map((tag) => (
+                                <TagNavItem key={tag} routeName={ROUTES.TAG} tagName={tag} label={tag}>
+                                    <TagIcon width="20" height="20" />
+                                </TagNavItem>
+                            ))}
+                    </ul> */}
                 </nav>
             </aside>
         )
