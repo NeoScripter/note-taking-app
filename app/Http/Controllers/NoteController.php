@@ -25,8 +25,9 @@ class NoteController extends Controller
         $isNextPageExists = $notePaginateProp['current_page'] < $notePaginateProp['last_page'];
 
         if ($noteId) {
-            $note = $notes->getCollection()->firstWhere('id', $noteId);
+            $note = Note::findOrFail($noteId);
             Gate::authorize('view', $note);
+            $note->load('tags');
         }
 
         $user = $request->user();
