@@ -18,11 +18,16 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/settings', function (Request $request) {
 
+        $user = $request->user();
+
+        if ($user) {
+            $user->loadMissing('tags');
+        }
+
+        $tags = $user ? $user->tags->pluck('name')->sort()->values() : [];
+
         return Inertia::render('user/Settings', [
-            'tags' => Inertia::defer(fn () => Tag::where('user_id', $request->user()->id)
-            ->pluck('name')
-            ->sort()
-            ->values())
+            'tags' => $tags,
         ]);
 
     })->name('settings');

@@ -28,19 +28,14 @@ class NoteController extends Controller
             $note = $notes->getCollection()->firstWhere('id', $noteId);
             Gate::authorize('view', $note);
         }
-/*
+
         $user = $request->user();
 
         if ($user) {
             $user->loadMissing('tags');
         }
 
-        $tags = $user ? $user->tags->pluck('name')->sort()->values() : []; */
-
-        $tags = Inertia::defer(fn () => Tag::where('user_id', $request->user()->id)
-            ->pluck('name')
-            ->sort()
-            ->values());
+        $tags = $user ? $user->tags->pluck('name')->sort()->values() : [];
 
         return Inertia::render($view, [
             'tags' => $tags,
